@@ -1,11 +1,10 @@
-const teacher = require('./teacher');
-const assignment =require('./assignment');
-const attendance = require('./attendence');
-const behavior = require('./behavior');
-const comments = require('./comments');
-const communication =require('./communication');
-const parent = require('./parent');
-const student = require ('./student');
+const Teacher = require('./teacher');
+const Assignment =require('./assignment');
+const Attendance = require('./attendence');
+const Behavior = require('./behavior');
+const Communication =require('./communication');
+const Guardian = require('./guardian');
+const Student = require ('./student');
 
 
 
@@ -17,5 +16,5 @@ const student = require ('./student');
 
 
 
-module.exports = { teacher, assignment, attendance, behavior, comments,communication,parent, student }
+module.exports = { Teacher, Assignment, Attendance, Behavior, Communication,Guardian, Student }
 

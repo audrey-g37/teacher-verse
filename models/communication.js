@@ -23,18 +23,30 @@ type:DataTypes.STRING,
 allowNull: false,
 },
 
-text: {
-type:DataTypes.text,
+description: {
+type:DataTypes.TEXT,
 allowNull:true,
+},
 
-}
+
+dateOfCommunication:{
+type:DataTypes.DATE,
+allowNull:false,
+},
+
+followUpNeeded: {
+type:DataTypes.BOOLEAN,
+allowNull: false,
+},
+
+
 },
 
 {
-    sequelize,
-    freezeTableName: true,
-    underscored: true,
-    modelName:'Communication',
+sequelize,
+freezeTableName: true,
+underscored: true,
+modelName:'Communication',
     }
 
 );

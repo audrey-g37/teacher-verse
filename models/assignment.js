@@ -12,29 +12,42 @@ Assignments.init(
 {
 
 id: {
-type: DataTypes.STRING,
+type: DataTypes.INTEGER,
+autoIncrement: true,
 allowNull:false,
 primaryKey:true,
 },
 
-text: {
+title: {
+type:DataTypes.STRING(30),
+allowNull:false,
+},
+
+description: {
+    type:DataTypes.TEXT,
+    allowNull: true,
+},
+
+feedback : {
 type: DataTypes.STRING,
 allowNull: false,
 },
 
+dueDate: {
+type: DataTypes.DATE,
+allowNull: false,
+},
 
 status: {
     type:DataTypes.STRING,
     allowNull: false,
 },
 
-score: {
+scoreEarned: {
     type:DataTypes.DECIMAL,
-    allowNull: false,
-}
+    allowNull: true,
 },
-
-
+},
 
 {
     sequelize,

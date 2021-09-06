@@ -4,10 +4,10 @@ const sequelize = require ("../config/connection");
 
 
 
-class Parent extends Model {}
+class Guardian extends Model {}
 
 
-Parent.init(
+Guardian.init(
 
 {
 id: {
@@ -49,9 +49,9 @@ isMobileNumber: true,
 sequelize,
 freezeTableName: true,
 underscored: true,
-modelName:'Parent',
+modelName:'Guardian',
 }
 );
 
 
-module.exports = Parent;
+module.exports = Guardian;

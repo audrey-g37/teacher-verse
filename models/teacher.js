@@ -18,8 +18,14 @@ primaryKey: true,
 autoIncrement: true,
 },
 
-userName: {
-type: DataTypes.STRING,
+
+firstName: {
+type:DataTypes.STRING,
+allowNull: false,
+},
+
+lastName: {
+type:DataTypes.STRING,
 allowNull: false,
 },
 

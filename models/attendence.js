@@ -18,20 +18,24 @@ primaryKey: true,
 autoIncrement: true,
 },
 
-text :{
+text:{
 type: DataTypes.text,
-
 },
 
-status:{
-    type:DataTypes.STRING,
-    allowNull: false,
-    },
-    
+isPresent:{
+type:DataTypes.BOOLEAN,
+defaultValue: true,
+allowNull: false,
+},
+
+time :{
+type: DataTypes.DATE,
+allowNull: true,
+},
 
 },
 {
-    sequelize,
+sequelize,
     freezeTableName: true,
     underscored: true,
     modelName:'Attendance',

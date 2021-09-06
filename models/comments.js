@@ -1,3 +1,7 @@
+
+//not currently in use
+
+
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require ("../config/connection");
 
@@ -35,4 +39,3 @@ modelName:'Comments',
 
 
 
-module.exports = Comments;

@@ -2,6 +2,7 @@ const {Model, DataTypes} = require('sequelize');
 const sequelize = require ("../config/connection");
 
 
+//This behavior model is for significant behavior that happens during the academic year
 
 
 class Behavior extends Model {}
@@ -18,12 +19,23 @@ primaryKey: true,
 autoIncrement: true,
 },
 
-text:{
-type:DataTypes.text,
+title:{
+    type:DataTypes.STRING,
+    allowNull:false,
 },
 
-status:{
+description:{
+type:DataTypes.TEXT,
+allowNull: false,
+},
+
+actionItems: {
 type:DataTypes.STRING,
+allowNull: false,
+},
+
+isGood:{
+type:DataTypes.BOOLEAN,
 allowNull: false,
 },
 
