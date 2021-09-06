@@ -1,5 +1,12 @@
 # Teacher Force
 
+## Table of Contents
+
+1. [About](#Requirements)
+2. [How To](#How_To)
+3. [References](##References)
+4. [Contributions](##Contributions_and_Contact_Information)
+
 ## Requirements
 
 <!-- ----------------------- -->
@@ -23,21 +30,28 @@ Must meet good-quality coding structure
 Professional ReadMe
 ```
 
-## Screenshot
+## How To
 
 <!-- ----------------------- -->
+
+<br /> Instructions on how to run our application (includes steps 'on npm i' and whatnot <br />
+
+<!-- Inlcudes screenshots of said steps -->
 
 ![Screen Shot](https://.png)
 
-## Recources
+## Resources
 
 <!-- ----------------------- -->
 
-[Webpage layout model](https://drive.google.com/file/d/1o9OZspW0OA-BawXNvo9zb7Yx2sYju6eq/view?usp=sharing)
+[WireFrame](https://drive.google.com/file/d/1ATF0TMnzcSoFdFFB3xujzMdjoBeDfwI9/view?usp=sharing)
 
-[Unsplash](https://unsplash.com/s/photos/food)
+[Unsplash](https://unsplash.com/photos/Hcfwew744z4)
 
 [BootStrap](https://getbootstrap.com/)
+
+<br /> Instructor: Benjamin Machock <br />
+TA: Zac Stowell
 
 <!-- List APIs used here for Recipe and Drink -->
 
@@ -45,11 +59,22 @@ Professional ReadMe
 
 <!-- ----------------------- -->
 
-[References used](https://www.elated.com/res/File/articles/development/javascript/jquery/elegant-sliding-image-gallery-with-jquery/)
+[References used](#)
 
 ## Contributions and Contact Information
 
 <!-- ----------------------- -->
 
+```
+Audrey Gillies
+audrey.gillies@gmail.com
+
 Catherine Cox
 ccox.034@gmail.com
+
+Edgar Calderon
+EdgarCalderon_24@hotmail.com
+
+Matt Bush
+matthewbush55@gmail.com
+```
