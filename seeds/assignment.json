@@ -1,0 +1,23 @@
+[
+  {
+    "id": "11",
+    "title": "math quiz",
+    "description": "ratios and unit rates",
+    "dueDate": "2021-1-10 07:45:12",
+    "assignedStatus": "true"
+  },
+  {
+    "id": "22",
+    "title": "reading test",
+    "description": "chapter 8 from froggy",
+    "dueDate": "2021-9-17 07:45:12",
+    "assignedStatus": "false"
+  },
+  {
+    "id": "33",
+    "title": "map homework",
+    "description": "label 50 states",
+    "dueDate": "2021-10-10 07:45:12",
+    "assignedStatus": "true"
+  }
+]

@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Attendance extends Model {}
+class AssignmentFeedback extends Model {}
 
-Attendance.init(
+AssignmentFeedback.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,15 +12,28 @@ Attendance.init(
       autoIncrement: true,
     },
 
-    isPresent: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
+    feedback: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
 
-    time: {
-      type: DataTypes.DATE,
+    submissionStatus: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    scoreEarned: {
+      type: DataTypes.DECIMAL,
       allowNull: true,
+    },
+
+    assignmentId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Assignment",
+        key: "id",
+      },
     },
 
     studentId: {
@@ -32,12 +45,13 @@ Attendance.init(
       },
     },
   },
+
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "Attendance",
+    modelName: "AssignmentFeedback",
   }
 );
 
-module.exports = Attendance;
+module.exports = AssignmentFeedback;
