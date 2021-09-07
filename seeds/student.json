@@ -1,0 +1,22 @@
+[
+  {
+    "id": "111",
+    "firstName": "Brucey",
+    "lastName": "Manton",
+    "inProgressGrade": ".824"
+  },
+
+  {
+    "id": "222",
+    "firstName": "Sarah",
+    "lastName": "Little",
+    "inProgressGrade": ".714"
+  },
+
+  {
+    "id": "333",
+    "firstName": "Jaime",
+    "lastName": "Smithy",
+    "inProgressGrade": ".94"
+  }
+]
