@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Assignment extends Model {}
+class StudentBehavior extends Model {}
 
-Assignment.init(
+StudentBehavior.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,34 +11,29 @@ Assignment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-
-    title: {
-      type: DataTypes.STRING(30),
+    studentId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "Student",
+        key: "id",
+      },
     },
-
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-
-    dueDate: {
-      type: DataTypes.DATEONLY,
+    behaviorId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },
-
-    assignedStatus: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
+      references: {
+        model: "Behavior",
+        key: "id",
+      },
     },
   },
-
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "Assignment",
+    modelName: "studentBehavior",
   }
 );
 
-module.exports = Assignment;
+module.exports = StudentBehavior;

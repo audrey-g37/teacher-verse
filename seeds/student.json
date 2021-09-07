@@ -1,22 +1,22 @@
 [
   {
-    "id": "111",
+    "id": 111,
     "firstName": "Brucey",
     "lastName": "Manton",
-    "inProgressGrade": ".824"
+    "inProgressGrade": 0.824
   },
 
   {
-    "id": "222",
+    "id": 222,
     "firstName": "Sarah",
     "lastName": "Little",
-    "inProgressGrade": ".714"
+    "inProgressGrade": 0.714
   },
 
   {
-    "id": "333",
+    "id": 333,
     "firstName": "Jaime",
     "lastName": "Smithy",
-    "inProgressGrade": ".94"
+    "inProgressGrade": 0.94
   }
 ]

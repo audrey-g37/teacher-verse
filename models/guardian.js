@@ -32,18 +32,10 @@ Guardian.init(
     },
 
     phoneNumber: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isMobileNumber: true,
-      },
-    },
-    studentId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "Student",
-        key: "id",
+        isNumeric: true,
       },
     },
   },
