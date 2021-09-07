@@ -1,15 +1,15 @@
 [
   {
-    "isPresent": "true",
-    "studentId": "111"
+    "isPresent": true,
+    "studentId": 111
   },
   {
-    "isPresent": "true",
-    "studentId": "222"
+    "isPresent": true,
+    "studentId": 222
   },
   {
-    "isPresent": "false",
-    "time": "2021-15-10 07:45:12",
-    "studentId": "333"
+    "isPresent": false,
+    "time": 20211510074512,
+    "studentId": 333
   }
 ]

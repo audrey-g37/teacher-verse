@@ -23,22 +23,13 @@ Communication.init(
     },
 
     dateOfCommunication: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
 
     followUpNeeded: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-    },
-
-    studentId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "Student",
-        key: "id",
-      },
     },
   },
 

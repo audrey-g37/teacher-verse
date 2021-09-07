@@ -22,15 +22,6 @@ Attendance.init(
       type: DataTypes.DATE,
       allowNull: true,
     },
-
-    studentId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "Student",
-        key: "id",
-      },
-    },
   },
   {
     sequelize,
