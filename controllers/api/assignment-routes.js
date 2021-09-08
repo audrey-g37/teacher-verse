@@ -17,7 +17,7 @@ res.status(500).json(err)
 
 router.get('/:id', async (req,res) => {
 try {
-const assignmentData = await Assignment.findByPK(req.params.id);
+const assignmentData = await Assignment.findByPk(req.params.id);
 if (!assignmentData) {
 res.status(404).json({message:`no assignment found with id of ${req.params.id}`});
 }
