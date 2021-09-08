@@ -14,11 +14,19 @@ Student.init(
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+        isAlpha: true,
+      },
     },
 
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+        isAlpha: true,
+      },
     },
 
     //TODO:

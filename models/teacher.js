@@ -20,11 +20,19 @@ Teacher.init(
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+        isAlpha: true,
+      },
     },
 
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+        isAlpha: true,
+      },
     },
 
     email: {
@@ -33,6 +41,7 @@ Teacher.init(
       unique: true,
       validate: {
         isEmail: true,
+        notEmpty: true,
       },
     },
 

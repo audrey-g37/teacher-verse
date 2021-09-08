@@ -17,16 +17,25 @@ Behavior.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+      },
     },
 
     description: {
       type: DataTypes.TEXT,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+      },
     },
 
     actionItems: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+      },
     },
 
     isGood: {

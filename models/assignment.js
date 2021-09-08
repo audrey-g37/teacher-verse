@@ -15,6 +15,9 @@ Assignment.init(
     title: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      validation: {
+        notEmpty: true,
+      },
     },
 
     description: {

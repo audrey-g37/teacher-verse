@@ -15,11 +15,19 @@ Guardian.init(
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+        isAlpha: true,
+      },
     },
 
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+        isAlpha: true,
+      },
     },
 
     email: {
@@ -28,12 +36,16 @@ Guardian.init(
       unique: true,
       validate: {
         isEmail: true,
+        notEmpty: true,
       },
     },
 
     phoneNumber: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+      },
       // removed since the inputted value will be a STRING type and the validation wopuld always fail
       // validate: {
       //   isNumeric: true,

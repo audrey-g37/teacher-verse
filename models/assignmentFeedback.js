@@ -15,6 +15,9 @@ AssignmentFeedback.init(
     feedback: {
       type: DataTypes.TEXT,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+      },
     },
 
     submissionStatus: {
