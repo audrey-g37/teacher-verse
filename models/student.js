@@ -21,6 +21,8 @@ Student.init(
       allowNull: false,
     },
 
+    //TODO:
+    // Will we need this column? The grade will be derived from the assessmentFeedback "scoreEarned" column
     inProgressGrade: {
       type: DataTypes.DECIMAL,
       allowNull: false,
@@ -70,6 +72,22 @@ Student.init(
     },
   },
   {
+    hooks: {
+      beforeCreate: async (newStudentData) => {
+        newStudentData.firstName = await newStudentData.firstName.trim();
+        newStudentData.lastName = await newStudentData.lastName.trim();
+        newStudentData.firstName = await newStudentData.firstName.toLowerCase();
+        newStudentData.lastName = await newStudentData.lastName.toLowerCase();
+        return newStudentData;
+      },
+      beforeUpdate: async (updatedStudentData) => {
+        updatedStudentData.firstName = await updatedStudentData.firstName.trim();
+        updatedStudentData.lastName = await updatedStudentData.lastName.trim();
+        updatedStudentData.firstName = await updatedStudentData.firstName.toLowerCase();
+        updatedStudentData.lastName = await updatedStudentData.lastName.toLowerCase();
+        return updatedStudentData;
+      },
+    },
     sequelize,
     freezeTableName: true,
     underscored: true,

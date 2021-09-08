@@ -45,6 +45,21 @@ Behavior.init(
   },
 
   {
+    hooks: {
+      beforeCreate: async (newBehaviorData) => {
+        newBehaviorData.title = newBehaviorData.title.trim();
+        newBehaviorData.description = newBehaviorData.description.trim();
+        newBehaviorData.actionItems = newBehaviorData.actionItems.trim();
+        return newBehaviorData;
+      },
+      beforeUpdate: async (updatedBehaviorData) => {
+        updatedBehaviorData.title = updatedBehaviorData.title.trim();
+        updatedBehaviorData.description = updatedBehaviorData.description.trim();
+        updatedBehaviorData.actionItems = updatedBehaviorData.actionItems.trim();
+        return updatedBehaviorData;
+      },
+    },
+
     sequelize,
     freezeTableName: true,
     underscored: true,

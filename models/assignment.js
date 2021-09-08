@@ -34,6 +34,16 @@ Assignment.init(
   },
 
   {
+    hooks: {
+      beforeCreate: async (newAssignmentData) => {
+        newAssignmentData.description = newAssignmentData.description.trim();
+        return newAssignmentData;
+      },
+      beforeUpdate: async (updatedAssignmentData) => {
+        updatedAssignmentData.description = updatedAssignmentData.description.trim();
+        return updatedAssignmentData;
+      },
+    },
     sequelize,
     freezeTableName: true,
     underscored: true,
