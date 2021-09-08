@@ -6,7 +6,6 @@ const Behavior = require("./behavior");
 const Communication = require("./communication");
 const Guardian = require("./guardian");
 const Student = require("./student");
-const Assignment = require("./assignment");
 
 Teacher.hasMany(Student, {
   foreignKey: "teacherId",
