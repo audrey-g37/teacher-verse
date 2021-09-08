@@ -61,6 +61,13 @@ Student.init(
         key: "id",
       },
     },
+    assignmentFeedbackId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "AssignmentFeedback",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
@@ -70,4 +77,4 @@ Student.init(
   }
 );
 
-module.export = Student;
+module.exports = Student;

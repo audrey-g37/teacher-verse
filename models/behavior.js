@@ -33,14 +33,7 @@ Behavior.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    studentId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "Student",
-        key: "id",
-      },
-    },
+
     communicationId: {
       type: DataTypes.INTEGER,
       allowNull: true,
