@@ -1,5 +1,5 @@
 
-// boilerplate code
+// Template code
 const router = require('express').Router();
 const { User } = require('../models');
 
