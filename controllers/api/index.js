@@ -1,10 +1,16 @@
-// Template
-
 const router = require('express').Router();
+const assignmentRoutes = require('./assignment-routes');
 
-const userRoutes = require('./user-routes');
 
-router.use('/users', userRoutes);
 
-// needs to go to correct place
-module.exports = #;
+
+
+
+router.use('/assignment', assignmentRoutes);
+
+
+
+
+
+
+module.exports = router;
