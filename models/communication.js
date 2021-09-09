@@ -34,6 +34,16 @@ Communication.init(
   },
 
   {
+    hooks: {
+      beforeCreate: async (newCommunicationData) => {
+        newCommunicationData.description = newCommunicationData.description.trim();
+        return newCommunicationData;
+      },
+      beforeUpdate: async (updatedCommunicationData) => {
+        updatedCommunicationData.description = updatedCommunicationData.description.trim();
+        return updatedCommunicationData;
+      },
+    },
     sequelize,
     freezeTableName: true,
     underscored: true,
