@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Login page CSS */
 
 /* Background color scheme */
@@ -34,6 +35,11 @@ body {
 }
 
 /* Register page */
+=======
+:root {
+  --white: #fff;
+}
+>>>>>>> main
 
 .register {
   background: -webkit-linear-gradient(left, #3931af, #00c6ff);
@@ -42,7 +48,11 @@ body {
 }
 .register-top {
   text-align: center;
+<<<<<<< HEAD
   color: #fff;
+=======
+  color: var(--white);
+>>>>>>> main
 }
 /* Login button */
 .register-top input {
@@ -62,7 +72,10 @@ body {
   border-top-left-radius: 10% 50%;
   border-bottom-left-radius: 10% 50%;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 .register .register-form {
   padding: 10%;
   margin-top: 10%;
@@ -97,15 +110,22 @@ body {
 .register .nav-tabs .nav-link:hover {
   border: none;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 .register-heading {
   text-align: center;
   margin-top: 8%;
   margin-bottom: -15%;
   color: #495057;
 }
+<<<<<<< HEAD
 
 img {
+=======
+.register img {
+>>>>>>> main
   width: 50%;
   height: auto;
 }
