@@ -15,6 +15,9 @@ AssignmentFeedback.init(
     feedback: {
       type: DataTypes.TEXT,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+      },
     },
 
     submissionStatus: {
@@ -23,8 +26,11 @@ AssignmentFeedback.init(
     },
 
     scoreEarned: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       allowNull: true,
+      validate: {
+        isInt: true, // added validation to make sure an integer is entered. This will be converted into a decimal using a hook below
+      },
     },
 
     assignmentId: {
@@ -38,6 +44,20 @@ AssignmentFeedback.init(
   },
 
   {
+    hooks: {
+      beforeCreate: async (newAssignmentFeedbackData) => {
+        newAssignmentFeedbackData.feedback = newAssignmentData.feedback.trim();
+        //convert inputted student score into a decimal to store in db as a decimal
+        newAssignmentFeedbackData.scoreEarned = newAssignmentFeedbackData.scoreEarned / 100;
+        return newAssignmentFeedbackData;
+      },
+      beforeUpdate: async (updatedAssignmentFeedbackData) => {
+        updatedAssignmentFeedbackData.feedback = updatedAssignmentData.feedback.trim();
+        //convert inputted student score into a decimal to store in db as a decimal
+        updatedAssignmentFeedbackData.scoreEarned = updatedAssignmentFeedbackData.scoreEarned / 100;
+        return updatedAssignmentFeedbackData;
+      },
+    },
     sequelize,
     freezeTableName: true,
     underscored: true,

@@ -20,11 +20,19 @@ Teacher.init(
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+        isAlpha: true,
+      },
     },
 
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validation: {
+        notEmpty: true,
+        isAlpha: true,
+      },
     },
 
     email: {
@@ -33,6 +41,7 @@ Teacher.init(
       unique: true,
       validate: {
         isEmail: true,
+        notEmpty: true,
       },
     },
 
@@ -41,14 +50,27 @@ Teacher.init(
       allowNull: false,
       validate: {
         len: [6],
+        isAlphanumeric: true, // added isAlphanumeric to ensure no accidental chars are entered
       },
     },
   },
   {
     hooks: {
-      async beforeCreate(newTeacherData) {
+      // hooks to hash the password, trim unnecessary spaces in user input, and convert user input to lowercase before POST requests
+      beforeCreate: async (newTeacherData) => {
         newTeacherData.password = await bcrypt.hash(newTeacherData.password, 10);
+        newTeacherData.firstName = await newTeacherData.firstName.trim().toLowerCase();
+        newTeacherData.lastName = await newTeacherData.lastName.trim().toLowerCase();
+        newTeacherData.email = await newTeacherData.email.trim().toLowerCase();
         return newTeacherData;
+      },
+      // hooks to hash the password, trim unnecessary spaces in user input, and convert user input to lowercase before PUT requests
+      beforeUpdate: async (updatedTeacherData) => {
+        updatedTeacherData.password = await bcrypt.hash(updatedTeacherData.password, 10);
+        updatedTeacherData.firstName = await updatedTeacherData.firstName.trim().toLowerCase();
+        updatedTeacherData.lastName = await updatedTeacherData.lastName.trim().toLowerCase();
+        updatedTeacherData.email = await updatedTeacherData.email.trim().toLowerCase();
+        return updatedTeacherData;
       },
     },
 
