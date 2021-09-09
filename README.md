@@ -50,6 +50,8 @@ Professional ReadMe
 
 [BootStrap](https://getbootstrap.com/)
 
+[Logo](https://howtostartanllc.com/logo-maker)
+
 <br /> Instructor: Benjamin Machock <br />
 TA: Zac Stowell
 
