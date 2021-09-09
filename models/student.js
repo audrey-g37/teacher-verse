@@ -9,6 +9,7 @@ Student.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      unique: true,
     },
 
     firstName: {
@@ -82,17 +83,13 @@ Student.init(
   {
     hooks: {
       beforeCreate: async (newStudentData) => {
-        newStudentData.firstName = await newStudentData.firstName.trim();
-        newStudentData.lastName = await newStudentData.lastName.trim();
-        newStudentData.firstName = await newStudentData.firstName.toLowerCase();
-        newStudentData.lastName = await newStudentData.lastName.toLowerCase();
+        newStudentData.firstName = await newStudentData.firstName.trim().toLowerCase();
+        newStudentData.lastName = await newStudentData.lastName.trim().toLowerCase();
         return newStudentData;
       },
       beforeUpdate: async (updatedStudentData) => {
-        updatedStudentData.firstName = await updatedStudentData.firstName.trim();
-        updatedStudentData.lastName = await updatedStudentData.lastName.trim();
-        updatedStudentData.firstName = await updatedStudentData.firstName.toLowerCase();
-        updatedStudentData.lastName = await updatedStudentData.lastName.toLowerCase();
+        updatedStudentData.firstName = await updatedStudentData.firstName.trim().toLowerCase();
+        updatedStudentData.lastName = await updatedStudentData.lastName.trim().toLowerCase();
         return updatedStudentData;
       },
     },

@@ -43,6 +43,7 @@ Guardian.init(
     phoneNumber: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validation: {
         notEmpty: true,
       },
@@ -56,23 +57,17 @@ Guardian.init(
   {
     hooks: {
       beforeCreate: async (newGuardianData) => {
-        newGuardianData.firstName = await newGuardianData.firstName.trim();
-        newGuardianData.lastName = await newGuardianData.lastName.trim();
-        newGuardianData.email = await newGuardianData.email.trim();
-        newGuardianData.firstName = await newGuardianData.firstName.toLowerCase();
-        newGuardianData.lastName = await newGuardianData.lastName.toLowerCase();
-        newGuardianData.email = await newGuardianData.email.toLowerCase();
-        newGuardianData.phoneNumber = await newGuardianData.phoneNumber.trim();
+        newGuardianData.firstName = await newGuardianData.firstName.trim().toLowerCase();
+        newGuardianData.lastName = await newGuardianData.lastName.trim().toLowerCase();
+        newGuardianData.email = await newGuardianData.email.trim().toLowerCase();
+        newGuardianData.phoneNumber = await newGuardianData.phoneNumber.trim().toLowerCase();
         return newGuardianData;
       },
       beforeUpdate: async (updatedGuardianData) => {
-        updatedGuardianData.firstName = await updatedGuardianData.firstName.trim();
-        updatedGuardianData.lastName = await updatedGuardianData.lastName.trim();
-        updatedGuardianData.email = await updatedGuardianData.email.trim();
-        updatedGuardianData.firstName = await updatedGuardianData.firstName.toLowerCase();
-        updatedGuardianData.lastName = await updatedGuardianData.lastName.toLowerCase();
+        updatedGuardianData.firstName = await updatedGuardianData.firstName.trim().toLowerCase();
+        updatedGuardianData.lastName = await updatedGuardianData.lastName.trim().toLowerCase();
         updatedGuardianData.email = await updatedGuardianData.email.toLowerCase();
-        updatedGuardianData.phoneNumber = await updatedGuardianData.phoneNumber.trim();
+        updatedGuardianData.phoneNumber = await updatedGuardianData.phoneNumber.trim().toLowerCase();
         return updatedGuardianData;
       },
     },
