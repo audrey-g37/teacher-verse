@@ -30,8 +30,6 @@ Student.init(
       },
     },
 
-    //TODO:
-    // Will we need this column? The grade will be derived from the assessmentFeedback "scoreEarned" column
     inProgressGrade: {
       type: DataTypes.DECIMAL,
       allowNull: false,
