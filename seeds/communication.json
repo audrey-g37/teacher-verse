@@ -1,23 +1,24 @@
 [
   {
+    "id":1,
     "communicationMethod": "email",
     "description": "convo went well",
     "dateOfCommunication": 20210810,
-    "followUpNeeded": false,
-    "studentId": 111
+    "followUpNeeded": false
+    
   },
   {
+    "id":2,
     "communicationMethod": "phone",
     "description": "left voicemail",
     "dateOfCommunication": 20210810,
-    "followUpNeeded": true,
-    "studentId": 222
+    "followUpNeeded": true
   },
   {
+    "id":3,
     "communicationMethod": "meeting",
     "description": "conflict",
     "dateOfCommunication": 20210910,
-    "followUpNeeded": true,
-    "studentId": 333
+    "followUpNeeded": true
   }
 ]

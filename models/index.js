@@ -72,6 +72,13 @@ Communication.belongsToMany(Student, {
   through: StudentCommunication,
 });
 
+Communication.hasMany(Behavior,{
+  foreignKey: "communicationId"
+})
+
+Behavior.belongsTo(Communication, {
+  foreignKey: "communicationId"
+})
 // Assignment associations
 Assignment.hasMany(AssignmentFeedback, {
   foreignKey: "assignmentId",
