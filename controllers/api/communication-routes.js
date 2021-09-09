@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const {Assignment} = require('../../models');
+const {Communication, Behavior} = require('../../models');
 
-// Current location  "http:localhost:3001/api/assignment"
+// Current location  "http:localhost:3001/api/communication"
 
 router.get('/', async (req,res) => {
 try {
-const assignmentData = await Assignment.findAll();
-res.status(200).json(assignmentData);
+const communicationData = await Communication.findAll({include:[{model:Behavior}]});
+res.status(200).json(communicationData);
 
 }
 catch(err){
@@ -17,11 +17,11 @@ res.status(500).json(err)
 
 router.get('/:id', async (req,res) => {
 try {
-const assignmentData = await Assignment.findByPk(req.params.id);
-if (!assignmentData) {
-res.status(404).json({message:`no assignment found with id of ${req.params.id}`});
+const communicationData = await Communication.findByPk(req.params.id);
+if (!communicationData) {
+res.status(404).json({message:`no communication data found with id of ${req.params.id}`});
 }
-res.status(200).json(assignmentData);
+res.status(200).json(communicationData);
 
 }
 catch(err){
@@ -33,14 +33,14 @@ res.status(500).json(err)
 
 router.post('/', async (req,res) => {
     try{
-const newAssignment = await Assignment.create({
-    title: req.body.title,
+const newCommunication = await Communication.create({
+    communicationMethod: req.body.communicationMethod,
     description: req.body.description,
-    dueDate: req.body.dueDate,
-    assignedStatus: req.body.assignedStatus,
+    dateOfCommunication: req.body.dateOfCommunication,
+    followUpNeeded: req.body.followUpNeeded,
     
 });
-res.status(200).json({message:"Assignment Created!"});
+res.status(200).json({message:"Communication Stored!"});
 
     }
     catch(err){
@@ -52,11 +52,11 @@ res.status(200).json({message:"Assignment Created!"});
 
 router.put('/:id', async (req,res) => {
     try {
-const updatedAssignment = await Assignment.update(req.body, {where: {id:req.params.id}});
-if (!updatedAssignment[0]) {
-res.status(404).json({message:`no assignment found with the id of ${req.params.id}`})
+const updatedCommunication = await Communication.update(req.body, {where: {id:req.params.id}});
+if (!updatedCommunication[0]) {
+res.status(404).json({message:`no communication data found with the id of ${req.params.id}`})
 }
-res.status(200).json({message:`assignment with id of ${req.params.id} updated`})
+res.status(200).json({message:`communication with id of ${req.params.id} updated`})
     }
     catch(err){
 res.status(500).json(err)
@@ -65,11 +65,11 @@ res.status(500).json(err)
 
 router.delete ('/:id', async (req,res) => {
     try{
-    const deletedAssignment = await Assignment.destroy({where:{id: req.params.id}});
-if(!deletedAssignment){
-res.status(404).json({message:`no assignment with id ${req.params.id} found`})
+    const deletedCommunication = await Communication.destroy({where:{id: req.params.id}});
+if(!deletedCommunication){
+res.status(404).json({message:`no communication data with id ${req.params.id} found`})
 }
-res.status(200).json({message:`assignment with id ${req.params.id} deleted`})
+res.status(200).json({message:`communication with id ${req.params.id} deleted`})
     }
     catch(err){
     res.status(500).json(err)

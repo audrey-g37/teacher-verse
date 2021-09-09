@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const {Assignment} = require('../../models');
+const {Teacher, Student} = require('../../models');
 
-// Current location  "http:localhost:3001/api/assignment"
+// Current location  "http:localhost:3001/api/teacher"
 
 router.get('/', async (req,res) => {
 try {
-const assignmentData = await Assignment.findAll();
-res.status(200).json(assignmentData);
+const teacherData = await Teacher.findAll({include:[{model:Student}]});
+res.status(200).json(teacherData);
 
 }
 catch(err){
@@ -17,11 +17,11 @@ res.status(500).json(err)
 
 router.get('/:id', async (req,res) => {
 try {
-const assignmentData = await Assignment.findByPk(req.params.id);
-if (!assignmentData) {
-res.status(404).json({message:`no assignment found with id of ${req.params.id}`});
+const teacherData = await Teacher.findByPk(req.params.id);
+if (!teacherData) {
+res.status(404).json({message:`no teacher found with id of ${req.params.id}`});
 }
-res.status(200).json(assignmentData);
+res.status(200).json(teacherData);
 
 }
 catch(err){
@@ -33,14 +33,14 @@ res.status(500).json(err)
 
 router.post('/', async (req,res) => {
     try{
-const newAssignment = await Assignment.create({
-    title: req.body.title,
-    description: req.body.description,
-    dueDate: req.body.dueDate,
-    assignedStatus: req.body.assignedStatus,
+const newTeacher = await Teacher.create({
+    firstName: req.body.firstName,
+    lastName:req.body.lastName,
+    email:req.body.email,
+    password: req.body.password,
     
 });
-res.status(200).json({message:"Assignment Created!"});
+res.status(200).json({message:"teacher Created!"});
 
     }
     catch(err){
@@ -52,11 +52,11 @@ res.status(200).json({message:"Assignment Created!"});
 
 router.put('/:id', async (req,res) => {
     try {
-const updatedAssignment = await Assignment.update(req.body, {where: {id:req.params.id}});
-if (!updatedAssignment[0]) {
-res.status(404).json({message:`no assignment found with the id of ${req.params.id}`})
+const updatedTeacher = await Teacher.update(req.body, {where: {id:req.params.id}});
+if (!updatedTeacher[0]) {
+res.status(404).json({message:`no teacher found with the id of ${req.params.id}`})
 }
-res.status(200).json({message:`assignment with id of ${req.params.id} updated`})
+res.status(200).json({message:`teacher with id of ${req.params.id} updated`})
     }
     catch(err){
 res.status(500).json(err)
@@ -65,11 +65,11 @@ res.status(500).json(err)
 
 router.delete ('/:id', async (req,res) => {
     try{
-    const deletedAssignment = await Assignment.destroy({where:{id: req.params.id}});
-if(!deletedAssignment){
-res.status(404).json({message:`no assignment with id ${req.params.id} found`})
+    const deletedTeacher = await Teacher.destroy({where:{id: req.params.id}});
+if(!deletedTeacher){
+res.status(404).json({message:`no teacher with id ${req.params.id} found`})
 }
-res.status(200).json({message:`assignment with id ${req.params.id} deleted`})
+res.status(200).json({message:`teacher with id ${req.params.id} deleted`})
     }
     catch(err){
     res.status(500).json(err)

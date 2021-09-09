@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const {Assignment} = require('../../models');
+const {Attendance} = require('../../models');
 
-// Current location  "http:localhost:3001/api/assignment"
+// Current location  "http:localhost:3001/api/attendance"
 
 router.get('/', async (req,res) => {
 try {
-const assignmentData = await Assignment.findAll();
-res.status(200).json(assignmentData);
+const attendanceData = await Attendance.findAll();
+res.status(200).json(attendanceData);
 
 }
 catch(err){
@@ -17,11 +17,11 @@ res.status(500).json(err)
 
 router.get('/:id', async (req,res) => {
 try {
-const assignmentData = await Assignment.findByPk(req.params.id);
-if (!assignmentData) {
-res.status(404).json({message:`no assignment found with id of ${req.params.id}`});
+const attendanceData = await Attendance.findByPk(req.params.id);
+if (!attendanceData) {
+res.status(404).json({message:`no attendance data found with id of ${req.params.id}`});
 }
-res.status(200).json(assignmentData);
+res.status(200).json(attendanceData);
 
 }
 catch(err){
@@ -33,14 +33,12 @@ res.status(500).json(err)
 
 router.post('/', async (req,res) => {
     try{
-const newAssignment = await Assignment.create({
-    title: req.body.title,
-    description: req.body.description,
-    dueDate: req.body.dueDate,
-    assignedStatus: req.body.assignedStatus,
+const newAttendence = await Attendance.create({
+    isPresent: req.body.isPresent,
+    time:req.body.time,
     
 });
-res.status(200).json({message:"Assignment Created!"});
+res.status(200).json({message:"Attendance was added!"});
 
     }
     catch(err){
@@ -52,11 +50,11 @@ res.status(200).json({message:"Assignment Created!"});
 
 router.put('/:id', async (req,res) => {
     try {
-const updatedAssignment = await Assignment.update(req.body, {where: {id:req.params.id}});
-if (!updatedAssignment[0]) {
-res.status(404).json({message:`no assignment found with the id of ${req.params.id}`})
+const updatedAttendance = await Attendance.update(req.body, {where: {id:req.params.id}});
+if (!updatedAttendance[0]) {
+res.status(404).json({message:`no attendance data found with the id of ${req.params.id}`})
 }
-res.status(200).json({message:`assignment with id of ${req.params.id} updated`})
+res.status(200).json({message:`Attendance with id of ${req.params.id} updated`})
     }
     catch(err){
 res.status(500).json(err)
@@ -65,11 +63,11 @@ res.status(500).json(err)
 
 router.delete ('/:id', async (req,res) => {
     try{
-    const deletedAssignment = await Assignment.destroy({where:{id: req.params.id}});
-if(!deletedAssignment){
-res.status(404).json({message:`no assignment with id ${req.params.id} found`})
+    const deletedAttendance = await Attendance.destroy({where:{id: req.params.id}});
+if(!deletedAttendance){
+res.status(404).json({message:`no attendence data with id ${req.params.id} found`})
 }
-res.status(200).json({message:`assignment with id ${req.params.id} deleted`})
+res.status(200).json({message:`Attendance data with id ${req.params.id} deleted`})
     }
     catch(err){
     res.status(500).json(err)

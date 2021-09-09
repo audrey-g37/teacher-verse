@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const {Assignment} = require('../../models');
+const {Student,Teacher, Assignment, AssignmentFeedback, Attendance, Behavior, Communication, Guardian, StudentAssignmentFeedback, StudentAttendance,StudentBehavior,StudentCommunication} = require('../../models');
 
-// Current location  "http:localhost:3001/api/assignment"
+// Current location  "http:localhost:3001/api/student"
 
 router.get('/', async (req,res) => {
 try {
-const assignmentData = await Assignment.findAll();
-res.status(200).json(assignmentData);
+const studentData = await Student.findAll({include:[{model:Teacher},{model:AssignmentFeedback}, {model:Attendance}, {model:Behavior},{model:Communication},{model:Guardian}]});
+res.status(200).json(studentData);
 
 }
 catch(err){
@@ -17,11 +17,11 @@ res.status(500).json(err)
 
 router.get('/:id', async (req,res) => {
 try {
-const assignmentData = await Assignment.findByPk(req.params.id);
-if (!assignmentData) {
-res.status(404).json({message:`no assignment found with id of ${req.params.id}`});
+const studentData = await Student.findByPk(req.params.id);
+if (!studentData) {
+res.status(404).json({message:`no Student found with id of ${req.params.id}`});
 }
-res.status(200).json(assignmentData);
+res.status(200).json(studentData);
 
 }
 catch(err){
@@ -33,16 +33,9 @@ res.status(500).json(err)
 
 router.post('/', async (req,res) => {
     try{
-const newAssignment = await Assignment.create({
-    title: req.body.title,
-    description: req.body.description,
-    dueDate: req.body.dueDate,
-    assignedStatus: req.body.assignedStatus,
-    
-});
-res.status(200).json({message:"Assignment Created!"});
-
-    }
+const newStudent = await Student.create(req.body);
+res.status(200).json({message:"Student Created!"});
+}
     catch(err){
         res.status(400).json(err)
     }
@@ -52,11 +45,11 @@ res.status(200).json({message:"Assignment Created!"});
 
 router.put('/:id', async (req,res) => {
     try {
-const updatedAssignment = await Assignment.update(req.body, {where: {id:req.params.id}});
-if (!updatedAssignment[0]) {
-res.status(404).json({message:`no assignment found with the id of ${req.params.id}`})
+const updatedStudent = await Student.update(req.body, {where: {id:req.params.id}});
+if (!updatedStudent[0]) {
+res.status(404).json({message:`no Student found with the id of ${req.params.id}`})
 }
-res.status(200).json({message:`assignment with id of ${req.params.id} updated`})
+res.status(200).json({message:`Student with id of ${req.params.id} updated`})
     }
     catch(err){
 res.status(500).json(err)
@@ -65,11 +58,11 @@ res.status(500).json(err)
 
 router.delete ('/:id', async (req,res) => {
     try{
-    const deletedAssignment = await Assignment.destroy({where:{id: req.params.id}});
-if(!deletedAssignment){
-res.status(404).json({message:`no assignment with id ${req.params.id} found`})
+    const deletedStudent = await Student.destroy({where:{id: req.params.id}});
+if(!deletedStudent){
+res.status(404).json({message:`no Student with id ${req.params.id} found`})
 }
-res.status(200).json({message:`assignment with id ${req.params.id} deleted`})
+res.status(200).json({message:`Student with id ${req.params.id} deleted`})
     }
     catch(err){
     res.status(500).json(err)
