@@ -7,27 +7,20 @@
         <h5>WEEKLY VIEW</h5>
       </a>
       <form class="form-inline" my-2 my-lg-0”>
-        <input
-          class="form-control"
-          mr-sm-2”
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button
-          class="btn"
-          btn-outline-primary
-          my-2
-          my-sm-0”
-          type="submit"
-        >Search</button>
+        <input class="form-control" mr-sm-2” type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn" btn-outline-primary my-2 my-sm-0” type="submit">Search</button>
       </form>
     </nav>
   </div>
-  <div class="container">
-    <div class="card">
-      <div class="card-header">
-      </div>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Assignments</h5>
+      <p class="card-text">Five most recent assignments</p>
     </div>
+    <ul class="list-group list-group-flush">
+      {{#each assignmentData as |assignment|}}
+        <li class="list-group-item">{{assignment.title}}</li>
+      {{/each}}
+    </ul>
   </div>
 </div>
