@@ -1,12 +1,5 @@
 # Teacher Force
 
-## Table of Contents
-
-1. [About](#Requirements)
-2. [How To](#How_To)
-3. [References](##References)
-4. [Contributions](##Contributions_and_Contact_Information)
-
 ## Requirements
 
 <!-- ----------------------- -->
@@ -34,7 +27,8 @@ Professional ReadMe
 
 <!-- ----------------------- -->
 
-<br /> Instructions on how to run our application (includes steps 'on npm i' and whatnot <br />
+<br /> Instructions on how to run our application
+(includes steps 'on npm i' and what not) <br />
 
 <!-- Inlcudes screenshots of said steps -->
 
@@ -57,11 +51,11 @@ TA: Zac Stowell
 
 <!-- List APIs used here for Recipe and Drink -->
 
-## References
+## Credits
 
 <!-- ----------------------- -->
 
-[References used](#)
+[NPM Everyday Fun](https://www.npmjs.com/package/everyday-fun)
 
 ## Contributions and Contact Information
 
