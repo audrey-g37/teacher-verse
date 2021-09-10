@@ -36,14 +36,13 @@ router.get("/:id", async (req, res) => {
 
 router.post("/new-assignment", async (req, res) => {
   try {
-    console.log(req.body);
     const newAssignment = await Assignment.create({
       title: req.body.title,
       description: req.body.description,
       dueDate: req.body.dueDate,
       assignedStatus: req.body.assignedStatus,
     });
-    res.status(200).json({ message: "Assignment Created!" });
+    res.render("homepage");
   } catch (err) {
     res.status(400).json(err);
   }
