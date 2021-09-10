@@ -31,22 +31,36 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const studentData = await Student.findByPk(req.params.id, {
+    let studentData = await Student.findByPk(req.params.id, {
       include: [
-        { model: Attendance },
-        { model: AssignmentFeedback },
-        { model: Attendance },
-        { model: Behavior },
-        { model: Communication },
+  
         { model: Guardian },
       ],
     });
+    studentData = studentData.get({plain:true})
+    let studentAttendance = await Attendance.findAll();
+    const attendanceData = studentAttendance.map((attendance) =>
+      attendance.get({ plain: true })
+    );
+    const studentAttendanceAll = attendanceData.filter(function (el){return el.studentId == req.params.id});
+    
+    console.log(studentData);
+    
+const attendanceById={...studentAttendanceAll};
+console.log(attendanceById)
+
+    // let allData = [];
+  // allData.push(studentData).push(studentAttendanceAll);
+
+  //   console.log(allData);
+
     if (!studentData) {
       res
         .status(404)
         .json({ message: `no Student found with id of ${req.params.id}` });
     }
-    res.status(200).json(studentData);
+    // res.status(200).json(studentData)
+    res.render("single_student", {data1:studentData, data2:attendanceById});
   } catch (err) {
     res.status(500).json(err);
   }
