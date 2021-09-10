@@ -12,6 +12,14 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/new-assignment", async (req, res) => {
+  try {
+    res.render("new_assignment");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const assignmentData = await Assignment.findByPk(req.params.id);
@@ -26,7 +34,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/new-assignment", async (req, res) => {
   try {
     const newAssignment = await Assignment.create({
       title: req.body.title,
@@ -34,7 +42,7 @@ router.post("/", async (req, res) => {
       dueDate: req.body.dueDate,
       assignedStatus: req.body.assignedStatus,
     });
-    res.status(200).json({ message: "Assignment Created!" });
+    res.render("homepage");
   } catch (err) {
     res.status(400).json(err);
   }
@@ -46,11 +54,9 @@ router.put("/:id", async (req, res) => {
       where: { id: req.params.id },
     });
     if (!updatedAssignment[0]) {
-      res
-        .status(404)
-        .json({
-          message: `no assignment found with the id of ${req.params.id}`,
-        });
+      res.status(404).json({
+        message: `no assignment found with the id of ${req.params.id}`,
+      });
     }
     res
       .status(200)
