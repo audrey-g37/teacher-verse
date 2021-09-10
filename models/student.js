@@ -42,38 +42,10 @@ Student.init(
         key: "id",
       },
     },
-    attendanceId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "Attendance",
-        key: "id",
-      },
-    },
-    behaviorId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "Behavior",
-        key: "id",
-      },
-    },
     guardianId: {
       type: DataTypes.INTEGER,
       references: {
         model: "Guardian",
-        key: "id",
-      },
-    },
-    communicationId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "Communication",
-        key: "id",
-      },
-    },
-    assignmentFeedbackId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "AssignmentFeedback",
         key: "id",
       },
     },

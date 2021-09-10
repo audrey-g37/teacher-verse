@@ -47,10 +47,6 @@ Guardian.init(
       validation: {
         notEmpty: true,
       },
-      // removed since the inputted value will be a STRING type and the validation wopuld always fail
-      // validate: {
-      //   isNumeric: true,
-      // },
     },
   },
 

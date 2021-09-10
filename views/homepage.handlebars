@@ -2,25 +2,49 @@
   <div class="container">
     <h1 class="display-5" logo”>Teacher Force</h1>
     <p class="lead">Welcome to Teacher Force! An admin tool for teachers.</p>
-    <nav class="navbar" navbar-expand-lg navbar-light bg-light”>
-      <a class="navbar-brand" href="#">
-        <h5>WEEKLY VIEW</h5>
-      </a>
-      <form class="form-inline" my-2 my-lg-0”>
+
+    <nav class="d-flex justify-content-around">
+      <button type="button" class="btn btn-primary btn-lg">View All Students</button>
+      <button type="button" class="btn btn-primary btn-lg">Take Attendance</button>
+      <button type="button" class="btn btn-primary btn-lg">Add Communication Record</button>
+      <button type="button" class="btn btn-primary btn-lg">Add Behavior Record</button>
+    </nav>
+
+    {{! possible future feature search bar }}
+    {{! <form class="form-inline" my-2 my-lg-0”>
         <input class="form-control" mr-sm-2” type="search" placeholder="Search" aria-label="Search" />
         <button class="btn" btn-outline-primary my-2 my-sm-0” type="submit">Search</button>
-      </form>
-    </nav>
+      </form> }}
   </div>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Assignments</h5>
-      <p class="card-text">Five most recent assignments</p>
+  <div class="d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Recent Assignments</h5>
+        <div class="d-flex justify-content-between">
+          <h6>Title</h6>
+          <h6>Due Date</h6>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        {{#each assignmentData as |assignment|}}
+          <li class="list-group-item d-flex justify-content-between">
+            <div>
+              {{assignment.title}}
+            </div>
+            <div>
+              {{assignment.dueDate}}
+            </div>
+          </li>
+        {{/each}}
+        <button type="button" class="btn btn-secondary btn-sm">Create New Assignment</button>
+      </ul>
     </div>
-    <ul class="list-group list-group-flush">
-      {{#each assignmentData as |assignment|}}
-        <li class="list-group-item">{{assignment.title}}</li>
-      {{/each}}
-    </ul>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Riddle Placeholder</h5>
+        <div class="d-flex justify-content-between">
+        </div>
+      </div>
+    </div>
   </div>
 </div>

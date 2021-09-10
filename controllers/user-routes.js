@@ -10,10 +10,11 @@ const {
   AssignmentFeedback,
 } = require("../models");
 
+// ---------- GET routes -----------------
 router.get("/", async (req, res) => {
   try {
     const dbAssignmentData = await Assignment.findAll({
-      attributes: ["title"],
+      attributes: ["title", "dueDate"],
     });
 
     const assignmentData = dbAssignmentData.map((assignment) => assignment.get({ plain: true }));
@@ -23,6 +24,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/students", async (req, res) => {
+  try {
+    const dbStudentData = await Student.findAll({});
+
+    const studentData = dbStudentData.map((student) => student.get({ plain: true }));
+    res.render("all_students", { studentData });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// ---------- POST routes -----------------
 router.post("/roster", async (req, res) => {
   //meta data comes in from req.body
   //create a student, need teachID also from request
