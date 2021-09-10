@@ -41,6 +41,14 @@ AssignmentFeedback.init(
         key: "id",
       },
     },
+    studentId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Student",
+        key: "id",
+      },
+    },
   },
 
   {

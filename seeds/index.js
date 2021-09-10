@@ -28,15 +28,16 @@ const seedDatabase = async () => {
   try {
     await sequelize.sync({ force: true });
     const teacher = await Teacher.bulkCreate(TeacherData);
-    const attendance = await Attendance.bulkCreate(AttendanceData);
     const guardian = await Guardian.bulkCreate(GuardianData);
+    const student = await Student.bulkCreate(StudentData);
+    const attendance = await Attendance.bulkCreate(AttendanceData);
     const communication = await Communication.bulkCreate(CommunicationData);
     const behavior = await Behavior.bulkCreate(BehaviorData);
     const assignment = await Assignment.bulkCreate(AssignmentData);
     const assignmentFeedback = await AssignmentFeedback.bulkCreate(AssignmentFeedbackData);
-    const student = await Student.bulkCreate(StudentData);
+    console.log("Database seeded!");
   } catch (err) {
-    console.log("Error in seeding database");
+    console.log(err);
   }
 };
 
