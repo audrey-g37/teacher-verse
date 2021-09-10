@@ -89,6 +89,12 @@ body {
   padding: 3%;
 }
 
+h1,
+h2,
+h3 {
+  color: var(--white);
+}
+
 .register {
   background: -webkit-linear-gradient(left, var(--fadeBlue));
   margin-top: 3%;
