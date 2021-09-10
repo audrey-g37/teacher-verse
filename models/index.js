@@ -11,7 +11,6 @@ const Student = require("./student");
 const StudentAttendance = require("./studentAttendance");
 const StudentBehavior = require("./studentBehavior");
 const StudentCommunication = require("./studentCommunication");
-const StudentAssignmentFeedback = require("./studentAssignmentFeedback");
 
 // Teacher associations
 Teacher.hasMany(Student, {
@@ -23,34 +22,21 @@ Student.belongsTo(Teacher, {
   foreignKey: "teacherId",
 });
 
-// Attendance associations
-Attendance.hasMany(Student, {
-  foreignKey: "attendanceId",
-});
-
-Student.belongsToMany(Attendance, {
-  through: StudentAttendance,
-});
-
-Attendance.belongsToMany(Student, {
-  through: StudentAttendance,
+Student.hasMany(Attendance, {
+  // through: StudentAttendance,
+  foreignKey: "studentId",
 });
 
 // Behavior associations
-Behavior.hasMany(Student, {
-  foreignKey: "behaviorId",
+Student.hasMany(Behavior, {
+  foreignKey: "studentId",
 });
-
-Student.belongsToMany(Behavior, {
-  through: StudentBehavior,
-});
-
-Behavior.belongsToMany(Student, {
-  through: StudentBehavior,
+Behavior.belongsTo(Communication, {
+  foreignKey: "communicationId",
 });
 
 // Guardian associations
-Guardian.hasOne(Student, {
+Guardian.hasMany(Student, {
   foreignKey: "guardianId",
   onDelete: "SET NULL",
 });
@@ -60,25 +46,14 @@ Student.belongsTo(Guardian, {
 });
 
 // Communication assignments
-Communication.hasMany(Student, {
-  foreignKey: "communicationId",
+Student.hasMany(Communication, {
+  foreignKey: "studentId",
 });
 
-Student.belongsToMany(Communication, {
-  through: StudentCommunication,
+Communication.belongsTo(Student, {
+  foreignKey: "studentId",
 });
 
-Communication.belongsToMany(Student, {
-  through: StudentCommunication,
-});
-
-Communication.hasMany(Behavior,{
-  foreignKey: "communicationId"
-})
-
-Behavior.belongsTo(Communication, {
-  foreignKey: "communicationId"
-})
 // Assignment associations
 Assignment.hasMany(AssignmentFeedback, {
   foreignKey: "assignmentId",
@@ -88,12 +63,8 @@ AssignmentFeedback.belongsTo(Assignment, {
   foreignKey: "assignmentId",
 });
 
-AssignmentFeedback.hasOne(Student, {
-  foreignKey: "assignmentFeedbackId",
-});
-
-Student.belongsToMany(AssignmentFeedback, {
-  through: StudentAssignmentFeedback,
+AssignmentFeedback.belongsTo(Student, {
+  foreignKey: "studentId",
 });
 
 module.exports = {
@@ -108,5 +79,4 @@ module.exports = {
   StudentAttendance,
   StudentBehavior,
   StudentCommunication,
-  StudentAssignmentFeedback,
 };
