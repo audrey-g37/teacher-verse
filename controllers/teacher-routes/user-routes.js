@@ -8,7 +8,7 @@ const {
   Communication,
   Assignment,
   AssignmentFeedback,
-} = require("../models");
+} = require("../../models");
 
 // ---------- GET routes -----------------
 router.get("/", async (req, res) => {
@@ -17,7 +17,9 @@ router.get("/", async (req, res) => {
       attributes: ["title", "dueDate"],
     });
 
-    const assignmentData = dbAssignmentData.map((assignment) => assignment.get({ plain: true }));
+    const assignmentData = dbAssignmentData.map((assignment) =>
+      assignment.get({ plain: true })
+    );
     res.render("homepage", { assignmentData });
   } catch (err) {
     res.status(500).json(err);
@@ -28,7 +30,9 @@ router.get("/students", async (req, res) => {
   try {
     const dbStudentData = await Student.findAll({});
 
-    const studentData = dbStudentData.map((student) => student.get({ plain: true }));
+    const studentData = dbStudentData.map((student) =>
+      student.get({ plain: true })
+    );
     res.render("all_students", { studentData });
   } catch (err) {
     res.status(500).json(err);
