@@ -14,12 +14,16 @@ const {
   StudentCommunication,
 } = require("../../models");
 
-// Current location  "http:localhost:3001/api/student"
+// Current location  "http:localhost:3001/teacher/student"
 
 router.get("/", async (req, res) => {
   try {
-    const studentData = await Student.findAll({ include: Guardian });
-    res.status(200).json(studentData);
+    const dbStudentData = await Student.findAll({ include: Guardian });
+    const studentData = dbStudentData.map((student) =>
+      student.get({ plain: true })
+    );
+    res.render("all_students", { studentData });
+    res.status(200);
   } catch (err) {
     res.status(500).json(err);
   }

@@ -1,14 +1,12 @@
 const router = require("express").Router();
-const apiRoutes = require("./api");
+const teacherRoutes = require("./teacher-routes");
 const loginPage = require("./home-routes");
-const teacherView = require("./user-routes");
-const studentView = require("./user-routes");
+const apiData = require("./api");
 
-router.use("/api", apiRoutes);
+router.use("/api", apiData);
+router.use("/teacher", teacherRoutes);
 router.use("/", loginPage);
 router.use("/register", loginPage);
-router.use("/teacher", teacherView);
-router.use("/view", studentView);
 router.use((req, res) => {
   res.status(403).json({ message: "You dont have access to this page" }); //connecting to handlebars "Catherine"
 });
