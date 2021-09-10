@@ -1,14 +1,19 @@
 :root {
   --white: #fff;
   --fadeBlue: #3931af, #00c6ff;
-  --gray: #495057;
-  --blue: #0062cc;
+  --gray: #495057; /* not used */
+  --blue: #0062cc; /* not used */
 }
 
 body {
   background: -webkit-linear-gradient(left, var(--fadeBlue));
   margin-top: 3%;
   padding: 3%;
+}
+
+h1,
+h2 {
+  color: var(--white);
 }
 
 .register {
@@ -89,12 +94,6 @@ body {
   padding: 3%;
 }
 
-h1,
-h2,
-h3 {
-  color: var(--white);
-}
-
 .register {
   background: -webkit-linear-gradient(left, var(--fadeBlue));
   margin-top: 3%;
@@ -166,11 +165,14 @@ h3 {
   height: auto;
 }
 
-.username {
-  color: --white;
+username {
+  color: var(--white);
 }
 
 .register img {
   width: 50%;
   height: auto;
+}
+.text-center {
+  color: var(--white);
 }
