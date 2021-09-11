@@ -51,6 +51,7 @@ router.post("/new-behavior", async (req, res) => {
       actionItems: req.body.actionItems,
       isGood: req.body.isGood,
       communicationId: req.body.communicationId,
+      studentId: req.body.studentId,
     });
     res.render("homepage");
   } catch (err) {
