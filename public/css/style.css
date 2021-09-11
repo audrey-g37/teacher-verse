@@ -4,7 +4,6 @@
   --gray: #495057; /* not used */
   --blue: #0062cc; /* not used */
 }
-
 body {
   background: -webkit-linear-gradient(left, var(--fadeBlue));
   margin-top: 3%;
@@ -26,7 +25,7 @@ h2 {
   color: var(--white);
 }
 /* Login button */
-.register-top input {
+ .register-top input {
   border: none;
   border-radius: 1.5rem;
   padding: 2%;
@@ -44,7 +43,7 @@ h2 {
 .register .register-form {
   padding: 10%;
   margin-top: 10%;
-}
+} */
 /* Register button */
 .btnRegister {
   float: center;
@@ -175,12 +174,21 @@ username {
 }
 .text-center {
   color: var(--white);
-}
+} */
 
 /* mobile view */
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  [class*="col-"] {
+ /* @media only screen and (max-width: 768px) {
+/* For mobile phones:  */
+   /* [class*="col-"] {
     width: 100%;
   }
+}   */ 
+
+
+.card {
+  background-color: #0062cc;
 }
+
+.card-body{
+  background-color: #0062cc;
+} 
