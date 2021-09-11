@@ -1,53 +1,57 @@
 <!-- Register Page -->
 
-{{!-- <form action="/teacher/new-teacher" method="POST"> --}}
+<form action="/register" method="POST">
 <div class="container register">
-                <div class="row">
-                    <div class="col-md-3 register-top">
-                        <img src="logo.svg" alt=""/>
-                        <h1>Welcome to Teacher Force</h1>
-                        <h2>Register to get started!</h2>
-                        <input type="submit" name="" value="Login"/><br/>
+    <div class="row">
+        <div class="col-md-3 register-top">
+            <img src="logo.svg" alt=""/>
+            <h1>Welcome to Teacher Force</h1>
+            <h2>Register to get started!</h2>
+            {{!-- <button href="/login">Login</button> --}}
+        </div>
+<div class="col-md-9 register-below">
+    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h3 class="register-heading">Please enter your information below</h3>
+            <div class="row register-form">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="firstName">Your First Name:</label>
+                        <input type="text" class="form-control" placeholder="First Name *" id="firstName" name= "firstName"/>
                     </div>
-                    <div class="col-md-9 register-below">
-                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading">Please enter your information below</h3>
-                                <div class="row register-form">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="First Name *" id="firstName" name= "firstName"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Last Name *" id= "lastName" name="lastName"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="email  *" id ="email-signup" name="email"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password *"  id= "password-signup" name="password"/>
-                                        </div>
-                                        {{!-- <div class="form-group">
-                                            <input type="password" class="form-control"  placeholder="Confirm Password *" value="" /> --}}
-                                        {{!-- </div> --}}
-                                        <div class="form-group">
-                                            <div class="maxl">
-                                            </div>
-                                        </div>
-                                    </div>
-                                       <input type="submit" class="signup-form btnRegister"/>
-                                    </div>
-                                </div>
-                            </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                            <label for="lastName">Your Last Name:</label>
+                        <input type="text" class="form-control" placeholder="Last Name *" id= "lastName" name="lastName"/>
+                    </div>
+                    <div class="form-group">
+                            <label for="email">Your Email:</label>
+                        <input type="email" class="form-control" placeholder="email  *" id ="email-signup" name="email"/>
+                    </div>
+                    <div class="form-group">
+                            <label for="password">Your Password:</label>
+                        <input type="password" class="form-control" placeholder="Password *"  id= "password-signup" name="password"/>
+                    </div>
+                    {{!-- <div class="form-group">
+                        <input type="password" class="form-control"  placeholder="Confirm Password *" value="" /> --}}
+                    {{!-- </div> --}}
+                    <div class="form-group">
+                        <div class="maxl">
                         </div>
                     </div>
                 </div>
+                    <button type="submit">Create Account</button>
+                </div>
             </div>
-{{!-- </form> --}}
+        </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</form>
