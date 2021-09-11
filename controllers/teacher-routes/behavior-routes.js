@@ -3,12 +3,19 @@ const { Behavior, Communication } = require("../../models");
 
 // Current location  "http:localhost:3001/teacher/behavior"
 
-router.get("/new-behavior", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const behaviorData = await Behavior.findAll({
       include: [{ model: Communication }],
     });
     res.status(200).json(behaviorData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+router.get("/new-behavior", async (req, res) => {
+  try {
+    res.render("new_behavior");
   } catch (err) {
     res.status(500).json(err);
   }
@@ -20,11 +27,9 @@ router.get("/:id", async (req, res) => {
       include: [{ model: Communication }],
     });
     if (!behaviorData) {
-      res
-        .status(404)
-        .json({
-          message: `no behavior data found with id of ${req.params.id}`,
-        });
+      res.status(404).json({
+        message: `no behavior data found with id of ${req.params.id}`,
+      });
     }
     res.status(200).json(behaviorData);
   } catch (err) {
@@ -41,7 +46,7 @@ router.post("/new-behavior", async (req, res) => {
       isGood: req.body.isGood,
       communicationId: req.body.communicationId,
     });
-    res.status(200).json({ message: "Behavior data was Created!" });
+    res.render("homepage");
   } catch (err) {
     res.status(400).json(err);
   }
@@ -53,11 +58,9 @@ router.put("/:id", async (req, res) => {
       where: { id: req.params.id },
     });
     if (!updatedBehavior[0]) {
-      res
-        .status(404)
-        .json({
-          message: `no behavior data found with the id of ${req.params.id}`,
-        });
+      res.status(404).json({
+        message: `no behavior data found with the id of ${req.params.id}`,
+      });
     }
     res
       .status(200)

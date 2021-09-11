@@ -1,29 +1,46 @@
-<form action="/teacher/assignment/new-assignment" method="POST">
-  <ul>
-    <div>
-      <label for="title">Name of Assignment: </label>
-      <input type="text" id="title" name="title" />
-      <label for="description">Details: </label>
-      <textarea type="text" id="description" name="description"></textarea>
-      <label for="dueDate">Due Date: </label>
-      <input type="date" id="dueDate" name="dueDate" />
-      <label for="assignedStatusTrue">Check here if already assigned: </label>
-      <input
-        type="checkbox"
-        id="assignedStatusTrue"
-        name="assignedStatus"
-        value="true"
-      />
-      <label for="assignedStatusFalse">Check here if not yet assigned: </label>
-      <input
-        type="checkbox"
-        id="assignedStatusFalse"
-        name="assignedStatus"
-        value="false"
-      />
+<div>
+  <form action="/teacher/communication/new-communication" method="POST">
+    <ul>
+      <div>
+        <label for="communicationMethod">Communication Method: </label>
+        <select id="communicationMethod" name="communicationMethod">
+          <option value="email">Email</option>
+          <option value="email">Phone Call</option>
+          <option value="email">Meeting</option>
+        </select>
+        <label for="description">Details: </label>
+        <textarea type="text" id="description" name="description"></textarea>
+        <label for="dateOfCommunication">Date: </label>
+        <input
+          type="date"
+          id="dateOfCommunication"
+          name="dateOfCommunication"
+        />
+        <label for="followUpNeededTrue">Check here if further follow up is
+          needed:
+        </label>
+        <input
+          type="checkbox"
+          id="followUpNeededTrue"
+          name="followUpNeeded"
+          value="true"
+        />
+        <label for="followUpNeededFalse">Check here if there is no need for
+          future follow up at this time:
+        </label>
+        <input
+          type="checkbox"
+          id="followUpNeededFalse"
+          name="followUpNeeded"
+          value="false"
+        />
+        <label for="studentId">Student: </label>
+        <input type="search" id="studentId" name="studentId" />
+
+      </div>
+    </ul>
+    <div class="button">
+      <button type="submit">Save Communication</button>
     </div>
-  </ul>
-  <div class="button">
-    <button type="submit">Create Assignment</button>
-  </div>
-</form>
+  </form>
+</div>
