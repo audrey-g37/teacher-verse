@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Behavior, Communication } = require("../../models");
+const { Student, Behavior, Communication } = require("../../models");
 
 // Current location  "http:localhost:3001/teacher/behavior"
 
@@ -15,7 +15,13 @@ router.get("/", async (req, res) => {
 });
 router.get("/new-behavior", async (req, res) => {
   try {
-    res.render("new_behavior");
+    const dbStudentData = await Student.findAll({
+      attributes: ["id", "firstName", "lastName"],
+    });
+    const studentData = dbStudentData.map((student) =>
+      student.get({ plain: true })
+    );
+    res.render("new_behavior", { studentData, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }

@@ -1,32 +1,51 @@
 const router = require("express").Router();
-const { Teacher, Student } = require("../../models");
+const { Teacher, Assignment, Student } = require("../../models");
 const bcrypt = require("bcrypt");
 
 // Current location  "http:localhost:3001/teacher"
 
-router.post("/login", async (req, res) => {
+router.get("/login", async (req, res) => {
+  res.render("login");
+});
+
+// router.post("/login", async (req, res) => {
+//   try {
+//     const teacherData = await Teacher.findOne({
+//       where: { email: req.body.email },
+//     });
+//     console.log(teacherData);
+//     if (!teacherData) {
+//       res.status(404).json({ message: "Login failed. Please try again!" });
+//       return;
+//     }
+//     console.log(req.body.password);
+//     const validPassword = await bcrypt.compare(
+//       req.body.password,
+//       teacherData.password
+//     );
+//     if (!validPassword) {
+//       res.status(400).json({ message: "Login failed. Please try again!" });
+//       return;
+//     }
+//     req.session.save(() => {
+//       req.session.loggedIn = true;
+//     });
+//     res.status(200).json("Login Successful");
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.get("/", async (req, res) => {
   try {
-    const teacherData = await Teacher.findOne({
-      where: { email: req.body.email },
+    const dbAssignmentData = await Assignment.findAll({
+      attributes: ["title", "dueDate"],
     });
-    console.log(teacherData);
-    if (!teacherData) {
-      res.status(404).json({ message: "Login failed. Please try again!" });
-      return;
-    }
-    console.log(req.body.password);
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      teacherData.password
+
+    const assignmentData = dbAssignmentData.map((assignment) =>
+      assignment.get({ plain: true })
     );
-    if (!validPassword) {
-      res.status(400).json({ message: "Login failed. Please try again!" });
-      return;
-    }
-    req.session.save(() => {
-      req.session.loggedIn = true;
-    });
-    res.status(200).json("Login Successful");
+    res.render("homepage", { assignmentData, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }

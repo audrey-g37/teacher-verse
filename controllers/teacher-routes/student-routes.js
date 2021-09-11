@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
-    res.render("all_students", { studentData });
+    res.render("all_students", { studentData, loggedIn: req.session.loggedIn });
     res.status(200);
   } catch (err) {
     res.status(500).json(err);
@@ -32,27 +32,26 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     let studentData = await Student.findByPk(req.params.id, {
-      include: [
-  
-        { model: Guardian },
-      ],
+      include: [{ model: Guardian }],
     });
-    studentData = studentData.get({plain:true})
+    studentData = studentData.get({ plain: true });
     let studentAttendance = await Attendance.findAll();
     const attendanceData = studentAttendance.map((attendance) =>
       attendance.get({ plain: true })
     );
-    const studentAttendanceAll = attendanceData.filter(function (el){return el.studentId == req.params.id});
-    
+    const studentAttendanceAll = attendanceData.filter(function (el) {
+      return el.studentId == req.params.id;
+    });
+
     console.log(studentData);
-    
-const attendanceById={...studentAttendanceAll};
-console.log(attendanceById)
+
+    const attendanceById = { ...studentAttendanceAll };
+    console.log(attendanceById);
 
     // let allData = [];
-  // allData.push(studentData).push(studentAttendanceAll);
+    // allData.push(studentData).push(studentAttendanceAll);
 
-  //   console.log(allData);
+    //   console.log(allData);
 
     if (!studentData) {
       res
@@ -60,7 +59,11 @@ console.log(attendanceById)
         .json({ message: `no Student found with id of ${req.params.id}` });
     }
     // res.status(200).json(studentData)
-    res.render("single_student", {data1:studentData, data2:attendanceById});
+    res.render("single_student", {
+      data1: studentData,
+      data2: attendanceById,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
