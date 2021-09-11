@@ -1,0 +1,23 @@
+<div class="d-flex">
+  <form action="/teacher/behavior/new-behavior" method="POST">
+    <ul>
+      <div>
+        <label for="title">Behavior Title: </label>
+        <input type="text" id="title" name="title" />
+        <label for="description">Details: </label>
+        <textarea type="text" id="description" name="description"></textarea>
+        <label for="actionItems">Follow-Up Steps Needed: </label>
+        <input type="text" id="actionItems" name="actionItems" />
+        <label for="isGoodTrue">Behavior is Positive</label>
+        <input type="checkbox" id="isGoodTrue" name="isGood" value="true" />
+        <label for="isGoodFalse">Behavior is Concerning </label>
+        <input type="checkbox" id="isGoodFalse" name="isGood" value="false" />
+        <label for="studentId">Student: </label>
+        <input type="search" id="studentId" name="studentId" />
+      </div>
+    </ul>
+    <div class="button">
+      <button type="submit">Save Behavior</button>
+    </div>
+  </form>
+</div>

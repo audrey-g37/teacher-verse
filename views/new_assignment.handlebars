@@ -1,0 +1,32 @@
+<div class="d-flex">
+  <form action="/teacher/assignment/new-assignment" method="POST">
+    <ul>
+      <div>
+        <label for="title">Name of Assignment: </label>
+        <input type="text" id="title" name="title" />
+        <label for="description">Details: </label>
+        <textarea type="text" id="description" name="description"></textarea>
+        <label for="dueDate">Due Date: </label>
+        <input type="date" id="dueDate" name="dueDate" />
+        <label for="assignedStatusTrue">Check here if already assigned: </label>
+        <input
+          type="checkbox"
+          id="assignedStatusTrue"
+          name="assignedStatus"
+          value="true"
+        />
+        <label for="assignedStatusFalse">Check here if not yet assigned:
+        </label>
+        <input
+          type="checkbox"
+          id="assignedStatusFalse"
+          name="assignedStatus"
+          value="false"
+        />
+      </div>
+    </ul>
+    <div class="button">
+      <button type="submit">Create Assignment</button>
+    </div>
+  </form>
+</div>
