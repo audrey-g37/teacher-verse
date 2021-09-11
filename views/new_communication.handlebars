@@ -1,4 +1,7 @@
-<a href="/teacher"><button type="button" class=" Bck-Home btn btn-secondary btn-sm">Back to Teacher Homepage</button></a>
+<a href="/teacher"><button
+    type="button"
+    class="Bck-Home btn btn-secondary btn-sm"
+  >Back to Teacher Homepage</button></a>
 
 <div>
   <form action="/teacher/communication/new-communication" method="POST">
@@ -7,8 +10,8 @@
         <label for="communicationMethod">Communication Method: </label>
         <select id="communicationMethod" name="communicationMethod">
           <option value="email">Email</option>
-          <option value="email">Phone Call</option>
-          <option value="email">Meeting</option>
+          <option value="phone-call">Phone Call</option>
+          <option value="meeting">Meeting</option>
         </select>
         <label for="description">Details: </label>
         <textarea type="text" id="description" name="description"></textarea>

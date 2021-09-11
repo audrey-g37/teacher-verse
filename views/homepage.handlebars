@@ -1,50 +1,68 @@
-<div class="jumbotron">
-  <div class="container">
-    <h1 class="display-5" logo”>Teacher Force</h1>
-    <p class="lead">Welcome to Teacher Force! An admin tool for teachers.</p>
+<div>
+  {{#if loggedIn}}
 
-    <nav class="d-flex justify-content-around">
-      <a href= "teacher/student"><button type="button" class="btn btn-primary btn-lg">View All Students</button></a>
-      <a href= # ><button type="button" class="btn btn-primary btn-lg">Take Attendance</button></a>
-      <a href=#><button type="button" class="btn btn-primary btn-lg">Add Communication Record</button></a>
-      <a href="teacher/behavior/new-behavior" ><button type="button" class="btn btn-primary btn-lg">Add Behavior Record</button></a>
-    </nav>
+    <div class="jumbotron">
+      <div class="container">
+        <img src="logo.svg" alt="" />
+        <h1>Welcome to Teacher Force! An admin tool for teachers.</h1>
 
-    {{! possible future feature search bar }}
-    {{! <form class="form-inline" my-2 my-lg-0”>
+        <nav class="d-flex justify-content-around">
+          <a href="teacher/student"><button
+              type="button"
+              class="btn btn-primary btn-lg"
+            >View All Students</button></a>
+          <a href="#"><button type="button" class="btn btn-primary btn-lg">Take
+              Attendance</button></a>
+          <a href="#"><button type="button" class="btn btn-primary btn-lg">Add
+              Communication Record</button></a>
+          <a href="teacher/behavior/new-behavior"><button
+              type="button"
+              class="btn btn-primary btn-lg"
+            >Add Behavior Record</button></a>
+        </nav>
+
+        {{! possible future feature search bar }}
+        {{! <form class="form-inline" my-2 my-lg-0”>
         <input class="form-control" mr-sm-2” type="search" placeholder="Search" aria-label="Search" />
         <button class="btn" btn-outline-primary my-2 my-sm-0” type="submit">Search</button>
       </form> }}
-  </div>
-  <div class="d-flex justify-content-center">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Recent Assignments</h5>
-        <div class="d-flex justify-content-between">
-          <h6>Title</h6>
-          <h6>Due Date</h6>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Recent Assignments</h5>
+            <div class="d-flex justify-content-between">
+              <h6>Title</h6>
+              <h6>Due Date</h6>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            {{#each assignmentData as |assignment|}}
+              <li class="list-group-item d-flex justify-content-between">
+                <div>
+                  {{assignment.title}}
+                </div>
+                <div>
+                  {{assignment.dueDate}}
+                </div>
+              </li>
+            {{/each}}
+            <a href="teacher/assignment/new-assignment"><button
+                type="button"
+                class="btn btn-secondary btn-sm"
+              >Create New Assignment</button></a>
+          </ul>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Riddle Placeholder</h5>
+            <div class="d-flex justify-content-between">
+            </div>
+          </div>
         </div>
       </div>
-      <ul class="list-group list-group-flush">
-        {{#each assignmentData as |assignment|}}
-          <li class="list-group-item d-flex justify-content-between">
-            <div>
-              {{assignment.title}}
-            </div>
-            <div>
-              {{assignment.dueDate}}
-            </div>
-          </li>
-        {{/each}}
-        <a href="teacher/assignment/new-assignment"><button type="button" class="btn btn-secondary btn-sm">Create New Assignment</button></a>
-      </ul>
     </div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Riddle Placeholder</h5>
-        <div class="d-flex justify-content-between">
-        </div>
-      </div>
-    </div>
-  </div>
+  {{else}}
+    <a href="/login">Click here to login</a>
+  {{/if}}
 </div>
