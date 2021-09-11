@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const {Teacher, Student} = require('../../models');
 
-// Current location  "http:localhost:3001/api/teacher"
+// Current location  "http:localhost:3001/teacher/teacher"
 
-router.get('/', async (req,res) => {
+router.get('/register', async (req,res) => {
 try {
 const teacherData = await Teacher.findAll({include:[{model:Student}]});
-res.status(200).json(teacherData);
+res.render('register')
 
 }
 catch(err){
@@ -14,6 +14,15 @@ res.status(500).json(err)
 }
 });
 
+router.get('/', async (req,res) => {
+    try {
+    res.render('login')
+    
+    }
+    catch(err){
+    res.status(500).json(err)
+    }
+    });
 
 router.get('/:id', async (req,res) => {
 try {
