@@ -42,6 +42,7 @@ router.post("/new-assignment", async (req, res) => {
       dueDate: req.body.dueDate,
       assignedStatus: req.body.assignedStatus,
     });
+    res.redirect('/teacher');
   } catch (err) {
     res.status(400).json(err);
   }

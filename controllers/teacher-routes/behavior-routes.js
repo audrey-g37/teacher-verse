@@ -54,10 +54,7 @@ router.post("/new-behavior", async (req, res) => {
       communicationId: req.body.communicationId,
       studentId: req.body.studentId,
     });
-    res.redirect("/teacher", {
-      assignmentData,
-      loggedIn: req.session.loggedIn,
-    });
+    res.redirect("/teacher")
   } catch (err) {
     res.status(400).json(err);
   }
