@@ -99,7 +99,12 @@ router.get("/:id", async (req, res) => {
 
 router.post("/new-student", async (req, res) => {
   try {
-    const newStudent = await Student.create(req.body);
+    const newStudent = await Student.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      teacherId: req.body.teacherId,
+    });
+
     res.redirect("/teacher/student");
   } catch (err) {
     res.status(400).json(err);

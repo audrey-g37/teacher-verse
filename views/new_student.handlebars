@@ -6,21 +6,16 @@
       <form action="/teacher/student/new-student" method="POST">
         <ul>
           <div>
-            <label for="title">First Name: </label>
+            <label for="firstName">First Name: </label>
             <input type="text" id="firstName" name="firstName" />
-            <label for="description">Last Name: </label>
+            <label for="lastName">Last Name: </label>
             <input type="text" id="lastName" name="lastName"></input>
-            
-            
             <label for="teacherId">Teacher: </label>
             <select id="teacherId" name="teacherId">
             {{#each teacherData as |teacher|}}
             {{>teacher_name_list}}
             {{/each}}
             </select>
-
-
-            
         </ul>
         <div class="button">
           <button type="submit">Create Student</button>
