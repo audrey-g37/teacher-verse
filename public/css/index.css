@@ -1,83 +1,94 @@
+:root {
+  --bright: #40eff7;
+  --dark: #3589fc;
+  --light: #35fc96;
+  --white: white;
+  --black: black;
+}
+
 /* html background */
-#appplication-background{
+#appplication-background {
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO3Z-l5WqPpF-H6a4-Zw6kj0sYJ88B1boWXg&usqp=CAU");
 }
-#application-background{
-  background-image:url("https://i1.wp.com/oecdedutoday.com/wp-content/uploads/2020/10/Roma-inclusion-in-education.jpg?fit=1200%2C675&ssl=1");
+#application-background {
+  background-image: url("https://i1.wp.com/oecdedutoday.com/wp-content/uploads/2020/10/Roma-inclusion-in-education.jpg?fit=1200%2C675&ssl=1");
   background-size: cover;
 }
 
-
-
-  
 /* login page styling */
 
 #login {
-  background-color:rgb(129, 137, 146);
+  background-color: rgb(129, 137, 146);
   opacity: 0.8;
   margin-top: 150px;
-  margin-left:250px;
+  margin-left: 250px;
   margin-right: 250px;
 }
+.login-title {
+  color: var(--white);
+  font-weight: 600;
+}
 
-.text-info{
-  font-size:large;
+.login-text {
+  color: var(--bright);
+  font-size: 20px;
+}
 
+.login-link {
+  color: var(--light);
 }
 
 /* homepage styling */
 
-#h1-homepage{
-  margin-left:350px;
+#h1-homepage {
+  text-align: center;
 }
-.container-homepage{
-  background-color:rgb(129, 137, 146); 
+.container-homepage {
+  background-color: rgb(129, 137, 146);
   opacity: 0.9;
-display:flex;
-justify-content: space-between;
-flex-direction:row;
-margin-left:100px;
-margin-right:100px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-left: 100px;
+  margin-right: 100px;
 }
-a {
-  margin-left:60px;
+a .studentIndividual {
+  margin-left: 60px;
 }
+
 div.jumbotron {
   background-color: rgb(129, 137, 146);
   opacity: 0.95;
   margin-top: 90px;
   margin-left: 100px;
   margin-right: 100px;
-  margin-bottom:100px;
-
+  margin-bottom: 100px;
 }
-.homepage{
-  background-image:url(/images/background-image2.jpeg) ;
+.homepage {
+  background-image: url(/images/background-image2.jpeg);
 }
 .card {
   background-color: lightslategray;
   opacity: 0.95;
-  border-style:solid 200px;
+  border-style: solid 200px;
   padding: 30px 30px;
 }
-.assignments{
-background: lightslategray;
+.assignments {
+  background: lightslategray;
 }
 
 /* new-behavior styling */
 
-.new-beavior-card{
-  background-color:rgb(129, 137, 146);
+.new-beavior-card {
+  background-color: rgb(129, 137, 146);
   opacity: 0.95;
-  margin-top:100px;
- margin-right:200px;
- margin-left:200px;
+  margin-top: 100px;
+  margin-right: 200px;
+  margin-left: 200px;
 }
 
-#description-tag{
-margin-left:40px;
-font: large;
-
+#description-tag {
+  margin-left: 40px;
+  font: large;
 }
 /* student page styling */
-
