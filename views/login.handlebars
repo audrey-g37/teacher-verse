@@ -2,7 +2,7 @@
 <section class="body">
  
  <section id="login">
-        <h3 class="text-center text-black pt-5">Login to get Started!</h3>
+        <h1 class="login-title text-center pt-5">Login To Get Started!</h1>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -10,17 +10,18 @@
                         <form id="login-form" class="form" action="/login" method="POST">
                     
                             <div class="form-group">
-                                <label for="email" class="text-info">Email:</label><br>
+                                <label for="email" class="login-text">Email:</label><br>
                                 <input type="text" name="email" id="email" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
+                                <label for="password" class="login-text">Password:</label><br>
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="submit" class=" login-form btn btn-info btn-md" >
                             </div>
-                                Can't login? Please register: <a href="/register" class="text-info">here</a>
+                            <div class = "login-text">Can't login? Please click below:</div>
+                                 <a href="/register" class="login-link">Register</a>
                             </div>
                         </form>
                     </div>
