@@ -1,6 +1,6 @@
 :root {
   --white: #fff;
-  --fadeBlue: #3931af, #00c6ff;
+  --fadeBlue: #3931af,black;
   --gray: #495057; /* not used */
   --blue: #0062cc; /* not used */
 }
