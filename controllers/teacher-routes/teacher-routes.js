@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Teacher, Assignment, Student } = require("../../models");
 const bcrypt = require("bcrypt");
+const randomFun = require("everyday-fun");
 
 // Current location  "http:localhost:3001/teacher"
 
@@ -45,7 +46,18 @@ router.get("/", async (req, res) => {
     const assignmentData = dbAssignmentData.map((assignment) =>
       assignment.get({ plain: true })
     );
-    res.render("homepage", { assignmentData, loggedIn: req.session.loggedIn });
+
+    const randomQuote = randomFun.getRandomQuote();
+    const randomRiddle = randomFun.getRandomRiddle();
+
+    console.log(randomQuote);
+
+    res.render("homepage", {
+      assignmentData: assignmentData,
+      randomQuote: randomQuote,
+      randomRiddle: randomRiddle,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
