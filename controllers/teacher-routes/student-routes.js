@@ -27,6 +27,14 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/new-student", async (req, res) => {
+  try {
+    res.render("new_student", { loggedIn: req.session.loggedIn });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     let studentData = await Student.findByPk(req.params.id, {
@@ -86,10 +94,10 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/new-student", async (req, res) => {
   try {
     const newStudent = await Student.create(req.body);
-    res.status(200).json({ message: "Student Created!" });
+    res.redirect("/teacher/student");
   } catch (err) {
     res.status(400).json(err);
   }
