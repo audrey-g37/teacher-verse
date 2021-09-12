@@ -35,10 +35,7 @@ router.post("/login", async (req, res) => {
       res.status(404).json("Login failed. Please try again!");
       return;
     }
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      teacherData.password
-    );
+    const validPassword = await bcrypt.compare(req.body.password, teacherData.password);
     if (!validPassword) {
       res.status(400).json("Login Failed");
       return;
@@ -66,7 +63,7 @@ router.post("/register", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    res.json("Register Successful!");
+    res.redirect("/login");
   } catch (err) {
     res.status(400).json(err);
   }
