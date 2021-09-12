@@ -1,3 +1,5 @@
-function findById (el){return el.studentId === req.params.id};
+function findById(el) {
+  return el.studentId === req.params.id;
+}
 
-module.exports=findById
+module.exports = findById;

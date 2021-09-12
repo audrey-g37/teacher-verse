@@ -1,9 +1,6 @@
 <div>
   {{#if loggedIn}}
-    <a href="/teacher"><button
-        type="button"
-        class="Bck-Home btn btn-secondary btn-sm"
-      >Back to Teacher Homepage</button></a>
+    <a href="/teacher"><button type="button" class="Bck-Home btn btn-secondary btn-sm">Back to Teacher Homepage</button></a>
 
     <div>
 
@@ -11,11 +8,11 @@
 
         <div>
           <h1>{{data1.firstName}}</h1>
+          <h2>{{data1.lastName}}</h2>
         </div>
         <ul class="list-group list-group-flush">
-          <h2>Guardian</h2>
-          <li>Name: of Guardian </li>
-          <li>Email: of Guardian</li>
+          <li><span class="fw-bold">Guardian: </span>{{data1.Guardian.firstName}} {{data1.Guardian.lastName}}</li>
+          <li><span class="fw-bold">Guardian Email: </span>{{data1.Guardian.email}}</li>
         </ul>
       </div>
       <div class="d-flex">
@@ -34,7 +31,10 @@
             <h5 class="card-title">Communications</h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"></li>
+            <li class="list-group-item">Date: {{data3.0.dateOfCommunication}}</li>
+            <li class="list-group-item">Method: {{data3.0.communicationMethod}}</li>
+            <li class="list-group-item">Notes: {{data3.0.description}}</li>
+            <li class="list-group-item">Follow Up Needed?: {{data3.0.followUpNeeded}}</li>
           </ul>
         </div>
         <div class="card" style="width: 18rem;">
@@ -43,17 +43,23 @@
             <h5 class="card-title">Assignment Feedback</h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"></li>
-          </ul>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Status: {{data4.0.submissionStatus}}</li>
+              <li class="list-group-item">Grade: {{data4.0.scoreEarned}}%</li>
+              <li class="list-group-item">Notes: {{data4.0.feedback}}</li>
+            </ul>
         </div>
         <div class="card" style="width: 18rem;">
 
           <div class="card-body">
             <h5 class="card-title">Behaviors</h5>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"></li>
-          </ul>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Title: {{data5.0.title}}</li>
+              <li class="list-group-item">Notes: {{data5.0.description}}</li>
+              <li class="list-group-item">Action Items: {{data5.0.actionItems}}</li>
+              <li class="list-group-item">Positive/Negative?: {{data5.0.isGood}}</li>
+            </ul>
         </div>
 
       </div>
