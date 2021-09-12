@@ -80,10 +80,3 @@ font: large;
 
 }
 /* student page styling */
-.student-cards{
-background-color: black;
-display:flex;
-flex-direction: row;
-justify-content: space-between;
-
-}
