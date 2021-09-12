@@ -1,10 +1,9 @@
 :root {
   --white: #fff;
-  --fadeBlue: #3931af, #00c6ff;
+  --fadeBlue: #3931af,black;
   --gray: #495057; /* not used */
   --blue: #0062cc; /* not used */
 }
-
 body {
   background: -webkit-linear-gradient(left, var(--fadeBlue));
   margin-top: 3%;
@@ -45,6 +44,7 @@ h2 {
   padding: 10%;
   margin-top: 10%;
 }
+*/
 /* Register button */
 .btnRegister {
   float: center;
@@ -179,7 +179,11 @@ username {
 
 /* mobile view */
 @media only screen and (max-width: 768px) {
+<<<<<<< HEAD
   /* For mobile phones: */
+=======
+  /* For mobile phones:  */
+>>>>>>> main
   [class*="col-"] {
     width: 100%;
   }

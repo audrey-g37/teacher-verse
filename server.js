@@ -12,9 +12,8 @@ const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sess = {
   secret: "Secret",
-  loggedIn: false,
   cookie: {
-    maxAge: 180,
+    maxAge: 180000000,
   },
   resave: false,
   saveUninitialized: true,
@@ -27,10 +26,11 @@ app.engine("handlebars", hbs.engine);
 
 app.set("view engine", "handlebars");
 
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);
-app.use(express.static(path.join(__dirname, "public")));
 app.use(require("./controllers/index"));
 
 sequelize.sync({ force: false }).then(() => {

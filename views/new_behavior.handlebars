@@ -1,27 +1,58 @@
+<div class="new-beavior-card" >
+  {{#if loggedIn}}
+    <a href="/teacher"><button
+        type="button"
+        class="Bck-Home btn btn-secondary btn-sm"
+      >Back to Teacher Homepage</button></a>
 
-<a href="/teacher"><button type="button" class=" Bck-Home btn btn-secondary btn-sm">Back to Teacher Homepage</button></a>
+    <div>
+      <form action="/teacher/behavior/new-behavior" method="POST">
+        <ul>
+          <div>
+            <label for="title">Behavior Title: </label>
+            <input type="text" id="title" name="title" />
+                <label for="immediateActionTaken">Immediate Action I Took: </label>
+            <select id="immediateActionTaken" name="immediateActionTaken">
+              <option value="Discussed privately in hallway">Discussed privately in hallway</option>
+              <option value="Sent to office">Sent to Office</option>
+              <option value="Nothing (no need)">Nothing I needed to do immediately</option>
+            </select>
+            <label for="postActionComments">After Action Details: </label>
+                     <textarea
+              type="text"
+              id="postActionComments"
+              name="postActionComments"
+            ></textarea>
+            <label for="isGoodTrue">Behavior is Positive</label>
+            <input type="checkbox" id="isGoodTrue" name="isGood" value="true" />
+            <label for="isGoodFalse">Behavior is Concerning </label>
+            <input
+              type="checkbox"
+              id="isGoodFalse"
+              name="isGood"
+              value="false"
+            />
+            <label for="studentId">Student: </label>
+            <select id="studentId" name="studentId">
+            {{#each studentData as |student|}}
+            {{>student_name_list}}
+            {{/each}}
+            </select>
+          </div>
+        </ul>
+        <labe id="description-tag"for="description">Details: </label>
+          <textarea id="descripton" name="description" rows="2" cols="100">
+           
+          </textarea>
+        </label>
 
-
-<div class="d-flex">
-  <form action="/teacher/behavior/new-behavior" method="POST">
-    <ul>
-      <div>
-        <label for="title">Behavior Title: </label>
-        <input type="text" id="title" name="title" />
-        <label for="description">Details: </label>
-        <textarea type="text" id="description" name="description"></textarea>
-        <label for="actionItems">Follow-Up Steps Needed: </label>
-        <input type="text" id="actionItems" name="actionItems" />
-        <label for="isGoodTrue">Behavior is Positive</label>
-        <input type="checkbox" id="isGoodTrue" name="isGood" value="true" />
-        <label for="isGoodFalse">Behavior is Concerning </label>
-        <input type="checkbox" id="isGoodFalse" name="isGood" value="false" />
-        <label for="studentId">Student: </label>
-        <input type="search" id="studentId" name="studentId" />
-      </div>
-    </ul>
-    <div class="button">
-      <button type="submit">Save Behavior</button>
+        <div class="button">
+          <button type="submit">Save Behavior</button>
+        </div>
+      </form>
     </div>
-  </form>
+  {{else}}
+    <a href="/login">Click here to login</a>
+  {{/if}}
+
 </div>

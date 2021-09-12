@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Teacher } = require("../models");
+const { Teacher, Assignment } = require("../models");
 const bcrypt = require("bcrypt");
 
 router.get("/login", async (req, res) => {
@@ -8,8 +8,6 @@ router.get("/login", async (req, res) => {
 
 // Current location  "http:localhost:3001/"
 
-//TODO: figure out req.session.logged in
-
 router.post("/login", async (req, res) => {
   try {
     const teacherData = await Teacher.findOne({
@@ -17,23 +15,16 @@ router.post("/login", async (req, res) => {
     });
 
     if (!teacherData) {
-      res.status(404).json({ message: "Login failed. Please try again!" });
+      res.status(404).json("Login failed. Please try again!");
       return;
     }
-    console.log(req.body.password);
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      teacherData.password
-    );
+    const validPassword = await bcrypt.compare(req.body.password, teacherData.password);
     if (!validPassword) {
-      res.status(400).json({ message: "Login failed. Please try again!" });
+      res.status(400).json("Login Failed");
       return;
     }
-    req.session.save(() => {
-      req.session.loggedIn = true;
-    });
-    res.status(200).json("Login Successful");
-    console.log(req.session);
+    req.session.loggedIn = true;
+    res.redirect("/teacher");
   } catch (err) {
     res.status(500).json(err);
   }
@@ -55,7 +46,7 @@ router.post("/register", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    res.json("Register Successful!");
+    res.redirect("/login");
   } catch (err) {
     res.status(400).json(err);
   }

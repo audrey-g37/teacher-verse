@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
 router.get("/new-assignment", async (req, res) => {
   try {
-    res.render("new_assignment");
+    res.render("new_assignment", { loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }

@@ -1,0 +1,89 @@
+/* html background */
+#appplication-background{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO3Z-l5WqPpF-H6a4-Zw6kj0sYJ88B1boWXg&usqp=CAU");
+}
+#application-background{
+  background-image:url("https://i1.wp.com/oecdedutoday.com/wp-content/uploads/2020/10/Roma-inclusion-in-education.jpg?fit=1200%2C675&ssl=1");
+  background-size: cover;
+}
+
+
+
+  
+/* login page styling */
+
+#login {
+  background-color:rgb(129, 137, 146);
+  opacity: 0.8;
+  margin-top: 150px;
+  margin-left:250px;
+  margin-right: 250px;
+}
+
+.text-info{
+  font-size:large;
+
+}
+
+/* homepage styling */
+
+#h1-homepage{
+  margin-left:350px;
+}
+.container-homepage{
+  background-color:rgb(129, 137, 146); 
+  opacity: 0.9;
+display:flex;
+justify-content: space-between;
+flex-direction:row;
+margin-left:100px;
+margin-right:100px;
+}
+a {
+  margin-left:60px;
+}
+div.jumbotron {
+  background-color: rgb(129, 137, 146);
+  opacity: 0.95;
+  margin-top: 90px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom:100px;
+
+}
+.homepage{
+  background-image:url(/images/background-image2.jpeg) ;
+}
+.card {
+  background-color: lightslategray;
+  opacity: 0.95;
+  border-style:solid 200px;
+  padding: 30px 30px;
+}
+.assignments{
+background: lightslategray;
+}
+
+/* new-behavior styling */
+
+.new-beavior-card{
+  background-color:rgb(129, 137, 146);
+  opacity: 0.95;
+  margin-top:100px;
+ margin-right:200px;
+ margin-left:200px;
+}
+
+#description-tag{
+margin-left:40px;
+font: large;
+
+}
+/* student page styling */
+.student-cards{
+background-color: black;
+display:flex;
+flex-direction: row;
+justify-content: space-between;
+
+}
