@@ -10,6 +10,10 @@ if (process.env.JAWSDB_URL) {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
     port: process.env.DB_PORT,
+    production: {
+      use_env_variable: "JAWSDB_URL",
+      dialect: "mysql",
+    },
   });
 }
 
