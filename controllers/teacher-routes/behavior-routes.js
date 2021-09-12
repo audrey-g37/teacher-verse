@@ -48,12 +48,16 @@ router.post("/new-behavior", async (req, res) => {
     const newBehavior = await Behavior.create({
       title: req.body.title,
       description: req.body.description,
-      actionItems: req.body.actionItems,
+      immediateActionTaken: req.body.immediateActionTaken,
+      postActionComments: req.body.postActionComments,
       isGood: req.body.isGood,
       communicationId: req.body.communicationId,
       studentId: req.body.studentId,
     });
-    res.render("homepage");
+    res.redirect("/teacher", {
+      assignmentData,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     res.status(400).json(err);
   }
