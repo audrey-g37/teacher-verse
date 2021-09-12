@@ -1,14 +1,12 @@
 <a href="/teacher"><button type="button" class="btn btn-secondary btn-sm">Back to Teacher Homepage</button></a>
 
 {{#if loggedIn}}
-<section class="container d-flex">
-<div class= "justify-content-around">
+<section class="container d-flex justify-content-between">
     {{#each studentData as |student|}}
-    <div class="col">
+    <div class="card">
         {{>student_card}}
     </div>
     {{/each}}
-</div>
   {{else}}
     <a href="/login">Click here to login</a>
   {{/if}}
