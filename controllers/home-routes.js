@@ -8,23 +8,6 @@ router.get("/login", async (req, res) => {
 
 // Current location  "http:localhost:3001/"
 
-//TODO: figure out req.session.logged in
-
-// router.get("/", async (req, res) => {
-//   try {
-//     const dbAssignmentData = await Assignment.findAll({
-//       attributes: ["title", "dueDate"],
-//     });
-
-//     const assignmentData = dbAssignmentData.map((assignment) =>
-//       assignment.get({ plain: true })
-//     );
-//     res.render("homepage", { assignmentData, loggedIn: req.session.loggedIn });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 router.post("/login", async (req, res) => {
   try {
     const teacherData = await Teacher.findOne({
@@ -35,10 +18,7 @@ router.post("/login", async (req, res) => {
       res.status(404).json("Login failed. Please try again!");
       return;
     }
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      teacherData.password
-    );
+    const validPassword = await bcrypt.compare(req.body.password, teacherData.password);
     if (!validPassword) {
       res.status(400).json("Login Failed");
       return;
@@ -66,7 +46,7 @@ router.post("/register", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    res.json("Register Successful!");
+    res.redirect("/login");
   } catch (err) {
     res.status(400).json(err);
   }
