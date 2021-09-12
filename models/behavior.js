@@ -30,12 +30,14 @@ Behavior.init(
       },
     },
 
-    actionItems: {
+    immediateActionTaken: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validation: {
-        notEmpty: true,
-      },
+      allowNull: true,
+    },
+
+    postActionComments: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
 
     isGood: {
@@ -66,13 +68,20 @@ Behavior.init(
       beforeCreate: async (newBehaviorData) => {
         newBehaviorData.title = newBehaviorData.title.trim();
         newBehaviorData.description = newBehaviorData.description.trim();
-        newBehaviorData.actionItems = newBehaviorData.actionItems.trim();
+        newBehaviorData.immediateActionTaken =
+          newBehaviorData.immediateActionTaken.trim();
+        newBehaviorData.postActionComments =
+          newBehaviorData.postActionComments.trim();
         return newBehaviorData;
       },
       beforeUpdate: async (updatedBehaviorData) => {
         updatedBehaviorData.title = updatedBehaviorData.title.trim();
-        updatedBehaviorData.description = updatedBehaviorData.description.trim();
-        updatedBehaviorData.actionItems = updatedBehaviorData.actionItems.trim();
+        updatedBehaviorData.description =
+          updatedBehaviorData.description.trim();
+        newBehaviorData.immediateActionTaken =
+          newBehaviorData.immediateActionTaken.trim();
+        newBehaviorData.postActionComments =
+          newBehaviorData.postActionComments.trim();
         return updatedBehaviorData;
       },
     },

@@ -11,8 +11,18 @@
           <div>
             <label for="title">Behavior Title: </label>
             <input type="text" id="title" name="title" />
-            <label for="actionItems">Follow-Up Steps Needed: </label>
-            <input type="text" id="actionItems" name="actionItems" />
+                <label for="immediateActionTaken">Immediate Action I Took: </label>
+            <select id="immediateActionTaken" name="immediateActionTaken">
+              <option value="Discussed privately in hallway">Discussed privately in hallway</option>
+              <option value="Sent to office">Sent to Office</option>
+              <option value="Nothing (no need)">Nothing I needed to do immediately</option>
+            </select>
+            <label for="postActionComments">After Action Details: </label>
+                     <textarea
+              type="text"
+              id="postActionComments"
+              name="postActionComments"
+            ></textarea>
             <label for="isGoodTrue">Behavior is Positive</label>
             <input type="checkbox" id="isGoodTrue" name="isGood" value="true" />
             <label for="isGoodFalse">Behavior is Concerning </label>
