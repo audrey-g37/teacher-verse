@@ -6,22 +6,24 @@
       <form action="/teacher/student/new-student" method="POST">
         <ul>
           <div>
-            <label for="title">Name of Assignment: </label>
-            <input type="text" id="title" name="title" />
-            <label for="description">Details: </label>
-            <textarea type="text" id="description" name="description"></textarea>
-            <label for="dueDate">Due Date: </label>
-            <input type="date" id="dueDate" name="dueDate" />
-            <label for="assignedStatusTrue">Check here if already assigned:
-            </label>
-            <input type="checkbox" id="assignedStatusTrue" name="assignedStatus" value="true" />
-            <label for="assignedStatusFalse">Check here if not yet assigned:
-            </label>
-            <input type="checkbox" id="assignedStatusFalse" name="assignedStatus" value="false" />
-          </div>
+            <label for="title">First Name: </label>
+            <input type="text" id="firstName" name="firstName" />
+            <label for="description">Last Name: </label>
+            <input type="text" id="lastName" name="lastName"></input>
+            
+            
+            <label for="teacherId">Teacher: </label>
+            <select id="teacherId" name="teacherId">
+            {{#each teacherData as |teacher|}}
+            {{>teacher_name_list}}
+            {{/each}}
+            </select>
+
+
+            
         </ul>
         <div class="button">
-          <button type="submit">Create Assignment</button>
+          <button type="submit">Create Student</button>
         </div>
       </form>
     </div>

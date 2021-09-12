@@ -42,13 +42,13 @@ Student.init(
         key: "id",
       },
     },
-    guardianId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "Guardian",
-        key: "id",
-      },
-    },
+    // guardianId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: "Guardian",
+    //     key: "id",
+    //   },
+    // },
   },
   {
     hooks: {
