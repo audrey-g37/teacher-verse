@@ -8,23 +8,6 @@ router.get("/login", async (req, res) => {
 
 // Current location  "http:localhost:3001/"
 
-//TODO: figure out req.session.logged in
-
-// router.get("/", async (req, res) => {
-//   try {
-//     const dbAssignmentData = await Assignment.findAll({
-//       attributes: ["title", "dueDate"],
-//     });
-
-//     const assignmentData = dbAssignmentData.map((assignment) =>
-//       assignment.get({ plain: true })
-//     );
-//     res.render("homepage", { assignmentData, loggedIn: req.session.loggedIn });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 router.post("/login", async (req, res) => {
   try {
     const teacherData = await Teacher.findOne({

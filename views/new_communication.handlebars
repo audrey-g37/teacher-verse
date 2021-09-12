@@ -1,51 +1,38 @@
-<a href="/teacher"><button
-    type="button"
-    class="Bck-Home btn btn-secondary btn-sm"
-  >Back to Teacher Homepage</button></a>
-
 <div>
-  <form action="/teacher/communication/new-communication" method="POST">
-    <ul>
-      <div>
-        <label for="communicationMethod">Communication Method: </label>
-        <select id="communicationMethod" name="communicationMethod">
-          <option value="email">Email</option>
-          <option value="phone-call">Phone Call</option>
-          <option value="meeting">Meeting</option>
-        </select>
-        <label for="description">Details: </label>
-        <textarea type="text" id="description" name="description"></textarea>
-        <label for="dateOfCommunication">Date: </label>
-        <input
-          type="date"
-          id="dateOfCommunication"
-          name="dateOfCommunication"
-        />
-        <label for="followUpNeededTrue">Check here if further follow up is
-          needed:
-        </label>
-        <input
-          type="checkbox"
-          id="followUpNeededTrue"
-          name="followUpNeeded"
-          value="true"
-        />
-        <label for="followUpNeededFalse">Check here if there is no need for
-          future follow up at this time:
-        </label>
-        <input
-          type="checkbox"
-          id="followUpNeededFalse"
-          name="followUpNeeded"
-          value="false"
-        />
-        <label for="studentId">Student: </label>
-        <input type="search" id="studentId" name="studentId" />
+  {{#if loggedIn}}
+    <a href="/teacher"><button type="button" class="Bck-Home btn btn-secondary btn-sm">Back to Teacher Homepage</button></a>
 
-      </div>
-    </ul>
-    <div class="button">
-      <button type="submit">Save Communication</button>
+    <div>
+      <form action="/teacher/communication/new-communication" method="POST">
+        <ul>
+          <div>
+            <label for="communicationMethod">Communication Method: </label>
+            <select id="communicationMethod" name="communicationMethod">
+              <option value="email">Email</option>
+              <option value="phone-call">Phone Call</option>
+              <option value="meeting">Meeting</option>
+            </select>
+            <label for="description">Details: </label>
+            <textarea type="text" id="description" name="description"></textarea>
+            <label for="dateOfCommunication">Date: </label>
+            <input type="date" id="dateOfCommunication" name="dateOfCommunication" />
+            <label for="followUpNeededTrue">Check here if further follow up is needed:
+            </label>
+            <input type="checkbox" id="followUpNeededTrue" name="followUpNeeded" value="true" />
+            <label for="followUpNeededFalse">Check here if there is no need for future follow up at this time:
+            </label>
+            <input type="checkbox" id="followUpNeededFalse" name="followUpNeeded" value="false" />
+            <label for="studentId">Student: </label>
+            <input type="search" id="studentId" name="studentId" />
+
+          </div>
+        </ul>
+        <div class="button">
+          <button type="submit">Save Communication</button>
+        </div>
+      </form>
     </div>
-  </form>
+  {{else}}
+    <a href="/login">Click here to login</a>
+  {{/if}}
 </div>
