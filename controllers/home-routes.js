@@ -2,6 +2,10 @@ const router = require("express").Router();
 const { Teacher, Assignment } = require("../models");
 const bcrypt = require("bcrypt");
 
+router.get("/", async (req, res) => {
+  res.redirect("login");
+});
+
 router.get("/login", async (req, res) => {
   res.render("login");
 });
