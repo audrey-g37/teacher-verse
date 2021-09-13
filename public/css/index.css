@@ -4,6 +4,7 @@
   --light: #35fc96;
   --white: white;
   --black: black;
+ --button:#1bbc9b;
 }
 
 /* html background */
@@ -103,6 +104,18 @@ div.jumbotron {
 }
 
 
-
+.container-register{
+display:flex;
+background-color: rgb(129, 137, 146);
+opacity: .85;
+align-items: center;
+margin: 0px 250px 0px 250px;
+}
 
 /* student page styling */
+
+.create-button{
+padding:10px;
+margin-top:4px;
+background-color:var(--button);
+}
