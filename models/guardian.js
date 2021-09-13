@@ -32,8 +32,8 @@ Guardian.init(
 
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+      allowNull: true,
+      unique: false,
       validate: {
         isEmail: true,
         notEmpty: true,
@@ -42,10 +42,18 @@ Guardian.init(
 
     phoneNumber: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+      allowNull: true,
+      unique: false,
       validation: {
         notEmpty: true,
+      },
+    },
+    studentId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Student",
+        key: "id",
       },
     },
   },
