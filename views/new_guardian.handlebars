@@ -3,7 +3,7 @@
     <a href="/teacher"><button type="button" class="Bck-Home btn btn-secondary btn-sm">Back to Teacher Homepage</button></a>
 
     <div class="d-flex">
-      <form action="/teacher/student/new-student" method="POST">
+      <form action="/teacher/student/new-guardian" method="POST">
         <ul>
           <div>
             <label for="firstName">First Name: </label>
@@ -15,6 +15,14 @@
             <label for="phoneNumber">Phone (no dashes): </label>
             <input type="text" id="phoneNumber" name="phoneNumber"></input>
         </ul>
+        <div>
+          <label for="studentId">Student: </label>
+            <select id="studentId" name="studentId">
+              {{#each studentData as |student|}}
+              {{>student_name_list}}
+              {{/each}}
+            </select>
+        </div>
         <div class="button">
           <button type="submit">Add Guardian</button>
         </div>
