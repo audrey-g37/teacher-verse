@@ -7,13 +7,14 @@
         <img src="logo.svg" alt="" />
         <h1 id="h1-homepage"> Welcome to Teacher Force!</h1>
 
-        <nav class="d-flex justify-content-space-between">
+        <nav class="homepage-nav">
           <a href="teacher/student"><button
               type="button"
               class="btn btn-primary btn-lg"
             >View All Students</button></a>
           <a href="#"><button type="button" class="btn btn-primary btn-lg">Take
               Attendance</button></a>
+          <a href="#"><button type="button" class="btn btn-primary btn-lg">Add Student</button></a>
           <a href="#"><button type="button" class="btn btn-primary btn-lg">Add
               Communication Record</button></a>
           <a href="teacher/behavior/new-behavior"><button
@@ -57,17 +58,19 @@
       <div class="card" style="width: 30rem;">
         <div class="card-body">
           <h5 class="card-title">Daily Riddle</h5>
-          <div class="d-flex justify-content-between">
+          <div>
             <p>Riddle: {{randomRiddle.riddle}}</p>
             <p>Answer: {{randomRiddle.answer}}</p>
+            </div>
           </div>
         </div>
       </div>
       <div class="card" style="width: 30rem;">
         <div class="card-body">
           <h5 class="card-title">Daily Quote</h5>
-          <div class="d-flex justify-content-between">
+          <div>
             <p>Quote:{{randomQuote.quote}}</p>
+            
             <p>Author: {{randomQuote.author}}</p>
           </div>
         </div>
