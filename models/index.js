@@ -54,6 +54,7 @@ Communication.belongsTo(Student, {
 });
 
 // Assignment associations
+
 Assignment.hasMany(AssignmentFeedback, {
   foreignKey: "assignmentId",
 });
