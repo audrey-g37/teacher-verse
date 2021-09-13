@@ -38,6 +38,18 @@ router.get("/new-student", async (req, res) => {
   }
 });
 
+router.get(":/id/new-guardian", async (req, res) => {
+  try {
+    const dbStudentData = await Student.findAll({
+      attributes: ["id", "firstName", "lastName"],
+    });
+    const studentData = dbStudentData.map((student) => student.get({ plain: true }));
+    res.render("new_guardian", { studentData, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     let studentData = await Student.findByPk(req.params.id, {
