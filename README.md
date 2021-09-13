@@ -2,8 +2,9 @@
 
 ## Link to Application
 
+https://teacher-force.herokuapp.com/login
 
-
+<img width="1396" alt="Screen Shot 2021-09-12 at 9 28 40 PM" src="https://user-images.githubusercontent.com/87398458/133019712-aecf7414-7e5a-4ff3-b3d1-a8a328e7c353.png">
 
 
 <!-- Inlcudes screenshots of said steps -->
