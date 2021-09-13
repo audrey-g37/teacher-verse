@@ -7,9 +7,9 @@ Student.init(
   {
     id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       allowNull: false,
       primaryKey: true,
-      unique: true,
     },
 
     firstName: {
@@ -30,10 +30,10 @@ Student.init(
       },
     },
 
-    inProgressGrade: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
+    // inProgressGrade: {
+    //   type: DataTypes.DECIMAL,
+    //   allowNull: true,
+    // },
 
     teacherId: {
       type: DataTypes.INTEGER,
@@ -42,13 +42,13 @@ Student.init(
         key: "id",
       },
     },
-    guardianId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "Guardian",
-        key: "id",
-      },
-    },
+    // guardianId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: "Guardian",
+    //     key: "id",
+    //   },
+    // },
   },
   {
     hooks: {

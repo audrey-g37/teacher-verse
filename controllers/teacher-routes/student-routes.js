@@ -15,7 +15,6 @@ const {
 } = require("../../models");
 
 // Current location  "http:localhost:3001/teacher/student"
-
 router.get("/", async (req, res) => {
   try {
     const dbStudentData = await Student.findAll({ include: Guardian });
@@ -29,7 +28,11 @@ router.get("/", async (req, res) => {
 
 router.get("/new-student", async (req, res) => {
   try {
-    res.render("new_student", { loggedIn: req.session.loggedIn });
+    const dbTeacherData = await Teacher.findAll({
+      attributes: ["id", "firstName", "lastName"],
+    });
+    const teacherData = dbTeacherData.map((teacher) => teacher.get({ plain: true }));
+    res.render("new_student", { teacherData, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -96,7 +99,12 @@ router.get("/:id", async (req, res) => {
 
 router.post("/new-student", async (req, res) => {
   try {
-    const newStudent = await Student.create(req.body);
+    const newStudent = await Student.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      teacherId: req.body.teacherId,
+    });
+
     res.redirect("/teacher/student");
   } catch (err) {
     res.status(400).json(err);
