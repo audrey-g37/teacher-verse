@@ -38,7 +38,7 @@ router.get("/new-student", async (req, res) => {
   }
 });
 
-router.get(":/id/new-guardian", async (req, res) => {
+router.get("/new-guardian", async (req, res) => {
   try {
     const dbStudentData = await Student.findAll({
       attributes: ["id", "firstName", "lastName"],
@@ -52,12 +52,18 @@ router.get(":/id/new-guardian", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    let studentData = await Student.findByPk(req.params.id, {
-      include: [{ model: Guardian }],
-    });
+    let studentData = await Student.findByPk(req.params.id);
     studentData = studentData.get({ plain: true });
 
     // ---------SECTION TO GET STUDENT DATA FOR SINGLE STUDENT HANLDEBAR------------- //
+
+    // ---------single student GUARDIAN data------------- //
+    let studentGuardian = await Guardian.findAll();
+    const guardianData = studentGuardian.map((guardian) => guardian.get({ plain: true }));
+    const studentGuardianAll = guardianData.filter(function (el) {
+      return el.studentId == req.params.id;
+    });
+    const guardianById = { ...studentGuardianAll };
 
     // ---------single student ATTENDANCE data------------- //
     let studentAttendance = await Attendance.findAll();
@@ -101,6 +107,7 @@ router.get("/:id", async (req, res) => {
       data3: communicationById,
       data4: assignmentFeedbackById,
       data5: behaviorById,
+      data6: guardianById,
 
       loggedIn: req.session.loggedIn,
     });
@@ -118,6 +125,21 @@ router.post("/new-student", async (req, res) => {
     });
 
     res.redirect("/teacher/student");
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.post("/new-guardian", async (req, res) => {
+  try {
+    const newGuardian = await Guardian.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
+      studentId: req.body.studentId,
+    });
+    res.redirect("/teacher");
   } catch (err) {
     res.status(400).json(err);
   }

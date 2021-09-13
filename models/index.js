@@ -36,13 +36,13 @@ Behavior.belongsTo(Communication, {
 });
 
 // Guardian associations
-Guardian.hasMany(Student, {
-  foreignKey: "guardianId",
+Student.hasMany(Guardian, {
+  foreignKey: "studentId",
   onDelete: "SET NULL",
 });
 
-Student.belongsTo(Guardian, {
-  foreignKey: "guardianId",
+Guardian.belongsTo(Student, {
+  foreignKey: "studentId",
 });
 
 // Communication assignments
