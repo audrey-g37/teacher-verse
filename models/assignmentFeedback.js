@@ -35,7 +35,7 @@ AssignmentFeedback.init(
 
     assignmentId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "Assignment",
         key: "id",
@@ -43,7 +43,7 @@ AssignmentFeedback.init(
     },
     studentId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "Student",
         key: "id",
