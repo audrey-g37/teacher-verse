@@ -18,12 +18,9 @@ const {
 router.get("/", async (req, res) => {
   try {
     const dbStudentData = await Student.findAll();
-    const studentData = dbStudentData.map((student) => student.get({ plain: true }));
-    // ---------single student GUARDIAN data------------- //
-    let studentGuardian = await Guardian.findAll();
-    const guardianData = studentGuardian.map((guardian) => guardian.get({ plain: true }));
-    console.log(guardianData);
-
+    const studentData = dbStudentData.map((student) =>
+      student.get({ plain: true })
+    );
     res.render("all_students", { studentData, loggedIn: req.session.loggedIn });
     res.status(200);
   } catch (err) {
@@ -36,7 +33,9 @@ router.get("/new-student", async (req, res) => {
     const dbTeacherData = await Teacher.findAll({
       attributes: ["id", "firstName", "lastName"],
     });
-    const teacherData = dbTeacherData.map((teacher) => teacher.get({ plain: true }));
+    const teacherData = dbTeacherData.map((teacher) =>
+      teacher.get({ plain: true })
+    );
     res.render("new_student", { teacherData, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
@@ -48,7 +47,9 @@ router.get("/new-guardian", async (req, res) => {
     const dbStudentData = await Student.findAll({
       attributes: ["id", "firstName", "lastName"],
     });
-    const studentData = dbStudentData.map((student) => student.get({ plain: true }));
+    const studentData = dbStudentData.map((student) =>
+      student.get({ plain: true })
+    );
     res.render("new_guardian", { studentData, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
@@ -64,7 +65,9 @@ router.get("/:id", async (req, res) => {
 
     // ---------single student GUARDIAN data------------- //
     let studentGuardian = await Guardian.findAll();
-    const guardianData = studentGuardian.map((guardian) => guardian.get({ plain: true }));
+    const guardianData = studentGuardian.map((guardian) =>
+      guardian.get({ plain: true })
+    );
     const studentGuardianAll = guardianData.filter(function (el) {
       return el.studentId == req.params.id;
     });
@@ -72,7 +75,9 @@ router.get("/:id", async (req, res) => {
 
     // ---------single student ATTENDANCE data------------- //
     let studentAttendance = await Attendance.findAll();
-    const attendanceData = studentAttendance.map((attendance) => attendance.get({ plain: true }));
+    const attendanceData = studentAttendance.map((attendance) =>
+      attendance.get({ plain: true })
+    );
     const studentAttendanceAll = attendanceData.filter(function (el) {
       return el.studentId == req.params.id;
     });
@@ -80,7 +85,9 @@ router.get("/:id", async (req, res) => {
 
     // ---------single student COMMUNICATIONS data------------- //
     let studentCommunication = await Communication.findAll();
-    const communicationData = studentCommunication.map((communication) => communication.get({ plain: true }));
+    const communicationData = studentCommunication.map((communication) =>
+      communication.get({ plain: true })
+    );
     const studentCommunicationAll = communicationData.filter(function (el) {
       return el.studentId == req.params.id;
     });
@@ -88,23 +95,29 @@ router.get("/:id", async (req, res) => {
 
     // ---------single student ASSIGNMENT FEEDBACK data------------- //
     let studentAssignmentFeedback = await AssignmentFeedback.findAll();
-    const assignmentFeedbackData = studentAssignmentFeedback.map((assignmentFeedback) =>
-      assignmentFeedback.get({ plain: true })
+    const assignmentFeedbackData = studentAssignmentFeedback.map(
+      (assignmentFeedback) => assignmentFeedback.get({ plain: true })
     );
-    const studentAssignmentFeedbackAll = assignmentFeedbackData.filter(function (el) {
-      return el.studentId == req.params.id;
-    });
+    const studentAssignmentFeedbackAll = assignmentFeedbackData.filter(
+      function (el) {
+        return el.studentId == req.params.id;
+      }
+    );
     const assignmentFeedbackById = { ...studentAssignmentFeedbackAll };
 
     // ---------single student BEHAVIORS data------------- //
     let studentBehavior = await Behavior.findAll();
-    const behaviorData = studentBehavior.map((behavior) => behavior.get({ plain: true }));
+    const behaviorData = studentBehavior.map((behavior) =>
+      behavior.get({ plain: true })
+    );
     const studentBehaviorAll = behaviorData.filter(function (el) {
       return el.studentId == req.params.id;
     });
     const behaviorById = { ...studentBehaviorAll };
     if (!studentData) {
-      res.status(404).json({ message: `no Student found with id of ${req.params.id}` });
+      res
+        .status(404)
+        .json({ message: `no Student found with id of ${req.params.id}` });
     }
     res.render("single_student", {
       data1: studentData,
@@ -156,9 +169,13 @@ router.put("/:id", async (req, res) => {
       where: { id: req.params.id },
     });
     if (!updatedStudent[0]) {
-      res.status(404).json({ message: `no Student found with the id of ${req.params.id}` });
+      res
+        .status(404)
+        .json({ message: `no Student found with the id of ${req.params.id}` });
     }
-    res.status(200).json({ message: `Student with id of ${req.params.id} updated` });
+    res
+      .status(200)
+      .json({ message: `Student with id of ${req.params.id} updated` });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -170,9 +187,13 @@ router.delete("/:id", async (req, res) => {
       where: { id: req.params.id },
     });
     if (!deletedStudent) {
-      res.status(404).json({ message: `no Student with id ${req.params.id} found` });
+      res
+        .status(404)
+        .json({ message: `no Student with id ${req.params.id} found` });
     }
-    res.status(200).json({ message: `Student with id ${req.params.id} deleted` });
+    res
+      .status(200)
+      .json({ message: `Student with id ${req.params.id} deleted` });
   } catch (err) {
     res.status(500).json(err);
   }
