@@ -148,3 +148,19 @@ font-size:25px;
 .assignment-btn{
 font-size: 12px;
 }
+
+.new-student-card{
+  background-color: rgb(129, 137, 146);
+  opacity: 0.9;
+  display:flex;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.new-guardian-card{
+  background-color: rgb(129, 137, 146);
+  opacity: 0.9;
+  display:flex;
+  margin-right: 200px;
+  margin-left: 200px;
+}
