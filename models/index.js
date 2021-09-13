@@ -38,7 +38,6 @@ Behavior.belongsTo(Communication, {
 // Guardian associations
 Student.hasMany(Guardian, {
   foreignKey: "studentId",
-  onDelete: "SET NULL",
 });
 
 Guardian.belongsTo(Student, {
