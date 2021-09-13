@@ -1,10 +1,9 @@
+
+
+ <a href="/teacher"><button type="button" class="Bck-Home btn btn-secondary btn-sm">Back to Teacher Homepage</button></a>x
+
 <div class="new-beavior-card" >
   {{#if loggedIn}}
-    <a href="/teacher"><button
-        type="button"
-        class="Bck-Home btn btn-secondary btn-sm"
-      >Back to Teacher Homepage</button></a>
-
     <div>
       <form action="/teacher/behavior/new-behavior" method="POST">
         <ul>
@@ -42,7 +41,6 @@
         </ul>
         <labe id="description-tag"for="description">Details: </label>
           <textarea id="descripton" name="description" rows="2" cols="100">
-           
           </textarea>
         </label>
 

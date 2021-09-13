@@ -6,20 +6,15 @@
         class="Bck-Home btn btn-secondary btn-sm"
       >Back to Teacher Homepage</button></a>
 
-    <div class="d-flex">
+    <div class="new-assignment-card">
       <form action="/teacher/assignment/new-assignment" method="POST">
         <ul>
           <div>
             <label for="title">Name of Assignment: </label>
             <input type="text" id="title" name="title" />
-            <label for="description">Details: </label>
-            <textarea
-              type="text"
-              id="description"
-              name="description"
-            ></textarea>
             <label for="dueDate">Due Date: </label>
-            <input type="date" id="dueDate" name="dueDate" />
+            <input type="date" id="dueDate" name="dueDate"></input>
+            <br>
             <label for="assignedStatusTrue">Check here if already assigned:
             </label>
             <input
@@ -38,6 +33,9 @@
             />
           </div>
         </ul>
+         <labe id="description-tag"for="description">Details: </label>
+          <textarea id="descripton" name="description" rows="2" cols="100">
+          </textarea>
         <div class="button">
           <button type="submit">Create Assignment</button>
         </div>
