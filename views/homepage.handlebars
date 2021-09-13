@@ -8,13 +8,13 @@
         <h1 id="h1-homepage"> Welcome to Teacher Force!</h1>
 
         <nav class="homepage-nav">
-          <a href="teacher/student"><button type="button" class="btn btn-primary btn-lg">View All Students</button></a>
-          <a href="#"><button type="button" class="btn btn-primary btn-lg">Take Attendance</button></a>
-          <a href="teacher/student/new-student"><button type="button" class="btn btn-primary btn-lg">Add Student</button></a>
-          <a href="teacher/student/new-guardian"><button type="button" class="btn btn-primary btn-lg">Add Guardian
+          <a href="teacher/student"><button type="button" class="create-button">View All Students</button></a>
+          <a href="#"><button type="button" class="create-button">Take Attendance</button></a>
+          <a href="teacher/student/new-student"><button type="button" class="create-button">Add Student</button></a>
+          <a href="teacher/student/new-guardian"><button type="button" class="create-button">Add Guardian
             </button></a>
-          <a href="#"><button type="button" class="btn btn-primary btn-lg">Add Communication Record</button></a>
-          <a href="teacher/behavior/new-behavior"><button type="button" class="btn btn-primary btn-lg">Add Behavior
+          <a href="#"><button type="button" class="create-button">Add Communication Record</button></a>
+          <a href="teacher/behavior/new-behavior"><button type="button" class="create-button">Add Behavior
               Record</button></a>
         </nav>
       </div>
@@ -27,13 +27,16 @@
     <div class="container-homepage">
       <div class="card" style="width: 30rem;">
         <div class="card-body">
-          <h5 class="card-title">Recent Assignments</h5>
+          <h5 class="title">Recent Assignments</h5>
           <div class="d-flex justify-content-between">
-            <h6>Title</h6>
-            <h6>Due Date</h6>
+ 
           </div>
         </div>
-        <ul class="assignments list-group-flush">
+        <ul class="assignments ">
+          <div class = "assignment-main d-flex flex-wrap">
+            <h6 class = "assignment-main-text">Title</h6>
+            <h6 class = "assignment-main-text due-date">Due Date</h6>
+            </div>
           {{#each assignmentData as |assignment|}}
             <li class="list-group-item d-flex justify-content-between">
               <div>
@@ -44,13 +47,13 @@
               </div>
             </li>
           {{/each}}
-          <a href="teacher/assignment/new-assignment"><button type="button" class="btn btn-secondary btn-sm">Create New
+          <a href="teacher/assignment/new-assignment"><button type="button" class="create-button assignment-btn">Create New
               Assignment</button></a>
         </ul>
       </div>
       <div class="card" style="width: 30rem;">
         <div class="card-body">
-          <h5 class="card-title">Daily Riddle</h5>
+          <h5 class="assignment-main-text">Daily Riddle</h5>
           <div>
             <p>Riddle: {{randomRiddle.riddle}}</p>
             <p>Answer: {{randomRiddle.answer}}</p>
@@ -59,7 +62,7 @@
       </div>
       <div class="card" style="width: 30rem;">
         <div class="card-body">
-          <h5 class="card-title">Daily Quote</h5>
+          <h5 class="assignment-main-text">Daily Quote</h5>
           <div>
             <p>Quote:{{randomQuote.quote}}</p>
 
