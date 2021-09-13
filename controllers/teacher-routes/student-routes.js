@@ -17,8 +17,13 @@ const {
 // Current location  "http:localhost:3001/teacher/student"
 router.get("/", async (req, res) => {
   try {
-    const dbStudentData = await Student.findAll({ include: Guardian });
+    const dbStudentData = await Student.findAll();
     const studentData = dbStudentData.map((student) => student.get({ plain: true }));
+    // ---------single student GUARDIAN data------------- //
+    let studentGuardian = await Guardian.findAll();
+    const guardianData = studentGuardian.map((guardian) => guardian.get({ plain: true }));
+    console.log(guardianData);
+
     res.render("all_students", { studentData, loggedIn: req.session.loggedIn });
     res.status(200);
   } catch (err) {
