@@ -43,9 +43,7 @@ router.get("/", async (req, res) => {
       attributes: ["title", "dueDate"],
     });
 
-    const assignmentData = dbAssignmentData.map((assignment) =>
-      assignment.get({ plain: true })
-    );
+    const assignmentData = dbAssignmentData.map((assignment) => assignment.get({ plain: true }));
 
     const randomQuote = randomFun.getRandomQuote();
     const randomRiddle = randomFun.getRandomRiddle();
@@ -119,6 +117,17 @@ router.get("/", async (req, res) => {
 //     res.status(500).json(err)
 //     }
 // });
+
+// Logout
+router.post("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 
 // //thunder client
 
