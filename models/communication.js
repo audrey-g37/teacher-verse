@@ -33,7 +33,7 @@ Communication.init(
     },
     studentId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "Student",
         key: "id",

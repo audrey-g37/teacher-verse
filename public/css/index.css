@@ -4,7 +4,7 @@
   --light: #35fc96;
   --white: white;
   --black: black;
- --button:#1bbc9b;
+  --button: #1bbc9b;
 }
 
 /* html background */
@@ -37,12 +37,11 @@
 
 /* homepage styling */
 
-.homepage-nav{
-display:flex;
-justify-content: space-between;
-padding: 15px;
+.homepage-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
 }
-
 
 #h1-homepage {
   text-align: center;
@@ -85,7 +84,7 @@ div.jumbotron {
 .new-beavior-card {
   background-color: rgb(129, 137, 146);
   opacity: 0.95;
-  display:flex;
+  display: flex;
   margin-right: 200px;
   margin-left: 200px;
 }
@@ -95,42 +94,40 @@ div.jumbotron {
   font: large;
 }
 
-.new-assignment-card{
+.new-assignment-card {
   background-color: rgb(129, 137, 146);
   opacity: 0.95;
-  display:flex;
+  display: flex;
   align-items: center;
   margin-right: 200px;
   margin-left: 200px;
 }
 
-
-.container-register{
-display:flex;
-background-color: rgb(129, 137, 146);
-opacity: .85;
-align-items: center;
-margin: 0px 250px 0px 250px;
+.container-register {
+  display: flex;
+  background-color: rgb(129, 137, 146);
+  opacity: 0.85;
+  align-items: center;
+  margin: 0px 250px 0px 250px;
 }
 
 /* student page styling */
 
-.create-button{
-padding:10px;
-margin-top:4px;
-background-color:var(--button);
-border-radius: 10%;
-font-weight:500;
+.create-button {
+  padding: 10px;
+  margin-top: 4px;
+  background-color: var(--button);
+  border-radius: 10%;
+  font-weight: 500;
 }
 
-.create-button:hover{
-  background-color:var(--bright);
+.create-button:hover {
+  background-color: var(--bright);
 }
 
-
-.title{
-color:var(--bright);
-font-size:25px;
+.title {
+  color: var(--bright);
+  font-size: 25px;
 }
 
 .assignment-main {
@@ -139,28 +136,32 @@ font-size:25px;
   justify-content: space-around;
 }
 
-.assignment-main-text{
-  color: var(--bright)
+.assignment-main-text {
+  color: var(--bright);
 }
-.due-date{
-  margin-left:60px;
+.due-date {
+  margin-left: 60px;
 }
-.assignment-btn{
-font-size: 12px;
+.assignment-btn {
+  font-size: 12px;
 }
 
-.new-student-card{
+.new-student-card {
   background-color: rgb(129, 137, 146);
   opacity: 0.9;
-  display:flex;
+  display: flex;
   margin-right: 200px;
   margin-left: 200px;
 }
 
-.new-guardian-card{
+.new-guardian-card {
   background-color: rgb(129, 137, 146);
   opacity: 0.9;
-  display:flex;
+  display: flex;
   margin-right: 200px;
   margin-left: 200px;
+}
+
+.invisible-text {
+  text-align: center;
 }

@@ -2,7 +2,8 @@
 
 {{#if loggedIn}}
 <a href="/teacher"><button type="button" class="create-button">Back to Teacher Homepage</button></a>
-<section class="container d-flex justify-content-between">
+<h1 class= "invisible-text">Current Student Roster</h1>
+<section class="container d-flex justify-content-around flex-wrap">
     {{#each studentData as |student|}}
     <div class="card">
         {{>student_card}}
