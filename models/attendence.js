@@ -11,15 +11,17 @@ Attendance.init(
       primaryKey: true,
       autoIncrement: true,
     },
-
     isPresent: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
       allowNull: false,
     },
-
+    date: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     studentId: {

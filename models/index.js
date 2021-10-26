@@ -1,5 +1,4 @@
 // bring in required models
-
 const Teacher = require("./teacher");
 const Assignment = require("./assignment");
 const AssignmentFeedback = require("./assignmentFeedback");

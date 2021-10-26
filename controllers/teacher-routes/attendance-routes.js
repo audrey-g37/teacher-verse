@@ -6,6 +6,7 @@ const {Attendance} = require('../../models');
 router.get('/', async (req,res) => {
 try {
 const attendanceData = await Attendance.findAll();
+res.render("new_attendance");
 res.status(200).json(attendanceData);
 
 }
