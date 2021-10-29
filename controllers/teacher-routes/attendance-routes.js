@@ -1,14 +1,15 @@
 const router = require('express').Router();
-const {Attendance} = require('../../models');
+const {Attendance, Student} = require('../../models');
 
 // Current location  "http:localhost:3001/api/attendance"
 
 router.get('/', async (req,res) => {
 try {
-const attendanceData = await Attendance.findAll();
-res.render("new_attendance");
-res.status(200).json(attendanceData);
-
+const dbStudentData = await Student.findAll({});
+const studentData = dbStudentData.map((student) => 
+    student.get({ plain: true })
+);
+res.render("new_attendance",{ studentData, loggedIn: req.session.loggedIn });
 }
 catch(err){
 res.status(500).json(err)
@@ -33,14 +34,42 @@ res.status(500).json(err)
 
 
 router.post('/', async (req,res) => {
+    console.log(req.body);
+    let presenceArray=[];
+    let studentIdArray=[];
+    function dataTypeChange (studentIds, isPresent) {
+        for (let i=0; i<studentIds.length; i++) {
+            if (isPresent[i] === "on") {
+                presenceArray.push(true);
+            } else {
+                presenceArray.push(false);
+            };
+            const integerId = parseInt(studentIds[i]);
+            studentIdArray.push(integerId); 
+        }
+    }; 
     try{
-const newAttendence = await Attendance.create({
-    isPresent: req.body.isPresent,
-    time:req.body.time,
-    
-});
-res.status(200).json({message:"Attendance was added!"});
+    const allAttendanceData = req.body;
+    dataTypeChange(allAttendanceData.studentId, allAttendanceData.isPresent);
+    const attendanceDataToSave = {
+        isPresent: presenceArray,
+        time: allAttendanceData.time,
+        notes: allAttendanceData.notes,
+        studentId: studentIdArray
+    };
 
+    console.log(attendanceDataToSave);
+
+    // let studentAttendance;
+    // function saveAttendance (array) {
+
+    // }
+
+
+// const newAttendence = await Attendance.create({
+
+// });
+// res.redirect("/teacher");
     }
     catch(err){
         res.status(400).json(err)

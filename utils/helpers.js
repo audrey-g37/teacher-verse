@@ -2,4 +2,8 @@ function findById(el) {
   return el.studentId === req.params.id;
 }
 
-module.exports = findById;
+// function storeTeacherId(id) {
+//   return localStorage.setItem("teacherId", id)
+// }
+
+module.exports = {findById};

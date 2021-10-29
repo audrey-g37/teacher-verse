@@ -2,8 +2,49 @@
   {{#if loggedIn}}
     <a href="/teacher"><button type="button" class="create-button">Back to
         Teacher Homepage</button></a>
-
-        <h1>ATTENDANCE PAGE</h1>
+        <h1 class="page-title">Attendance</h1>
+        <div id="form-background">
+        <form id="attendance-form" action="/teacher/attendance" method="POST">
+          <table class="table">
+            <thead>
+              <tr class="table-headers">
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Present</th>
+                <th scope="col">Time</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+        {{#each studentData as |student|}}
+          <tr id="each-attendance">
+            <td id="attendance-student-name">
+            {{student.firstName}}
+            </td>
+            <td id="attendance-student-name">
+            {{student.lastName}}
+            </td>
+            <td id="attendance-present">
+              <input type="checkbox" id="isPresent" name="isPresent" checked>
+            </td>
+            <td id="attendance-time">
+              <input type="text" id="time" name="time">
+            </td>
+            <td id="attendance-notes">
+              <input type="text" id="notes" name="notes">
+            </td>
+            <td id="studentId">
+              <input type="hidden" value={{student.id}} name="studentId">
+            </td>
+            </tr>
+        {{/each}}
+        </tbody>
+        </table>
+        <div class="break" id="save-attendance-div">
+        <button id="save-attendance-btn" type="submit">Save</button>
+        </div>
+        </form>
+        </div>
   {{else}}
     <a href="/login">Click here to login</a>
   {{/if}}

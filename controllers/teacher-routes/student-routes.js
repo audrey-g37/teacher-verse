@@ -17,6 +17,7 @@ const {
 // Current location  "http:localhost:3001/teacher/student"
 router.get("/", async (req, res) => {
   try {
+    // const teacherIdToUse = localStorage.getItem("teacherId");
     const dbStudentData = await Student.findAll();
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })

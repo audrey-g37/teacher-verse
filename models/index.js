@@ -17,10 +17,6 @@ Teacher.hasMany(Student, {
   onDelete: "SET NULL",
 });
 
-Student.belongsTo(Teacher, {
-  foreignKey: "teacherId",
-});
-
 Student.hasMany(Attendance, {
   // through: StudentAttendance,
   foreignKey: "studentId",
