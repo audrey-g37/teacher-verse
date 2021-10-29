@@ -3,20 +3,20 @@
     "id": 111,
     "firstName": "Brucey",
     "lastName": "Manton",
-    "teacherId":1
+    "teacherId": 1
 },
 
   {
     "id": 222,
     "firstName": "Sarah",
     "lastName": "Little",
-    "teacherId":2
+    "teacherId": 2
   },
 
   {
     "id": 333,
     "firstName": "Jaime",
     "lastName": "Smithy",
-    "teacherId":3
+    "teacherId": 3
   }
 ]

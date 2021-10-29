@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Teacher, Assignment } = require("../models");
 const bcrypt = require("bcrypt");
+const { storeTeacherId } = require("../utils/helpers")
 
 router.get("/", async (req, res) => {
   res.redirect("login");
@@ -28,6 +29,9 @@ router.post("/login", async (req, res) => {
       return;
     }
     req.session.loggedIn = true;
+    const idToStore = JSON.stringify(teacherData.dataValues.id);
+    console.log(idToStore);
+    // localStorage.setItem("teacherId", idToStore);
     res.redirect("/teacher");
   } catch (err) {
     res.status(500).json(err);
