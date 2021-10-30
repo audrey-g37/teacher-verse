@@ -25,7 +25,9 @@
             {{student.lastName}}
             </td>
             <td id="attendance-present">
-              <input type="checkbox" id="isPresent" name="isPresent" checked>
+              <select id="isPresent" name="isPresent">
+                <option id="student-present" value="true">Present</option>
+                <option id="student-absent" value="false">Absent</option>
             </td>
             <td id="attendance-time">
               <input type="text" id="time" name="time">

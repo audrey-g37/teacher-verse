@@ -39,7 +39,7 @@ router.post('/', async (req,res) => {
     let studentIdArray=[];
     function dataTypeChange (studentIds, isPresent) {
         for (let i=0; i<studentIds.length; i++) {
-            if (isPresent[i] === "on") {
+            if (isPresent[i] === "true") {
                 presenceArray.push(true);
             } else {
                 presenceArray.push(false);
@@ -59,6 +59,15 @@ router.post('/', async (req,res) => {
     };
 
     console.log(attendanceDataToSave);
+
+    for(let i=0; i<attendanceDataToSave.studentId.length; i++){
+        Attendance.create({
+         isPresent: attendanceDataToSave.isPresent[i],
+         time: attendanceDataToSave.time[i],
+         notes: attendanceDataToSave.notes[i],
+         studentId: attendanceDataToSave.studentId[i]
+        });
+    }
 
     // let studentAttendance;
     // function saveAttendance (array) {

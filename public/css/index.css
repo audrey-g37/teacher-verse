@@ -179,6 +179,12 @@ div.jumbotron {
   justify-content: flex-end;
 }
 
+#isPresent{
+  width: 100px;
+  padding:5px;
+  border-radius: 5px;
+}
+
 .table-headers {
   font-size: 20px;
 }
@@ -195,6 +201,7 @@ div.jumbotron {
   border-radius: 10%;
   margin-left: 10px;
 }
+
 
 /* #attendance-time {
   background-color: magenta;
