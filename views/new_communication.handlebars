@@ -44,12 +44,15 @@
               value="false"
             />
             <label for="studentId">Student: </label>
-            <input type="search" id="studentId" name="studentId" />
-
+            <select id="studentId" name="studentId">
+            {{#each studentData as |student|}}
+            {{>student_name_list}}
+            {{/each}}
+            </select>
           </div>
         </ul>
         <div class="button">
-          <button type="submit">Save Communication</button>
+          <button type="submit" href="/teacher/student" >Save Communication</button>
         </div>
       </form>
     </div>
