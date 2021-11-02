@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Communication, Behavior } = require("../../models");
+const { Communication, Behavior, Student } = require("../../models");
 
 // Current location  "http:localhost:3001/api/communication"
 
@@ -13,9 +13,15 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 router.get("/new-communication", async (req, res) => {
   try {
-    res.render("new_communication");
+    const dbStudentData = await Student.findAll({});
+    const studentData = dbStudentData.map((student)=>
+      student.get({ plain:true}));
+
+    res.render("new_communication",{studentData, loggedIn: req.session.loggedIn});
   } catch (err) {
     res.status(500).json(err);
   }
@@ -37,13 +43,20 @@ router.get("/:id", async (req, res) => {
 
 router.post("/new-communication", async (req, res) => {
   try {
+
     const newCommunication = await Communication.create({
       communicationMethod: req.body.communicationMethod,
       description: req.body.description,
       dateOfCommunication: req.body.dateOfCommunication,
       followUpNeeded: req.body.followUpNeeded,
+      studentId: req.body.studentId
     });
-    res.render("homepage");
+    const studentCardId = newCommunication.dataValues.studentId;
+
+    console.log(typeof studentCardId);
+
+    window.location.assign("/teacher/student");
+
   } catch (err) {
     res.status(400).json(err);
   }

@@ -3,7 +3,7 @@ const {Attendance, Student} = require('../../models');
 
 // Current location  "http:localhost:3001/api/attendance"
 
-router.get('/', async (req,res) => {
+router.get('/new-attendance', async (req,res) => {
 try {
 const dbStudentData = await Student.findAll({});
 const studentData = dbStudentData.map((student) => 
@@ -33,7 +33,7 @@ res.status(500).json(err)
 
 
 
-router.post('/', async (req,res) => {
+router.post('/new-attendance', async (req,res) => {
     console.log(req.body);
     let presenceArray=[];
     let studentIdArray=[];
@@ -58,14 +58,12 @@ router.post('/', async (req,res) => {
         studentId: studentIdArray
     };
 
-    console.log(attendanceDataToSave);
-
     for(let i=0; i<attendanceDataToSave.studentId.length; i++){
         Attendance.create({
-         isPresent: attendanceDataToSave.isPresent[i],
-         time: attendanceDataToSave.time[i],
-         notes: attendanceDataToSave.notes[i],
-         studentId: attendanceDataToSave.studentId[i]
+        isPresent: attendanceDataToSave.isPresent[i],
+        time: attendanceDataToSave.time[i],
+        notes: attendanceDataToSave.notes[i],
+        studentId: attendanceDataToSave.studentId[i]
         });
     }
 
