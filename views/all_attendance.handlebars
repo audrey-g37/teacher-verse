@@ -1,0 +1,15 @@
+
+{{#if loggedIn}}
+<nav id="nav">
+    <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
+</nav>
+        <select id="studentId" name="studentId">
+            {{#each studentData as |student|}}
+            {{>student_card}}
+            {{/each}}
+            </select>
+{{else}}
+    <a href="/login">Click here to login</a>
+{{/if}}
+</div>
+</section>

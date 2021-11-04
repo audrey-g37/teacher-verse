@@ -8,8 +8,16 @@ router.get('/', async (req,res) => {
     const studentData = dbStudentData.map((student) => 
         student.get({ plain: true })
     );
-    res.render("all_attendance",{ studentData, loggedIn: req.session.loggedIn });
+    const dbAttendanceData = await Attendance.findAll({});
+    const attendanceData = dbAttendanceData.map((attendance)=>
+        attendance.get({ plain:true }));
+
+    res.render("all_attendance",{ studentData:studentData, attendanceData:attendanceData, loggedIn: req.session.loggedIn });
+
+    console.log(studentData);
+    console.log(attendanceData);
     }
+
     catch(err){
     res.status(500).json(err)
     }
