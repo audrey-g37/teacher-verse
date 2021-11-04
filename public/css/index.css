@@ -180,9 +180,9 @@ div.jumbotron {
   justify-content: flex-end;
 }
 
-#isPresent{
+#isPresent {
   width: 100px;
-  padding:5px;
+  padding: 5px;
   border-radius: 5px;
 }
 
@@ -203,7 +203,6 @@ div.jumbotron {
   margin-left: 10px;
 }
 
-
 /* #attendance-time {
   background-color: magenta;
 }
@@ -213,10 +212,10 @@ div.jumbotron {
 } */
 
 #save-attendance-btn {
-font-size: 18px;
-margin-right: 20px;
-padding: 8px;
-border-radius: 20%;
+  font-size: 18px;
+  margin-right: 20px;
+  padding: 8px;
+  border-radius: 20%;
 }
 
 #save-attendance-div {
@@ -224,8 +223,12 @@ border-radius: 20%;
   margin-bottom: 20px;
 }
 
+#attendance-table {
+  background-color: aqua;
+}
+
 /* Style the navigation bar */
-#nav{
+#nav {
   width: 100%;
   background-color: #555;
   overflow: auto;
@@ -233,13 +236,13 @@ border-radius: 20%;
 
 /* Navbar links */
 #nav a {
-  display:flex;
-  align-content:space-between;
-  margin-left:100px;
+  display: flex;
+  align-content: space-between;
+  margin-left: 100px;
   float: left;
   text-align: center;
   padding: 12px;
-  color:var(--button);
+  color: var(--button);
   text-decoration: none;
   font-size: 17px;
 }
@@ -248,7 +251,6 @@ border-radius: 20%;
 #nav a:hover {
   background-color: #000;
 }
-
 
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
 @media screen and (max-width: 500px) {
