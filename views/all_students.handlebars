@@ -1,7 +1,14 @@
 
 
 {{#if loggedIn}}
-<a href="/teacher"><button type="button" class="create-button">Back to Teacher Homepage</button></a>
+<nav id="nav">
+      <a href="/teacher/student/new-student" class="fa fa-user">Add Student</a>
+      <a href="/teacher/student/new-guardian" class="fa fa-users">Add Guardian</a>
+      <a href="/teacher/communication/new-communication" class="fa fa-envelope">Add Communication Record</a>
+      <a href="/teacher/behavior/new-behavior" class="fa fa-child">Add Behavior Record</a>
+      <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
+</nav>
+<br>
 <h1 class= "invisible-text">Current Student Roster</h1>
 <section class="container d-flex justify-content-around flex-wrap">
     {{#each studentData as |student|}}

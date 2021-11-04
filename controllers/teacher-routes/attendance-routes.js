@@ -2,6 +2,18 @@ const router = require('express').Router();
 const {Attendance, Student} = require('../../models');
 
 // Current location  "http:localhost:3001/api/attendance"
+router.get('/', async (req,res) => {
+    try {
+    const dbStudentData = await Student.findAll({});
+    const studentData = dbStudentData.map((student) => 
+        student.get({ plain: true })
+    );
+    res.render("all_attendance",{ studentData, loggedIn: req.session.loggedIn });
+    }
+    catch(err){
+    res.status(500).json(err)
+    }
+    });
 
 router.get('/new-attendance', async (req,res) => {
 try {
@@ -15,6 +27,7 @@ catch(err){
 res.status(500).json(err)
 }
 });
+
 
 
 router.get('/:id', async (req,res) => {
