@@ -75,6 +75,7 @@ div.jumbotron {
 .homepage {
   background-image: url(/images/background-image2.jpeg);
 }
+
 .card {
   background-color: var(--formbkg);
   opacity: 0.95;
@@ -221,4 +222,38 @@ border-radius: 20%;
 #save-attendance-div {
   margin-left: 30px;
   margin-bottom: 20px;
+}
+
+/* Style the navigation bar */
+#nav{
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+/* Navbar links */
+#nav a {
+  display:flex;
+  align-content:space-between;
+  margin-left:100px;
+  float: left;
+  text-align: center;
+  padding: 12px;
+  color:var(--button);
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Navbar links on mouse-over */
+#nav a:hover {
+  background-color: #000;
+}
+
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
 }

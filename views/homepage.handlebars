@@ -1,23 +1,16 @@
 <div class="homepage">
+        <nav id="nav">
+          <a href="teacher/student" class="fa fa-users">View All Students</a>
+          <a href="teacher/attendance/new-attendance" class="fa fa-user">Take Attendance</a>
+          <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+        </nav>
 
   {{#if loggedIn}}
-
-    <div class="jumbotron">
+      <div class="jumbotron">
       <div class="container position-relative">
         <div>
         <h1 id="h1-homepage"> Welcome to Teacher Force!</h1>
-<button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
-</div>
-        <nav class="homepage-nav">
-          <a href="teacher/student"><button type="button" class="create-button">View All Students</button></a>
-          <a href="teacher/attendance/new-attendance"><button type="button" class="create-button">Take Attendance</button></a>
-          <a href="teacher/student/new-student"><button type="button" class="create-button">Add Student</button></a>
-          <a href="teacher/student/new-guardian"><button type="button" class="create-button">Add Guardian
-            </button></a>
-          <a href="/teacher/communication/new-communication"><button type="button" class="create-button">Add Communication Record</button></a>
-          <a href="teacher/behavior/new-behavior"><button type="button" class="create-button">Add Behavior
-              Record</button></a>
-        </nav>
+      </div>
       </div>
       {{! possible future feature search bar }}
       {{! <form class="form-inline" my-2 my-lg-0”>
@@ -25,6 +18,8 @@
         <button class="btn" btn-outline-primary my-2 my-sm-0” type="submit">Search</button>
       </form> }}
     </div>
+
+
     <div class="container-homepage">
       <div class="card" style="width: 30rem;">
         <div class="card-body">
