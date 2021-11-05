@@ -7,11 +7,11 @@
         <thead>
             <tr>
                 <th>Student Name</th>
-                  {{#each attendanceDates as |dates|}}
+                {{#each attendanceDates as |dates|}}
                 <th>
                     {{dates}}
                 </th>
-                  {{/each}}
+                {{/each}}
             </tr>
         </thead>
         <tbody  id="studentId" name="studentId">
@@ -23,10 +23,10 @@
             {{/each}}
             {{#each studentAttendanceMatched as |matched|}}
             <td>
-              {{matched.isPresent}}
+            {{matched.isPresent}}
             </td>
                 {{/each}}
-       
+    
             </tr>
 
 
