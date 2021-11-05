@@ -3,14 +3,14 @@ const { Attendance, Student } = require("../../models");
 const moment = require("moment");
 // Current location  "http:localhost:3001/api/attendance"
 router.get("/", async (req, res) => {
-try {
+  try {
     const dbStudentData = await Student.findAll({});
     const studentData = dbStudentData.map((student) =>
-    student.get({ plain: true })
+      student.get({ plain: true })
     );
     const dbAttendanceData = await Attendance.findAll({});
     const attendanceData = dbAttendanceData.map((attendance) =>
-    attendance.get({ plain: true })
+      attendance.get({ plain: true })
     );
 
     const howManyRecords = studentData.length * 10;
@@ -18,15 +18,15 @@ try {
     let pastRecords = [];
 
     if (attendanceData.length >= howManyRecords) {
-    for (
+      for (
         let i = attendanceData.length - howManyRecords;
         i < attendanceData.length;
         i++
-    ) {
+      ) {
         pastRecords.push(attendanceData[i]);
-    }
+      }
     } else {
-    pastRecords = attendanceData;
+      pastRecords = attendanceData;
     }
 
     // console.log(pastRecords);
@@ -38,9 +38,9 @@ try {
     let studentAttendanceMatched = [];
 
     for (let i = 0; i < pastRecords.length; i++) {
-    if (studentData[0].id === pastRecords[i].studentId) {
+      if (studentData[0].id === pastRecords[i].studentId) {
         studentAttendanceMatched.push(pastRecords[i]);
-    }
+      }
     }
     // console.log(studentAttendanceMatched);
 
@@ -93,7 +93,6 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/new-attendance", async (req, res) => {
-  console.log(req.body);
   let presenceArray = [];
   let studentIdArray = [];
   function dataTypeChange(studentIds, isPresent) {
@@ -107,45 +106,54 @@ router.post("/new-attendance", async (req, res) => {
       studentIdArray.push(integerId);
     }
   }
-  const todaysDate = moment().format('L');
-// console.log(todaysDate)
+  const todaysDate = moment().format("MM-DD-YYYY");
+  console.log(todaysDate);
 
-const dbAttendanceData = Attendance.findAll({});
-const attendanceData = (await dbAttendanceData).map((attendance) =>
-attendance.get({ plain: true })
-)
-console.log(attendanceData);
+  const dbPriorAttendanceData = Attendance.findAll({});
+  const priorAttendanceData = (await dbPriorAttendanceData).map((attendance) =>
+    attendance.get({ plain: true })
+  );
+  console.log(priorAttendanceData);
 
   try {
-    const allAttendanceData = req.body;
-    dataTypeChange(allAttendanceData.studentId, allAttendanceData.isPresent);
+    const newAttendanceData = req.body;
+    dataTypeChange(newAttendanceData.studentId, newAttendanceData.isPresent);
     const attendanceDataToSave = {
       isPresent: presenceArray,
       date: todaysDate,
-      time: allAttendanceData.time,
-      notes: allAttendanceData.notes,
-    studentId: studentIdArray,
+      time: newAttendanceData.time,
+      notes: newAttendanceData.notes,
+      studentId: studentIdArray,
     };
 
-        console.log(attendanceDataToSave);
+    console.log(attendanceDataToSave);
 
-    for(let i = 0; i < attendanceData.length; i++){
-        if(todaysDate === attendanceData[i].date){
-        attendanceData[i].update({where: studentId === attendanceDataToSave[i].studentId},
-    req.body[i])
+    for (let i = 0; i < priorAttendanceData.length; i++) {
+      if (priorAttendanceData[i].date === attendanceDataToSave.date) {
+        console.log("in the dates are equal statement");
+        for (let j = 0; j < attendanceDataToSave.studentId.length; j++) {
+          await Attendance.update(
+            {
+              isPresent: attendanceDataToSave.isPresent[j],
+              time: attendanceDataToSave.time[j],
+              notes: attendanceDataToSave.notes[j],
+            },
+            {
+              where: { studentId: attendanceDataToSave.studentId[j] },
+            }
+          );
         }
-    }
-
-    console.log(req.body)
-
-    for (let i = 0; i < attendanceDataToSave.studentId.length; i++) {
-      Attendance.create({
-        isPresent: attendanceDataToSave.isPresent[i],
-        time: attendanceDataToSave.time[i],
-        notes: attendanceDataToSave.notes[i],
-        studentId: attendanceDataToSave.studentId[i],
-      });
-
+      } else {
+        for (let k = 0; k < attendanceDataToSave.studentId.length; k++) {
+          await Attendance.create({
+            isPresent: attendanceDataToSave.isPresent[k],
+            time: attendanceDataToSave.time[k],
+            notes: attendanceDataToSave.notes[k],
+            studentId: attendanceDataToSave.studentId[k],
+          });
+        }
+        return;
+      }
     }
 
     // let studentAttendance;
@@ -165,7 +173,7 @@ console.log(attendanceData);
 router.put("/:id", async (req, res) => {
   try {
     const updatedAttendance = await Attendance.update(req.body, {
-    where: { id: req.params.id },
+      where: { id: req.params.id },
     });
     if (!updatedAttendance[0]) {
       res.status(404).json({
@@ -181,21 +189,21 @@ router.put("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-try {
+  try {
     const deletedAttendance = await Attendance.destroy({
-    where: { id: req.params.id },
+      where: { id: req.params.id },
     });
     if (!deletedAttendance) {
-    res
+      res
         .status(404)
         .json({ message: `no attendence data with id ${req.params.id} found` });
     }
     res
-    .status(200)
-    .json({ message: `Attendance data with id ${req.params.id} deleted` });
-} catch (err) {
+      .status(200)
+      .json({ message: `Attendance data with id ${req.params.id} deleted` });
+  } catch (err) {
     res.status(500).json(err);
-}
+  }
 });
 
 //thunder client

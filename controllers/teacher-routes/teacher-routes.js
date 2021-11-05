@@ -9,19 +9,18 @@ router.get("/login", async (req, res) => {
   res.render("login");
 });
 
-
 router.get("/", async (req, res) => {
   try {
     const dbAssignmentData = await Assignment.findAll({
       attributes: ["title", "dueDate"],
     });
 
-    const assignmentData = dbAssignmentData.map((assignment) => assignment.get({ plain: true }));
+    const assignmentData = dbAssignmentData.map((assignment) =>
+      assignment.get({ plain: true })
+    );
 
     const randomQuote = randomFun.getRandomQuote();
     const randomRiddle = randomFun.getRandomRiddle();
-
-    console.log(randomQuote);
 
     res.render("homepage", {
       assignmentData: assignmentData,
