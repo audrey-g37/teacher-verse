@@ -16,15 +16,16 @@
         </ul>
       </div>
       <div class="d-flex justify-content-around"> 
-        {{!-- <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;">
 
           <div class="card-body">
             <h5 class="card-title">Attendance</h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{data2.0.isPresent}}</li>
+            <li class="list-group-item">{{data2.0.date}}</li>
+            <li class="list-group-item">Present: {{data2.0.isPresent}}</li>
           </ul>
-        </div>  --}}
+        </div> 
         <div class="card" style="width: 18rem;">
 
           <div class="card-body">
@@ -34,7 +35,7 @@
             <li class="list-group-item">Date: {{data3.0.dateOfCommunication}}</li>
             <li class="list-group-item">Method: {{data3.0.communicationMethod}}</li>
             <li class="list-group-item">Notes: {{data3.0.description}}</li>
-            <li class="list-group-item">Follow Up Needed?: {{data3.0.followUpNeeded}}</li>
+            <li class="list-group-item">Follow Up Needed: {{data3.0.followUpNeeded}}</li>
           </ul>
         </div>
         <div class="card" style="width: 18rem;">

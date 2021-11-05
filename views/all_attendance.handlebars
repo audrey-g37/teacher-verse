@@ -3,11 +3,36 @@
 <nav id="nav">
     <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
 </nav>
-        <select id="studentId" name="studentId">
+        <table id="attendance-table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                  {{#each attendanceDates as |dates|}}
+                <th>
+                    {{dates}}
+                </th>
+                  {{/each}}
+            </tr>
+        </thead>
+        <tbody  id="studentId" name="studentId">
             {{#each studentData as |student|}}
-            {{>student_card}}
+            <tr>
+            <td>
+            {{student.firstName}} {{student.lastName}}
+            </td>
             {{/each}}
-            </select>
+            {{#each studentAttendanceMatched as |matched|}}
+            <td>
+              {{matched.isPresent}}
+            </td>
+                {{/each}}
+       
+            </tr>
+
+
+        </tbody>
+       
+            </table>
 {{else}}
     <a href="/login">Click here to login</a>
 {{/if}}
