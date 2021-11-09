@@ -1,17 +1,14 @@
 <div>
   {{#if loggedIn}}
       <nav id="nav">
-          <div>
+          {{!-- <div>
           <a href="/teacher/attendance" class="fa fa-users">View All Attendance</a>
-          </div>
-          <div>
-          <a href="/teacher/attendance/update-attendance" class="fa fa-users">Update Attendance</a>
-          </div>
+          </div> --}}
           <a href="/teacher" class="fa fa-home" id="home">Back to Teacher Homepage</a>
         </nav>
         <h1 class="page-title">Attendance</h1>
         <div id="form-background">
-        <form id="attendance-form" action="/teacher/attendance/new-attendance" method="POST">
+        <form id="attendance-form">
           <table class="table">
             <thead>
               <tr class="table-headers">
@@ -32,25 +29,25 @@
             {{student.lastName}}
             </td>
             <td id="attendance-present">
-              <select id="isPresent" name="isPresent">
+              <select class="isPresent" name="isPresent">
                 <option id="student-present" value="true">Present</option>
                 <option id="student-absent" value="false">Absent</option>
             </td>
             <td id="attendance-time">
-              <input type="text" id="time" name="time">
+              <input type="text" class="time" name="time">
             </td>
             <td id="attendance-notes">
-              <input type="text" id="notes" name="notes">
+              <input type="text" class="notes" name="notes">
             </td>
             <td id="studentId">
-              <input type="hidden" value={{student.id}} name="studentId">
+              <input class="student-id" type="hidden" value={{student.id}} name="studentId">
             </td>
             </tr>
         {{/each}}
         </tbody>
         </table>
         <div class="break" id="save-attendance-div">
-        <button id="save-attendance-btn" type="submit">Save</button>
+        <button id="update-attendance-btn">Save</button>
         </div>
         </form>
         </div>
@@ -58,3 +55,4 @@
     <a href="/login">Click here to login</a>
   {{/if}}
 </div>
+<script src="/js/index.js"></script>
