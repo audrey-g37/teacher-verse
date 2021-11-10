@@ -1,13 +1,16 @@
 const router = require("express").Router();
 const { Attendance, Student } = require("../../models");
 const moment = require("moment");
+
 // Current location  "http:localhost:3001/teacher/attendance"
 router.get("/", async (req, res) => {
+  const currentDate = moment().format("MM-DD-YYYY");
   try {
     const dbStudentData = await Student.findAll({});
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
+
     const dbAttendanceData = await Attendance.findAll({});
     const attendanceData = dbAttendanceData.map((attendance) =>
       attendance.get({ plain: true })
@@ -29,28 +32,52 @@ router.get("/", async (req, res) => {
       pastRecords = attendanceData;
     }
 
-    // console.log(pastRecords);
-
-    // for (let i=0; i<studentData.length; i++) {
-    //     let studentAttendanceMatched = [];
-    // }
+    console.log(pastRecords);
 
     let studentAttendanceMatched = [];
 
-    for (let i = 0; i < pastRecords.length; i++) {
-      if (studentData[0].id === pastRecords[i].studentId) {
-        studentAttendanceMatched.push(pastRecords[i]);
+    console.log(studentData);
+
+    for (let i = 0; i < studentData.length; i++) {
+      for (let j = 0; j < pastRecords.length; j++) {
+        if (studentData[i].id === pastRecords[j].studentId) {
+          studentAttendanceMatched.push(pastRecords[j]);
+        }
       }
     }
-    // console.log(studentAttendanceMatched);
+    console.log(studentAttendanceMatched);
 
     let pastTenDates = [];
 
     for (let i = 0; i < studentAttendanceMatched.length; i++) {
-      pastTenDates.push(studentAttendanceMatched[i].date);
+      if (pastTenDates.indexOf(studentAttendanceMatched[i].date) == -1) {
+        pastTenDates.push(studentAttendanceMatched[i].date);
+      } else {
+        i++;
+      }
     }
 
-    // console.log(pastTenDates);
+    let studentPastAttendance = [];
+    function sortAttendanceDataByStudent(attendanceArray) {
+      for (let i = 0; i < studentData.length; i++) {
+        for (let j = 0; j < attendanceArray.length; j++) {
+          if (
+            attendanceArray[j].studentId === studentData[i].id &&
+            studentPastAttendance.indexOf(attendanceArray[j] == -1)
+          ) {
+            studentPastAttendance.push(attendanceArray[j]);
+          } else {
+            i++;
+          }
+        }
+      }
+    }
+
+    sortAttendanceDataByStudent(studentAttendanceMatched);
+
+    console.log(studentPastAttendance);
+
+    console.log(pastTenDates);
 
     res.render("all_attendance", {
       studentData: studentData,
@@ -66,27 +93,49 @@ router.get("/", async (req, res) => {
 router.get("/new-attendance", async (req, res) => {
   try {
     const currentDate = moment().format("MM-DD-YYYY");
-    const dbStudentData = await Student.findAll({});
-    const studentData = dbStudentData.map((student) =>
-      student.get({ plain: true })
+    const dbPriorAttendanceData = await Attendance.findAll({});
+    const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
+      attendance.get({ plain: true })
     );
-    res.render("new_attendance", {
-      date: currentDate,
-      studentData: studentData,
-      loggedIn: req.session.loggedIn,
-    });
+    const lastAttendanceEntry =
+      priorAttendanceData[priorAttendanceData.length - 1];
+    // console.log(lastAttendanceEntry);
+
+    if (lastAttendanceEntry.date === currentDate) {
+      res.redirect("/teacher/attendance/update-attendance");
+    } else {
+      const dbStudentData = await Student.findAll({});
+      const studentData = dbStudentData.map((student) =>
+        student.get({ plain: true })
+      );
+      res.render("new_attendance", {
+        date: currentDate,
+        studentData: studentData,
+        loggedIn: req.session.loggedIn,
+      });
+    }
   } catch (err) {
     res.status(500).json(err);
   }
 });
 router.get("/update-attendance", async (req, res) => {
   try {
+    const currentDate = moment().format("MM-DD-YYYY");
+    const dbPriorAttendanceData = await Attendance.findAll({
+      where: { date: currentDate },
+    });
+    const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
+      attendance.get({ plain: true })
+    );
     const dbStudentData = await Student.findAll({});
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
+    // console.log(priorAttendanceData);
     res.render("update_attendance", {
-      studentData,
+      date: currentDate,
+      studentData: studentData,
+      attendanceData: priorAttendanceData,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
@@ -122,18 +171,9 @@ router.post("/new-attendance", async (req, res) => {
       studentIdArray.push(integerId);
     }
   }
-  // const todaysDate = moment().format("MM-DD-YYYY");
-  // console.log(todaysDate);
-
-  // const dbPriorAttendanceData = Attendance.findAll({});
-  // const priorAttendanceData = (await dbPriorAttendanceData).map((attendance) =>
-  //   attendance.get({ plain: true })
-  // );
-  // console.log(priorAttendanceData);
-
   try {
     const newAttendanceData = req.body;
-    console.log(newAttendanceData);
+    // console.log(newAttendanceData);
     dataTypeChange(newAttendanceData.studentId, newAttendanceData.isPresent);
     const attendanceDataToSave = {
       isPresent: presenceArray,
@@ -154,42 +194,6 @@ router.post("/new-attendance", async (req, res) => {
       });
     }
 
-    // for (let i = 0; i < priorAttendanceData.length; i++) {
-    //   if (priorAttendanceData[i].date === attendanceDataToSave.date) {
-    //     console.log("in the dates are equal statement");
-    //     for (let j = 0; j < attendanceDataToSave.studentId.length; j++) {
-    //       await Attendance.update(
-    //         {
-    //           isPresent: attendanceDataToSave.isPresent[j],
-    //           time: attendanceDataToSave.time[j],
-    //           notes: attendanceDataToSave.notes[j],
-    //         },
-    //         {
-    //           where: { studentId: attendanceDataToSave.studentId[j] },
-    //         }
-    //       );
-    //     }
-    //   } else {
-    //     for (let k = 0; k < attendanceDataToSave.studentId.length; k++) {
-    //       await Attendance.create({
-    //         isPresent: attendanceDataToSave.isPresent[k],
-    //         time: attendanceDataToSave.time[k],
-    //         notes: attendanceDataToSave.notes[k],
-    //         studentId: attendanceDataToSave.studentId[k],
-    //       });
-    //     }
-    //     return;
-    //   }
-    // }
-
-    // let studentAttendance;
-    // function saveAttendance (array) {
-
-    // }
-
-    // const newAttendence = await Attendance.create({
-
-    // });
     res.redirect("/teacher/attendance/update-attendance");
   } catch (err) {
     res.status(400).json(err);
@@ -217,7 +221,8 @@ router.put("/update-attendance", async (req, res) => {
   const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
     attendance.get({ plain: true })
   );
-  console.log(priorAttendanceData);
+  // console.log(dbPriorAttendanceData);
+  // console.log(priorAttendanceData);
 
   try {
     const newAttendanceData = req.body;
@@ -250,7 +255,6 @@ router.put("/update-attendance", async (req, res) => {
         );
       }
     }
-    res.redirect("/teacher");
   } catch (err) {
     res.status(400).json(err);
   }

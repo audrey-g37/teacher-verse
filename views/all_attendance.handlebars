@@ -1,4 +1,4 @@
-
+<div>
 {{#if loggedIn}}
 <nav id="nav">
     <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
@@ -21,20 +21,11 @@
             {{student.firstName}} {{student.lastName}}
             </td>
             {{/each}}
-            {{#each studentAttendanceMatched as |matched|}}
-            <td>
-            {{matched.isPresent}}
-            </td>
-                {{/each}}
-    
+           {{!-- {{>student_past_attendance}} --}}
             </tr>
-
-
         </tbody>
-       
-            </table>
+       </table>
 {{else}}
     <a href="/login">Click here to login</a>
 {{/if}}
 </div>
-</section>

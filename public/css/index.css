@@ -211,7 +211,8 @@ div.jumbotron {
   background-color: lime;
 } */
 
-#save-attendance-btn {
+#save-attendance-btn,
+#update-attendance-btn {
   font-size: 18px;
   margin-right: 20px;
   padding: 8px;
