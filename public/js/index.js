@@ -4,7 +4,6 @@
 // headers:{"Content-Type": "application/json"}
 // });
 // }
-
 // const setTeacherEmail = (email) =>{
 // localStorage.setItem("teacherEmail", email)
 // };
@@ -38,15 +37,15 @@ const updateAttendance = async (event) => {
 
   // console.log(dataToSend);
 
-  const attendanceInput = await fetch("/teacher/attendance/update-attendance", {
+  await fetch("/teacher/attendance/update-attendance", {
     method: "PUT",
     body: JSON.stringify(dataToSend),
     headers: {
       "Content-Type": "application/json",
     },
   })
-    .then((data) => {
-      console.log(data);
+    .then(() => {
+      console.log("update successful");
     })
     .catch((err) => {
       console.log(err);
