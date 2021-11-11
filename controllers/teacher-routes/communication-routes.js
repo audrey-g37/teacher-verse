@@ -14,14 +14,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 router.get("/new-communication", async (req, res) => {
   try {
     const dbStudentData = await Student.findAll({});
-    const studentData = dbStudentData.map((student)=>
-      student.get({ plain:true}));
+    const studentData = dbStudentData.map((student) =>
+      student.get({ plain: true })
+    );
 
-    res.render("new_communication",{studentData, loggedIn: req.session.loggedIn});
+    res.render("new_communication", {
+      studentData,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -43,20 +46,9 @@ router.get("/:id", async (req, res) => {
 
 router.post("/new-communication", async (req, res) => {
   try {
+    const newCommunication = await Communication.create(req.body);
 
-    const newCommunication = await Communication.create({
-      communicationMethod: req.body.communicationMethod,
-      description: req.body.description,
-      dateOfCommunication: req.body.dateOfCommunication,
-      followUpNeeded: req.body.followUpNeeded,
-      studentId: req.body.studentId
-    });
-    const studentCardId = newCommunication.dataValues.studentId;
-
-    console.log(typeof studentCardId);
-
-    window.location.assign("/teacher/student");
-
+    res.redirect("/teacher/student");
   } catch (err) {
     res.status(400).json(err);
   }

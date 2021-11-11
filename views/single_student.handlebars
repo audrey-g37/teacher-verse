@@ -1,11 +1,13 @@
 <div>
   {{#if loggedIn}}
-    <a href="/teacher"><button type="button" class="create-button">Back to Teacher Homepage</button></a>
-
+  <nav id="nav">
+    <a href="/teacher" class="fa fa-home"> Back to Teacher Homepage</button></a>
+    <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
+  <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+  </nav>
     <div>
 
       <div>
-
         <div class="invisible-text">
           <h1>{{data1.firstName}}</h1> 
           <h2>{{data1.lastName}}</h2>
@@ -22,12 +24,25 @@
             <h5 class="card-title">Attendance</h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{data2.0.date}}</li>
+            <li class="list-group-item">Date: {{data2.0.date}}</li>
             <li class="list-group-item">Present: {{data2.0.isPresent}}</li>
+            <li class="list-group-item">Time: {{data2.0.time}}</li>
+            <li class="list-group-item">Notes: {{data2.0.notes}}</li>
+          </ul>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Date: {{data2.1.date}}</li>
+            <li class="list-group-item">Present: {{data2.1.isPresent}}</li>
+                <li class="list-group-item">Time: {{data2.1.time}}</li>
+            <li class="list-group-item">Notes: {{data2.1.notes}}</li>
+          </ul>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Date: {{data2.2.date}}</li>
+            <li class="list-group-item">Present: {{data2.2.isPresent}}</li>
+                <li class="list-group-item">Time: {{data2.2.time}}</li>
+            <li class="list-group-item">Notes: {{data2.2.notes}}</li>
           </ul>
         </div> 
-        <div class="card" style="width: 18rem;">
-
+     <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Communications</h5>
           </div>
@@ -37,8 +52,15 @@
             <li class="list-group-item">Notes: {{data3.0.description}}</li>
             <li class="list-group-item">Follow Up Needed: {{data3.0.followUpNeeded}}</li>
           </ul>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Date: {{data3.1.dateOfCommunication}}</li>
+            <li class="list-group-item">Method: {{data3.1.communicationMethod}}</li>
+            <li class="list-group-item">Notes: {{data3.1.description}}</li>
+            <li class="list-group-item">Follow Up Needed: {{data3.1.followUpNeeded}}</li>
+          </ul>
         </div>
-        <div class="card" style="width: 18rem;">
+              {{!-- 
+    <div class="card" style="width: 18rem;">
 
           <div class="card-body">
             <h5 class="card-title">Assignment Feedback</h5>
@@ -49,9 +71,8 @@
               <li class="list-group-item">Grade: {{data4.0.scoreEarned}}%</li>
               <li class="list-group-item">Notes: {{data4.0.feedback}}</li>
             </ul>
-        </div>
-        <div class="card" style="width: 18rem;">
-
+        </div> 
+        {{!-- <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Behaviors</h5>
           </div>
@@ -60,8 +81,14 @@
               <li class="list-group-item">Teacher Action: {{data5.0.immediateActionTaken}}</li>
               <li class="list-group-item">Student Notes: {{data5.0.postActionComments}}</li>
               <li class="list-group-item">Positive: {{data5.0.isGood}}</li>
-            </ul>
-        </div>
+            </ul> 
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Title: {{data5.1.title}}</li>
+              <li class="list-group-item">Teacher Action: {{data5.1.immediateActionTaken}}</li>
+              <li class="list-group-item">Student Notes: {{data5.1.postActionComments}}</li>
+              <li class="list-group-item">Positive: {{data5.1.isGood}}</li>
+            </ul> 
+        </div> --}}
 
       </div>
 
