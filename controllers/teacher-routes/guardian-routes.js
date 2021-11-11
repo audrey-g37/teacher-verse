@@ -2,32 +2,26 @@ const router = require("express").Router();
 const { Guardian, Student } = require("../../models");
 
 // Current location  "http:localhost:3001/teacher/guardian/"
-
-// -----------OLD CODE----------//
-// router.get("/", async (req, res) => {
-//   try {
-//     const guardianData = await Guardian.findAll({
-//       include: [
-//         {
-//           model: Student,
-//           attributes: {
-//             exclude: [
-//               "inProgessGrade",
-//               "teacherId",
-//               "attendanceId",
-//               "behaviorId",
-//               "communicationId",
-//               "assignmentFeedbackId",
-//             ],
-//           },
-//         },
-//       ],
-//     });
-//     res.status(200).json(guardianData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/new-guardian", async (req, res) => {
+  try {
+    const dbStudentData = await Student.findAll({
+      attributes: ["id", "firstName", "lastName"],
+    });
+    const studentData = dbStudentData.map((student) =>
+      student.get({ plain: true })
+    );
+    if (studentData.length === 0) {
+      res.render("no_students");
+    } else {
+      res.render("new_guardian", {
+        studentData,
+        loggedIn: req.session.loggedIn,
+      });
+    }
+  } catch (err) {
+    res.render("404");
+  }
+});
 
 // router.get("/:id", async (req, res) => {
 //   try {
@@ -41,19 +35,20 @@ const { Guardian, Student } = require("../../models");
 //   }
 // });
 
-// router.post("/", async (req, res) => {
-//   try {
-//     const newGuardian = await Guardian.create({
-//       firstName: req.body.firstName,
-//       lastName: req.body.lastName,
-//       email: req.body.email,
-//       phoneNumber: req.body.phoneNumber,
-//     });
-//     res.status(200).json({ message: "Guardian Created!" });
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
+router.post("/new-guardian", async (req, res) => {
+  try {
+    const newGuardian = await Guardian.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
+      studentId: req.body.studentId,
+    });
+    res.redirect("/teacher/student");
+  } catch (err) {
+    res.render("404");
+  }
+});
 
 // router.put("/:id", async (req, res) => {
 //   try {

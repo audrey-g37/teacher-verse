@@ -1,23 +1,23 @@
 :root {
-  --bright: #40eff7;
-  --dark: #3589fc;
-  --light: #35fc96;
+  --bright: #fe8a80;
+  --dark1: #809906;
+  --light1: #c6e62c;
+  --dark2: #1d5599;
+  --light2: #1473e6;
   --white: white;
-  --formbkg: rgb(129, 137, 146);
   --black: black;
-  --button: #1bbc9b;
 }
 
 /* html background */
 #application-background {
-  background-image: url("https://www.veanea.org/wp-content/uploads/2019/07/iStock-1033277722-1.jpg");
+  background-image: url("/css/images/grey-background.jpg");
   background-size: cover;
 }
 
 /* login page styling */
 
 #login {
-  background-color: var(--formbkg);
+  background-color: var(--dark2);
   opacity: 0.8;
   margin-left: 250px;
   margin-right: 250px;
@@ -33,7 +33,10 @@
 }
 
 .login-link {
-  color: var(--light);
+  color: var(--white);
+}
+.login-link:hover {
+  color: var(--light1);
 }
 
 /* homepage styling */
@@ -88,7 +91,7 @@ div.jumbotron {
 
 /* new-behavior styling */
 
-.new-beavior-card {
+.new-behavior-card {
   background-color: var(--formbkg);
   opacity: 0.95;
   display: flex;
@@ -123,13 +126,13 @@ div.jumbotron {
 .create-button {
   padding: 10px;
   margin-top: 4px;
-  background-color: var(--button);
+  background-color: var(--dark1);
   border-radius: 10%;
   font-weight: 500;
 }
 
 .create-button:hover {
-  background-color: var(--bright);
+  background-color: var(--light1);
 }
 
 .title {

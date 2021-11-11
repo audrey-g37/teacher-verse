@@ -4,118 +4,138 @@ const moment = require("moment");
 
 // Current location  "http:localhost:3001/teacher/attendance"
 router.get("/", async (req, res) => {
-  const currentDate = moment().format("MM-DD-YYYY");
   try {
+    const currentDate = moment().format("MM-DD-YYYY");
     const dbStudentData = await Student.findAll({});
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
 
-    const dbAttendanceData = await Attendance.findAll({});
-    const attendanceData = dbAttendanceData.map((attendance) =>
-      attendance.get({ plain: true })
-    );
-
-    const howManyRecords = studentData.length * 10;
-
-    let pastRecords = [];
-
-    if (attendanceData.length >= howManyRecords) {
-      for (
-        let i = attendanceData.length - howManyRecords;
-        i < attendanceData.length;
-        i++
-      ) {
-        pastRecords.push(attendanceData[i]);
-      }
+    if (studentData.length === 0) {
+      res.render("no_students");
     } else {
-      pastRecords = attendanceData;
-    }
+      const dbAttendanceData = await Attendance.findAll({});
+      const attendanceData = dbAttendanceData.map((attendance) =>
+        attendance.get({ plain: true })
+      );
 
-    console.log(pastRecords);
+      const howManyRecords = studentData.length * 10;
 
-    let studentAttendanceMatched = [];
+      let pastRecords = [];
 
-    console.log(studentData);
-
-    for (let i = 0; i < studentData.length; i++) {
-      for (let j = 0; j < pastRecords.length; j++) {
-        if (studentData[i].id === pastRecords[j].studentId) {
-          studentAttendanceMatched.push(pastRecords[j]);
+      if (attendanceData.length >= howManyRecords) {
+        for (
+          let i = attendanceData.length - howManyRecords;
+          i < attendanceData.length;
+          i++
+        ) {
+          pastRecords.push(attendanceData[i]);
         }
-      }
-    }
-    console.log(studentAttendanceMatched);
-
-    let pastTenDates = [];
-
-    for (let i = 0; i < studentAttendanceMatched.length; i++) {
-      if (pastTenDates.indexOf(studentAttendanceMatched[i].date) == -1) {
-        pastTenDates.push(studentAttendanceMatched[i].date);
       } else {
-        i++;
+        pastRecords = attendanceData;
       }
-    }
 
-    let studentPastAttendance = [];
-    function sortAttendanceDataByStudent(attendanceArray) {
+      // console.log(pastRecords);
+
+      let studentAttendanceMatched = [];
+
+      // console.log(studentData);
+
       for (let i = 0; i < studentData.length; i++) {
-        for (let j = 0; j < attendanceArray.length; j++) {
-          if (
-            attendanceArray[j].studentId === studentData[i].id &&
-            studentPastAttendance.indexOf(attendanceArray[j] == -1)
-          ) {
-            studentPastAttendance.push(attendanceArray[j]);
-          } else {
-            i++;
+        for (let j = 0; j < pastRecords.length; j++) {
+          if (studentData[i].id === pastRecords[j].studentId) {
+            studentAttendanceMatched.push(pastRecords[j]);
           }
         }
       }
+      // console.log(studentAttendanceMatched);
+
+      let pastTenDates = [];
+
+      for (let i = 0; i < studentAttendanceMatched.length; i++) {
+        if (pastTenDates.indexOf(studentAttendanceMatched[i].date) == -1) {
+          pastTenDates.push(studentAttendanceMatched[i].date);
+        } else {
+          i++;
+        }
+      }
+
+      let studentPastAttendance = [];
+      function sortAttendanceDataByStudent(attendanceArray) {
+        for (let i = 0; i < studentData.length; i++) {
+          for (let j = 0; j < attendanceArray.length; j++) {
+            if (
+              attendanceArray[j].studentId === studentData[i].id &&
+              studentPastAttendance.indexOf(attendanceArray[j] == -1)
+            ) {
+              studentPastAttendance.push(attendanceArray[j]);
+            } else {
+              i++;
+            }
+          }
+        }
+      }
+
+      sortAttendanceDataByStudent(studentAttendanceMatched);
+
+      // console.log(studentPastAttendance);
+
+      // console.log(pastTenDates);
+
+      res.render("all_attendance", {
+        studentData: studentData,
+        attendanceDates: pastTenDates,
+        studentAttendanceMatched: studentAttendanceMatched,
+        loggedIn: req.session.loggedIn,
+      });
     }
-
-    sortAttendanceDataByStudent(studentAttendanceMatched);
-
-    console.log(studentPastAttendance);
-
-    console.log(pastTenDates);
-
-    res.render("all_attendance", {
-      studentData: studentData,
-      attendanceDates: pastTenDates,
-      studentAttendanceMatched: studentAttendanceMatched,
-      loggedIn: req.session.loggedIn,
-    });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
 router.get("/new-attendance", async (req, res) => {
   try {
-    const currentDate = moment().format("MM-DD-YYYY");
-    const dbPriorAttendanceData = await Attendance.findAll({});
-    const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
-      attendance.get({ plain: true })
+    const dbStudentData = await Student.findAll({});
+    const studentData = dbStudentData.map((student) =>
+      student.get({ plain: true })
     );
-    const lastAttendanceEntry =
-      priorAttendanceData[priorAttendanceData.length - 1];
-    // console.log(lastAttendanceEntry);
-
-    if (lastAttendanceEntry.date === currentDate) {
-      res.redirect("/teacher/attendance/update-attendance");
+    if (studentData.length === 0) {
+      res.render("no_students");
     } else {
-      const dbStudentData = await Student.findAll({});
-      const studentData = dbStudentData.map((student) =>
-        student.get({ plain: true })
+      const currentDate = moment().format("MM-DD-YYYY");
+      const dbPriorAttendanceData = await Attendance.findAll({});
+      const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
+        attendance.get({ plain: true })
       );
-      res.render("new_attendance", {
-        date: currentDate,
-        studentData: studentData,
-        loggedIn: req.session.loggedIn,
-      });
+      if (priorAttendanceData.length === 0) {
+        res.render("new_attendance", {
+          date: currentDate,
+          studentData: studentData,
+          loggedIn: req.session.loggedIn,
+        });
+      } else {
+        const lastAttendanceEntry =
+          priorAttendanceData[priorAttendanceData.length - 1];
+        // console.log(lastAttendanceEntry);
+
+        if (lastAttendanceEntry.date === currentDate) {
+          res.redirect("/teacher/attendance/update-attendance");
+        } else {
+          const dbStudentData = await Student.findAll({});
+          const studentData = dbStudentData.map((student) =>
+            student.get({ plain: true })
+          );
+          res.render("new_attendance", {
+            date: currentDate,
+            studentData: studentData,
+            loggedIn: req.session.loggedIn,
+          });
+        }
+      }
     }
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 router.get("/update-attendance", async (req, res) => {
@@ -139,7 +159,7 @@ router.get("/update-attendance", async (req, res) => {
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -153,25 +173,25 @@ router.get("/:id", async (req, res) => {
     }
     res.status(200).json(attendanceData);
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
 router.post("/new-attendance", async (req, res) => {
-  let presenceArray = [];
-  let studentIdArray = [];
-  function dataTypeChange(studentIds, isPresent) {
-    for (let i = 0; i < studentIds.length; i++) {
-      if (isPresent[i] === "true") {
-        presenceArray.push(true);
-      } else {
-        presenceArray.push(false);
-      }
-      const integerId = parseInt(studentIds[i]);
-      studentIdArray.push(integerId);
-    }
-  }
   try {
+    let presenceArray = [];
+    let studentIdArray = [];
+    function dataTypeChange(studentIds, isPresent) {
+      for (let i = 0; i < studentIds.length; i++) {
+        if (isPresent[i] === "true") {
+          presenceArray.push(true);
+        } else {
+          presenceArray.push(false);
+        }
+        const integerId = parseInt(studentIds[i]);
+        studentIdArray.push(integerId);
+      }
+    }
     const newAttendanceData = req.body;
     // console.log(newAttendanceData);
     dataTypeChange(newAttendanceData.studentId, newAttendanceData.isPresent);
@@ -196,35 +216,35 @@ router.post("/new-attendance", async (req, res) => {
 
     res.redirect("/teacher/attendance/update-attendance");
   } catch (err) {
-    res.status(400).json(err);
+    res.render("404");
   }
 });
 
 router.put("/update-attendance", async (req, res) => {
-  let presenceArray = [];
-  let studentIdArray = [];
-  function dataTypeChange(studentIds, isPresent) {
-    for (let i = 0; i < studentIds.length; i++) {
-      if (isPresent[i] === "true") {
-        presenceArray.push(true);
-      } else {
-        presenceArray.push(false);
-      }
-      const integerId = parseInt(studentIds[i]);
-      studentIdArray.push(integerId);
-    }
-  }
-  const todaysDate = moment().format("MM-DD-YYYY");
-  // console.log(todaysDate);
-
-  const dbPriorAttendanceData = await Attendance.findAll({});
-  const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
-    attendance.get({ plain: true })
-  );
-  // console.log(dbPriorAttendanceData);
-  // console.log(priorAttendanceData);
-
   try {
+    let presenceArray = [];
+    let studentIdArray = [];
+    function dataTypeChange(studentIds, isPresent) {
+      for (let i = 0; i < studentIds.length; i++) {
+        if (isPresent[i] === "true") {
+          presenceArray.push(true);
+        } else {
+          presenceArray.push(false);
+        }
+        const integerId = parseInt(studentIds[i]);
+        studentIdArray.push(integerId);
+      }
+    }
+    const todaysDate = moment().format("MM-DD-YYYY");
+    // console.log(todaysDate);
+
+    const dbPriorAttendanceData = await Attendance.findAll({});
+    const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
+      attendance.get({ plain: true })
+    );
+    // console.log(dbPriorAttendanceData);
+    // console.log(priorAttendanceData);
+
     const newAttendanceData = req.body;
     // console.log(newAttendanceData);
     dataTypeChange(newAttendanceData.studentId, newAttendanceData.isPresent);
@@ -256,7 +276,7 @@ router.put("/update-attendance", async (req, res) => {
       }
     }
   } catch (err) {
-    res.status(400).json(err);
+    res.render("404");
   }
 });
 
@@ -274,7 +294,7 @@ router.put("/:id", async (req, res) => {
       .status(200)
       .json({ message: `Attendance with id of ${req.params.id} updated` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -292,7 +312,7 @@ router.delete("/:id", async (req, res) => {
       .status(200)
       .json({ message: `Attendance data with id ${req.params.id} deleted` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 

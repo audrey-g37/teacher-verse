@@ -1,57 +1,47 @@
 
-
+<div>
 {{#if loggedIn}}
-  <a href="/teacher"><button type="button" class="create-button">Back to Teacher Homepage</button></a>
-
-<div class="new-beavior-card" >
-    <div>
-      <form action="/teacher/behavior/new-behavior" method="POST">
-        <ul>
-          <div>
-            <label for="title">Behavior Title: </label>
-            <input type="text" id="title" name="title" />
-                <label for="immediateActionTaken">Immediate Action I Took: </label>
-            <select id="immediateActionTaken" name="immediateActionTaken">
-              <option value="Discussed privately in hallway">Discussed privately in hallway</option>
-              <option value="Sent to office">Sent to Office</option>
-              <option value="Nothing (no need)">Nothing I needed to do immediately</option>
-            </select>
-            {{!-- <label for="postActionComments">After Action Details: </label>
-                     <textarea
-              type="text"
-              id="postActionComments"
-              name="postActionComments"
-            ></textarea> --}}
-            <label for="isGoodTrue">Behavior is Positive</label>
-            <input type="checkbox" id="isGoodTrue" name="isGood" value="true" />
-            <label for="isGoodFalse">Behavior is Concerning </label>
-            <input
-              type="checkbox"
-              id="isGoodFalse"
-              name="isGood"
-              value="false"
-            />
-            <br>
-            <label for="studentId">Student: </label>
-            <select id="studentId" name="studentId">
-            {{#each studentData as |student|}}
-            {{>student_name_list}}
-            {{/each}}
-            </select>
-          </div>
-        </ul>
-        <labe id="description-tag"for="description">Details: </label>
-          <textarea id="description" name="description" rows="2" cols="100">
-          </textarea>
-        </label>
-
-        <div class="button">
-          <button type="submit">Save Behavior</button>
-        </div>
-      </form>
-    </div>
+<nav id="nav">
+  <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
+  <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
+  <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+</nav>
+<div class="new-behavior-card" >
+  <form action="/teacher/behavior/new-behavior" method="POST">
+    <label for="title">Behavior Title: </label>
+      <input type="text" id="title" name="title" />
+    <label id="description-tag"for="description">Details: </label>
+      <textarea id="description" name="description" rows="2" cols="100">
+      </textarea>
+    </label>
+    <label for="immediateActionTaken">Immediate Action I Took: </label>
+      <select id="immediateActionTaken" name="immediateActionTaken">
+        <option value="Discussed privately in hallway">Discussed privately in hallway</option>
+        <option value="Sent to office">Sent to Office</option>
+        <option value="Nothing (no need)">Nothing I needed to do immediately</option>
+      </select>
+    <label for="isGood">Behavior is Positive</label>
+      <input type="checkbox" id="isGoodTrue" name="isGood" value="true" />
+    <label for="isGood">Behavior is Concerning </label>
+      <input
+        type="checkbox"
+        id="isGoodFalse"
+        name="isGood"
+        value="false"
+      />
+    <label for="studentId">Student: </label>
+      <select id="studentId" name="studentId">
+      {{#each studentData as |student|}}
+      {{>student_name_list}}
+      {{/each}}
+      </select>
+      <div class="button">
+        <button type="submit">Save Behavior</button>
+      </div>
+  </form>
+  </div>
   {{else}}
     <a href="/login">Click here to login</a>
-</div>
 {{/if}}
 
+</div>

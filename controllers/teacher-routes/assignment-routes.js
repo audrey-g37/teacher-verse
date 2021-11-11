@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     const assignmentData = await Assignment.findAll();
     res.status(200).json(assignmentData);
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -16,7 +16,7 @@ router.get("/new-assignment", async (req, res) => {
   try {
     res.render("new_assignment", { loggedIn: req.session.loggedIn });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -30,7 +30,7 @@ router.get("/:id", async (req, res) => {
     }
     res.status(200).json(assignmentData);
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -41,11 +41,11 @@ router.post("/new-assignment", async (req, res) => {
       description: req.body.description,
       dueDate: req.body.dueDate,
       assignedStatus: req.body.assignedStatus,
-      teacherId: parseInt(req.session.teacherId)
+      teacherId: parseInt(req.session.teacherId),
     });
-    res.redirect('/teacher');
+    res.redirect("/teacher");
   } catch (err) {
-    res.status(400).json(err);
+    res.render("404");
   }
 });
 
@@ -63,7 +63,7 @@ router.put("/:id", async (req, res) => {
       .status(200)
       .json({ message: `assignment with id of ${req.params.id} updated` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -81,7 +81,7 @@ router.delete("/:id", async (req, res) => {
       .status(200)
       .json({ message: `assignment with id ${req.params.id} deleted` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 

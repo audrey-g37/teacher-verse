@@ -1,56 +1,54 @@
 <div>
   {{#if loggedIn}}
-    <a href="/teacher"><button type="button" class="create-button">Back to
-        Teacher Homepage</button></a>
-
-    <div>
-      <form action="/teacher/communication/new-communication" method="POST">
-        <ul>
-          <div>
-            <label for="communicationMethod">Communication Method: </label>
-            <select id="communicationMethod" name="communicationMethod">
-              <option value="email">Email</option>
-              <option value="phone-call">Phone Call</option>
-              <option value="meeting">Meeting</option>
-            </select>
-            <label for="description">Details: </label>
-            <textarea
-              type="text"
-              id="description"
-              name="description"
-            ></textarea>
-            <label for="dateOfCommunication">Date: </label>
-            <input
-              type="date"
-              id="dateOfCommunication"
-              name="dateOfCommunication"
-            />
-            <label for="followUpNeededTrue">Check here if further follow up is
-              needed:
-            </label>
-            <input
-              type="checkbox"
-              id="followUpNeededTrue"
-              name="followUpNeeded"
-              value="true"
-            />
-            <label for="followUpNeededFalse">Check here if there is no need for
-              future follow up at this time:
-            </label>
-            <input
-              type="checkbox"
-              id="followUpNeededFalse"
-              name="followUpNeeded"
-              value="false"
-            />
-            <label for="studentId">Student: </label>
-            <select id="studentId" name="studentId">
-            {{#each studentData as |student|}}
-            {{>student_name_list}}
-            {{/each}}
-            </select>
-          </div>
-        </ul>
+  <nav id="nav">
+    <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
+    <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
+    <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+  </nav>
+  <div>
+    <form action="/teacher/communication/new-communication" method="POST">
+      <label for="communicationMethod">Communication Method: </label>
+        <select id="communicationMethod" name="communicationMethod">
+          <option value="email">Email</option>
+          <option value="phone-call">Phone Call</option>
+          <option value="meeting">Meeting</option>
+        </select>
+      <label for="description">Details: </label>
+        <textarea
+          type="text"
+          id="description"
+          name="description"
+        ></textarea>
+      <label for="dateOfCommunication">Date: </label>
+        <input
+          type="date"
+          id="dateOfCommunication"
+          name="dateOfCommunication"
+        />
+      <label for="followUpNeededTrue">Check here if further follow up is
+        needed:
+      </label>
+        <input
+          type="checkbox"
+          id="followUpNeededTrue"
+          name="followUpNeeded"
+          value="true"
+        />
+      <label for="followUpNeededFalse">Check here if there is no need for
+        future follow up at this time:
+      </label>
+        <input
+          type="checkbox"
+          id="followUpNeededFalse"
+          name="followUpNeeded"
+          value="false"
+        />
+      <label for="studentId">Student: </label>
+        <select id="studentId" name="studentId">
+        {{#each studentData as |student|}}
+        {{>student_name_list}}
+        {{/each}}
+        </select>
         <div class="button">
           <button type="submit" href="/teacher/student" >Save Communication</button>
         </div>

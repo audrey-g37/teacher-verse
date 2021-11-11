@@ -1,16 +1,26 @@
 <div class="homepage">
-        <nav id="nav">
-          <a href="teacher/student" class="fa fa-users">View All Students</a>
-          <a href="teacher/attendance/new-attendance" class="fa fa-user">Take Attendance</a>
-          <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
-        </nav>
+  <nav id="nav">
+    <a href="teacher/student" class="fa fa-users">View All Students</a>
+    <a href="teacher/attendance/new-attendance" class="fa fa-user">Take
+      Attendance</a>
+    <a
+      href="/teacher/communication/new-communication"
+      class="fa fa-envelope"
+    >Add Communication Record</a>
+    <a href="/teacher/behavior/new-behavior" class="fa fa-child">Add Behavior
+      Record</a>
+    <button
+      id="logout"
+      class="create-button position-absolute top-0 end-0"
+    >Logout</button>
+  </nav>
 
   {{#if loggedIn}}
-      <div class="jumbotron">
+    <div class="jumbotron">
       <div class="container position-relative">
         <div>
-        <h1 id="h1-homepage"> Welcome to Teacher Force!</h1>
-      </div>
+          <h1 id="h1-homepage"> Welcome to Teacher Force!</h1>
+        </div>
       </div>
       {{! possible future feature search bar }}
       {{! <form class="form-inline" my-2 my-lg-0”>
@@ -19,20 +29,19 @@
       </form> }}
     </div>
 
-
     <div class="container-homepage">
       <div class="card" style="width: 30rem;">
         <div class="card-body">
           <h5 class="title">Recent Assignments</h5>
           <div class="d-flex justify-content-between">
- 
+
           </div>
         </div>
-        <ul class="assignments ">
-          <div class = "assignment-main d-flex flex-wrap">
-            <h6 class = "assignment-main-text">Title</h6>
-            <h6 class = "assignment-main-text due-date">Due Date</h6>
-            </div>
+        <ul class="assignments">
+          <div class="assignment-main d-flex flex-wrap">
+            <h6 class="assignment-main-text">Title</h6>
+            <h6 class="assignment-main-text due-date">Due Date</h6>
+          </div>
           {{#each assignmentData as |assignment|}}
             <li class="list-group-item d-flex justify-content-between">
               <div>
@@ -43,8 +52,10 @@
               </div>
             </li>
           {{/each}}
-          <a href="teacher/assignment/new-assignment"><button type="button" class="create-button assignment-btn">Create New
-              Assignment</button></a>
+          <a href="teacher/assignment/new-assignment"><button
+              type="button"
+              class="create-button assignment-btn"
+            >Create New Assignment</button></a>
         </ul>
       </div>
       <div class="card" style="width: 30rem;">

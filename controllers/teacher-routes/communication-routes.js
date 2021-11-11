@@ -20,13 +20,16 @@ router.get("/new-communication", async (req, res) => {
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
-
-    res.render("new_communication", {
-      studentData,
-      loggedIn: req.session.loggedIn,
-    });
+    if (studentData.length === 0) {
+      res.render("no_students");
+    } else {
+      res.render("new_communication", {
+        studentData,
+        loggedIn: req.session.loggedIn,
+      });
+    }
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -40,17 +43,17 @@ router.get("/:id", async (req, res) => {
     }
     res.status(200).json(communicationData);
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
 router.post("/new-communication", async (req, res) => {
+  console.log(req.body);
   try {
     const newCommunication = await Communication.create(req.body);
-
     res.redirect("/teacher/student");
   } catch (err) {
-    res.status(400).json(err);
+    res.render("404");
   }
 });
 
@@ -68,7 +71,7 @@ router.put("/:id", async (req, res) => {
       .status(200)
       .json({ message: `communication with id of ${req.params.id} updated` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -86,7 +89,7 @@ router.delete("/:id", async (req, res) => {
       .status(200)
       .json({ message: `communication with id ${req.params.id} deleted` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
