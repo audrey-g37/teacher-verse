@@ -13,6 +13,7 @@ const {
   StudentBehavior,
   StudentCommunication,
 } = require("../../models");
+const moment = require("moment");
 
 // Current location  "http:localhost:3001/teacher/student"
 router.get("/", async (req, res) => {
@@ -65,34 +66,89 @@ router.get("/:id", async (req, res) => {
     // ---------SECTION TO GET STUDENT DATA FOR SINGLE STUDENT HANLDEBAR------------- //
 
     // ---------single student GUARDIAN data------------- //
-    let studentGuardian = await Guardian.findAll();
-    const guardianData = studentGuardian.map((guardian) =>
+    const dbGuardianData = await Guardian.findAll({
+      where: { studentId: req.params.id },
+    });
+    const guardianData = dbGuardianData.map((guardian) =>
       guardian.get({ plain: true })
     );
-    const studentGuardianAll = guardianData.filter(function (el) {
-      return el.studentId == req.params.id;
-    });
-    const guardianById = { ...studentGuardianAll };
 
     // ---------single student ATTENDANCE data------------- //
-    let studentAttendance = await Attendance.findAll();
-    const attendanceData = studentAttendance.map((attendance) =>
-      attendance.get({ plain: true })
-    );
-    const studentAttendanceAll = attendanceData.filter(function (el) {
-      return el.studentId == req.params.id;
+    const dbAttendanceData = await Attendance.findAll({
+      where: { studentId: req.params.id },
     });
-    const attendanceById = { ...studentAttendanceAll };
+    const attendanceData = dbAttendanceData
+      .map((attendance) => attendance.get({ plain: true }))
+      .sort((first, second) => {
+        first.updatedAt - second.updatedAt;
+      });
+    const attendanceDataLength = attendanceData.length;
+
+    let lastThreeAttendance = [];
+    if (attendanceDataLength >= 3) {
+      for (let i = attendanceDataLength - 3; i < attendanceDataLength; i++) {
+        lastThreeAttendance.push(attendanceData[i]);
+      }
+    } else {
+      lastThreeAttendance = attendanceData;
+    }
 
     // ---------single student COMMUNICATIONS data------------- //
-    let studentCommunication = await Communication.findAll();
-    const communicationData = studentCommunication.map((communication) =>
+    const dbCommunicationData = await Communication.findAll({
+      where: { studentId: req.params.id },
+    });
+    const communicationData = dbCommunicationData.map((communication) =>
       communication.get({ plain: true })
     );
-    const studentCommunicationAll = communicationData.filter(function (el) {
-      return el.studentId == req.params.id;
-    });
-    const communicationById = { ...studentCommunicationAll };
+    // .sort((first, second) => {
+    //   first.dateOfCommunication - second.dateOfCommunication;
+    // });
+    const communicationDataLength = communicationData.length;
+
+    console.log(communicationData);
+
+    let lastTwoCommunication = [];
+    if (communicationDataLength >= 2) {
+      let communicationToPush;
+      for (
+        let i = communicationDataLength - 2;
+        i < communicationDataLength;
+        i++
+      ) {
+        const formatDate = moment(
+          communicationData[i].dateOfCommunication
+        ).format("MM-DD-YYYY");
+        communicationToPush = {
+          id: communicationData[i].id,
+          communicationMethod: communicationData[i].communicationMethod,
+          description: communicationData[i].description,
+          dateOfCommunication: formatDate,
+          followUpNeeded: communicationData[i].followUpNeeded,
+          studentId: communicationData[i].studentId,
+          createdAt: communicationData[i].createdAt,
+          updatedAt: communicationData[i].updatedAt,
+        };
+        lastTwoCommunication.push(communicationToPush);
+      }
+    } else {
+      let communicationToPush;
+      for (let i = 0; i < communicationDataLength; i++) {
+        const formatDate = moment(
+          communicationData[i].dateOfCommunication
+        ).format("MM-DD-YYYY");
+        communicationToPush = {
+          id: communicationData[i].id,
+          communicationMethod: communicationData[i].communicationMethod,
+          description: communicationData[i].description,
+          dateOfCommunication: formatDate,
+          followUpNeeded: communicationData[i].followUpNeeded,
+          studentId: communicationData[i].studentId,
+          createdAt: communicationData[i].createdAt,
+          updatedAt: communicationData[i].updatedAt,
+        };
+        lastTwoCommunication.push(communicationToPush);
+      }
+    }
 
     // ---------single student ASSIGNMENT FEEDBACK data------------- //
     let studentAssignmentFeedback = await AssignmentFeedback.findAll();
@@ -107,14 +163,25 @@ router.get("/:id", async (req, res) => {
     const assignmentFeedbackById = { ...studentAssignmentFeedbackAll };
 
     // ---------single student BEHAVIORS data------------- //
-    let studentBehavior = await Behavior.findAll();
-    const behaviorData = studentBehavior.map((behavior) =>
-      behavior.get({ plain: true })
-    );
-    const studentBehaviorAll = behaviorData.filter(function (el) {
-      return el.studentId == req.params.id;
+    let dbBehavior = await Behavior.findAll({
+      where: { studentId: req.params.id },
     });
-    const behaviorById = { ...studentBehaviorAll };
+    const behaviorData = dbBehavior
+      .map((behavior) => behavior.get({ plain: true }))
+      .sort((first, second) => {
+        first.updatedAt - second.updatedAt;
+      });
+    const behaviorDataLength = behaviorData.length;
+
+    let lastTwoBehavior = [];
+    if (behaviorDataLength >= 2) {
+      for (let i = behaviorDataLength - 2; i < behaviorDataLength; i++) {
+        lastTwoBehavior.push(behaviorData[i]);
+      }
+    } else {
+      lastTwoBehavior = behaviorData;
+    }
+
     if (!studentData) {
       res
         .status(404)
@@ -122,19 +189,18 @@ router.get("/:id", async (req, res) => {
     }
 
     console.log(studentData);
-    console.log(guardianById);
-    console.log(attendanceById);
-    console.log(communicationById);
-    console.log(behaviorById);
+    console.log(guardianData);
+    console.log(lastThreeAttendance);
+    console.log(lastTwoCommunication);
+    console.log(lastTwoBehavior);
 
     res.render("single_student", {
       data1: studentData,
-      data2: attendanceById,
-      data3: communicationById,
+      data2: lastThreeAttendance,
+      data3: lastTwoCommunication,
       data4: assignmentFeedbackById,
-      data5: behaviorById,
-      data6: guardianById,
-
+      data5: lastTwoBehavior,
+      data6: guardianData,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {

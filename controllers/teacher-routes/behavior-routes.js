@@ -44,17 +44,11 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/new-behavior", async (req, res) => {
+  console.log(req.body);
   try {
-    const newBehavior = await Behavior.create({
-      title: req.body.title,
-      description: req.body.description,
-      immediateActionTaken: req.body.immediateActionTaken,
-      postActionComments: req.body.postActionComments,
-      isGood: req.body.isGood,
-      communicationId: req.body.communicationId,
-      studentId: req.body.studentId,
-    });
-    res.redirect("/teacher");
+    const newBehavior = await Behavior.create(req.body);
+    console.log("past the create");
+    res.redirect("/teacher/student");
   } catch (err) {
     res.status(400).json(err);
   }
