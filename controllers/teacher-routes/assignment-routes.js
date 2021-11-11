@@ -41,6 +41,7 @@ router.post("/new-assignment", async (req, res) => {
       description: req.body.description,
       dueDate: req.body.dueDate,
       assignedStatus: req.body.assignedStatus,
+      teacherId: parseInt(req.session.teacherId)
     });
     res.redirect('/teacher');
   } catch (err) {

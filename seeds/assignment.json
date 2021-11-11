@@ -4,20 +4,23 @@
     "title": "math quiz",
     "description": "ratios and unit rates",
     "dueDate": 20210110,
-    "assignedStatus": true
+    "assignedStatus": true,
+    "teacherId" : 1
   },
   {
     "id": 2,
     "title": "reading test",
     "description": "chapter 8 from froggy",
     "dueDate": 20210917,
-    "assignedStatus": false
+    "assignedStatus": false,
+    "teacherId": 1
   },
   {
     "id": 3,
     "title": "map homework",
     "description": "label 50 states",
     "dueDate": 20211010,
-    "assignedStatus": true
+    "assignedStatus": true,
+    "teacherId": 2
   }
 ]

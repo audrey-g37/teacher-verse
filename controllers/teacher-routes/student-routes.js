@@ -17,6 +17,7 @@ const {
 // Current location  "http:localhost:3001/teacher/student"
 router.get("/", async (req, res) => {
   try {
+    // const teacherIdToUse = localStorage.getItem("teacherId");
     const dbStudentData = await Student.findAll();
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
@@ -119,6 +120,13 @@ router.get("/:id", async (req, res) => {
         .status(404)
         .json({ message: `no Student found with id of ${req.params.id}` });
     }
+
+    console.log(studentData);
+    console.log(guardianById);
+    console.log(attendanceById);
+    console.log(communicationById);
+    console.log(behaviorById);
+
     res.render("single_student", {
       data1: studentData,
       data2: attendanceById,

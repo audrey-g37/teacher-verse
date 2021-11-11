@@ -3,39 +3,20 @@
     "id": 111,
     "firstName": "Brucey",
     "lastName": "Manton",
-    "inProgressGrade": 0.824,
-    "teacherId":1,
-    "attendanceId":1,
-    "behaviorId":1,
-    "guardianId":1,
-    "communicationId":1,
-    "assignmentFeedbackId":1
-
-  },
+    "teacherId": 1
+},
 
   {
     "id": 222,
     "firstName": "Sarah",
     "lastName": "Little",
-    "inProgressGrade": 0.714,
-    "teacherId":2,
-    "attendanceId":2,
-    "behaviorId":2,
-    "guardianId":2,
-    "communicationId":2,
-    "assignmentFeedbackId":2
+    "teacherId": 2
   },
 
   {
     "id": 333,
     "firstName": "Jaime",
     "lastName": "Smithy",
-    "inProgressGrade": 0.94,
-    "teacherId":3,
-    "attendanceId":3,
-    "behaviorId":3,
-    "guardianId":3,
-    "communicationId":3,
-    "assignmentFeedbackId":3
+    "teacherId": 3
   }
 ]

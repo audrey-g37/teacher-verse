@@ -28,8 +28,8 @@ const seedDatabase = async () => {
   try {
     await sequelize.sync({ force: true });
     const teacher = await Teacher.bulkCreate(TeacherData);
-    const guardian = await Guardian.bulkCreate(GuardianData);
     const student = await Student.bulkCreate(StudentData);
+    const guardian = await Guardian.bulkCreate(GuardianData);
     const attendance = await Attendance.bulkCreate(AttendanceData);
     const communication = await Communication.bulkCreate(CommunicationData);
     const behavior = await Behavior.bulkCreate(BehaviorData);

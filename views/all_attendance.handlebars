@@ -1,0 +1,31 @@
+<div>
+{{#if loggedIn}}
+<nav id="nav">
+    <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
+</nav>
+        <table id="attendance-table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                {{#each attendanceDates as |dates|}}
+                <th>
+                    {{dates}}
+                </th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody  id="studentId" name="studentId">
+            {{#each studentData as |student|}}
+            <tr>
+            <td>
+            {{student.firstName}} {{student.lastName}}
+            </td>
+            {{/each}}
+           {{!-- {{>student_past_attendance}} --}}
+            </tr>
+        </tbody>
+       </table>
+{{else}}
+    <a href="/login">Click here to login</a>
+{{/if}}
+</div>

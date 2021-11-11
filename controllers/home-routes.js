@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Teacher, Assignment } = require("../models");
 const bcrypt = require("bcrypt");
 
+
 router.get("/", async (req, res) => {
   res.redirect("login");
 });
@@ -13,7 +14,10 @@ router.get("/login", async (req, res) => {
 // Current location  "http:localhost:3001/"
 
 router.post("/login", async (req, res) => {
+  
+
   try {
+
     const teacherData = await Teacher.findOne({
       where: { email: req.body.email },
     });
@@ -27,7 +31,15 @@ router.post("/login", async (req, res) => {
       res.status(400).json("Login Failed");
       return;
     }
+
+    
+    const idToStore = JSON.stringify(teacherData.dataValues.id);
+    
+    
+    req.session.teacherId = idToStore;
+
     req.session.loggedIn = true;
+
     res.redirect("/teacher");
   } catch (err) {
     res.status(500).json(err);

@@ -9,46 +9,18 @@ router.get("/login", async (req, res) => {
   res.render("login");
 });
 
-// router.post("/login", async (req, res) => {
-//   try {
-//     const teacherData = await Teacher.findOne({
-//       where: { email: req.body.email },
-//     });
-//     console.log(teacherData);
-//     if (!teacherData) {
-//       res.status(404).json({ message: "Login failed. Please try again!" });
-//       return;
-//     }
-//     console.log(req.body.password);
-//     const validPassword = await bcrypt.compare(
-//       req.body.password,
-//       teacherData.password
-//     );
-//     if (!validPassword) {
-//       res.status(400).json({ message: "Login failed. Please try again!" });
-//       return;
-//     }
-//     req.session.save(() => {
-//       req.session.loggedIn = true;
-//     });
-//     res.status(200).json("Login Successful");
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 router.get("/", async (req, res) => {
   try {
     const dbAssignmentData = await Assignment.findAll({
       attributes: ["title", "dueDate"],
     });
 
-    const assignmentData = dbAssignmentData.map((assignment) => assignment.get({ plain: true }));
+    const assignmentData = dbAssignmentData.map((assignment) =>
+      assignment.get({ plain: true })
+    );
 
     const randomQuote = randomFun.getRandomQuote();
     const randomRiddle = randomFun.getRandomRiddle();
-
-    console.log(randomQuote);
 
     res.render("homepage", {
       assignmentData: assignmentData,

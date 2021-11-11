@@ -1,5 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
+const moment = require("moment");
+
+const currentDate = moment().format("MM-DD-YYYY");
 
 class Attendance extends Model {}
 
@@ -11,15 +14,22 @@ Attendance.init(
       primaryKey: true,
       autoIncrement: true,
     },
-
     isPresent: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
       allowNull: false,
     },
-
+    date: {
+      type: DataTypes.STRING,
+      defaultValue: currentDate,
+      allowNull: false,
+    },
     time: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    notes: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     studentId: {

@@ -34,6 +34,14 @@ Assignment.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    teacherId: {
+      type: DataTypes.INTEGER,
+      allowNull: false, 
+      references: {
+        model: "Teacher",
+        key: "id"
+      }
+    }
   },
 
   {

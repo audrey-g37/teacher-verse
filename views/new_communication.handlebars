@@ -1,6 +1,7 @@
 <div>
   {{#if loggedIn}}
-    <a href="/teacher"><button type="button" class="create-button">Back to Teacher Homepage</button></a>
+    <a href="/teacher"><button type="button" class="create-button">Back to
+        Teacher Homepage</button></a>
 
     <div>
       <form action="/teacher/communication/new-communication" method="POST">
@@ -13,22 +14,45 @@
               <option value="meeting">Meeting</option>
             </select>
             <label for="description">Details: </label>
-            <textarea type="text" id="description" name="description"></textarea>
+            <textarea
+              type="text"
+              id="description"
+              name="description"
+            ></textarea>
             <label for="dateOfCommunication">Date: </label>
-            <input type="date" id="dateOfCommunication" name="dateOfCommunication" />
-            <label for="followUpNeededTrue">Check here if further follow up is needed:
+            <input
+              type="date"
+              id="dateOfCommunication"
+              name="dateOfCommunication"
+            />
+            <label for="followUpNeededTrue">Check here if further follow up is
+              needed:
             </label>
-            <input type="checkbox" id="followUpNeededTrue" name="followUpNeeded" value="true" />
-            <label for="followUpNeededFalse">Check here if there is no need for future follow up at this time:
+            <input
+              type="checkbox"
+              id="followUpNeededTrue"
+              name="followUpNeeded"
+              value="true"
+            />
+            <label for="followUpNeededFalse">Check here if there is no need for
+              future follow up at this time:
             </label>
-            <input type="checkbox" id="followUpNeededFalse" name="followUpNeeded" value="false" />
+            <input
+              type="checkbox"
+              id="followUpNeededFalse"
+              name="followUpNeeded"
+              value="false"
+            />
             <label for="studentId">Student: </label>
-            <input type="search" id="studentId" name="studentId" />
-
+            <select id="studentId" name="studentId">
+            {{#each studentData as |student|}}
+            {{>student_name_list}}
+            {{/each}}
+            </select>
           </div>
         </ul>
         <div class="button">
-          <button type="submit">Save Communication</button>
+          <button type="submit" href="/teacher/student" >Save Communication</button>
         </div>
       </form>
     </div>

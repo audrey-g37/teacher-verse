@@ -8,7 +8,7 @@ const homeRoutes = require("./home-routes");
 router.use("/teacher", teacherRoutes);
 router.use("/", homeRoutes);
 router.use((req, res) => {
-  res.status(403).json("You dont have access to this page");
+res.status(403).json("You dont have access to this page");
 });
 
 module.exports = router;

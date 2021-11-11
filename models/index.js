@@ -1,5 +1,4 @@
 // bring in required models
-
 const Teacher = require("./teacher");
 const Assignment = require("./assignment");
 const AssignmentFeedback = require("./assignmentFeedback");
@@ -16,10 +15,6 @@ const StudentCommunication = require("./studentCommunication");
 Teacher.hasMany(Student, {
   foreignKey: "teacherId",
   onDelete: "SET NULL",
-});
-
-Student.belongsTo(Teacher, {
-  foreignKey: "teacherId",
 });
 
 Student.hasMany(Attendance, {
