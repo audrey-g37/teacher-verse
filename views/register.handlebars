@@ -1,56 +1,58 @@
-<!-- Register Page -->
-<meta http-equiv="refresh" content="URL=/teacher" />
+<h1 class="app-name">Teacher Force</h1>
+<section id="register" class="body">
+  <div
+    class="container row justify-content-center align-items-center col-md-6 col-md-12"
+  >
+    <h2 class="title">Register to get started!</h2>
+    <form action="/register" method="POST">
+      <div class="form-group">
+        <label for="firstName">First Name: *</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="First Name"
+          id="firstName"
+          name="firstName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name: *</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Last Name"
+          id="lastName"
+          name="lastName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address: *</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="email@example.com"
+          id="email-signup"
+          name="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password: *</label>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="password"
+          id="password-signup"
+          name="password"
+        />
+      </div>
+      {{! <div class="form-group">
+                        <input type="password" class="form-control"  placeholder="Confirm Password *" value="" /> }}
+      {{! </div> }}
+      <button type="submit" class="create-button">Sign Up</button>
+      <div class="need-new-render">Trying to login? Click
+        <a href="/login">here.</a>
 
-<form action="/register" method="POST">
-<div class="container-register">
-    <div class="row">
-        <div class="col-md-3 register-top">
-            <h2>Register to get started!</h2>
-            {{!-- <button href="/login">Login</button> --}}
-        </div>
-<div class="col-md-9 register-below">
-    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-    </ul>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <h3 class="register-heading">Please enter your information below</h3>
-            <div class="row register-form">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="firstName">Your First Name:</label>
-                        <input type="text" class="form-control" placeholder="First Name *" id="firstName" name= "firstName"/>
-                    </div>
-                    <div class="form-group">
-                            <label for="lastName">Your Last Name:</label>
-                        <input type="text" class="form-control" placeholder="Last Name *" id= "lastName" name="lastName"/>
-                    </div>
-                    <div class="form-group">
-                            <label for="email">Your Email:</label>
-                        <input type="email" class="form-control" placeholder="email  *" id ="email-signup" name="email"/>
-                    </div>
-                    <div class="form-group">
-                            <label for="password">Your Password:</label>
-                        <input type="password" class="form-control" placeholder="Password *"  id= "password-signup" name="password"/>
-                    </div>
-                    {{!-- <div class="form-group">
-                        <input type="password" class="form-control"  placeholder="Confirm Password *" value="" /> --}}
-                    {{!-- </div> --}}
-                    <div class="form-group">
-                        <div class="maxl">
-                        </div>
-                    <button type="submit" class="create-button">Create Account</button> 
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-                </div>
-                <div class="col-md-6">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</form>
+      </div>
+    </form>
+  </div>
+</section>
