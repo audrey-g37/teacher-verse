@@ -5,25 +5,31 @@ const randomFun = require("everyday-fun");
 
 // Current location  "http:localhost:3001/teacher"
 
-router.get("/login", async (req, res) => {
-  res.render("login");
-});
-
 router.get("/", async (req, res) => {
   try {
-    const dbAssignmentData = await Assignment.findAll({
-      attributes: ["title", "dueDate"],
-    });
-
+    const dbAssignmentData = await Assignment.findAll({});
     const assignmentData = dbAssignmentData.map((assignment) =>
       assignment.get({ plain: true })
     );
+    let recentAssignments = [];
+
+    if (assignmentData.length >= 5) {
+      for (let i = assignmentData.length - 5; i < assignmentData.length; i++) {
+        recentAssignments.push(assignmentData[i]);
+      }
+    } else {
+      recentAssignments = assignmentData;
+    }
+
+    const teacherId = parseInt(req.session.teacherId);
+    const dbTeacherData = await Teacher.findByPk(teacherId);
 
     const randomQuote = randomFun.getRandomQuote();
     const randomRiddle = randomFun.getRandomRiddle();
 
     res.render("homepage", {
-      assignmentData: assignmentData,
+      assignmentData: recentAssignments,
+      teacherData: dbTeacherData.dataValues,
       randomQuote: randomQuote,
       randomRiddle: randomRiddle,
       loggedIn: req.session.loggedIn,

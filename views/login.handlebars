@@ -1,29 +1,36 @@
-<h1 class="app-name">Teacher Force</h1>
-<section id="login" class="body">
-  <h2 class="title">Login To Get Started!</h2>
-  <div
-    class="container row justify-content-center align-items-center col-md-6 col-md-12"
-  >
-    <form id="login-form" class="form" action="/login" method="POST">
-      <div class="form-group">
-        <label for="email" class="login-text">Email:</label><br />
-        <input type="text" name="email" id="email" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label for="password" class="login-text">Password:</label><br />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          class="form-control"
-        />
-      </div>
-
-      <button type="submit" class="create-button">Login</button>
-
-      <div class="need-new-render">Can't login? Please register by clicking
-        <a href="/register">here.</a>
-      </div>
-    </form>
+<div id="login-container">
+  <div id="left-display">
+  <h1 class="app-name">Teacher Force</h1>
+  <img src="/css/images/kids.jpg" />
   </div>
-</section>
+  <section id="login">
+    <div id="right-display">
+    <h2 class="title">Login To Get Started!</h2>
+    <div
+      class="container row justify-content-center align-items-center col-md-6 col-md-12"
+    >
+      <form class="form" action="/login" method="POST">
+        <div class="form-group">
+          <label for="email" class="login-text">Email:</label><br />
+          <input type="text" name="email" id="email" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="password" class="login-text">Password:</label><br />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+          />
+        </div>
+
+        <button type="submit" class="create-button">Login</button>
+
+        <div class="need-new-render">Can't login? Please register by clicking
+          <a href="/register">here.</a>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+</div>

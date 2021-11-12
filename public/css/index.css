@@ -1,19 +1,24 @@
 :root {
   --bold1: #fe8a80;
   --bold2: #ffc8e5;
-  --dark1: #809906;
+  --bold3: #ee5244;
+  --dark1: #7f9803;
   --light1: #c6e62c;
   --dark2: #1d5599;
   --light2: #1473e6;
+  --dark3: #993906;
+  --light3: #f5a23b;
   --white: white;
   --black: black;
   --slate: rgb(75, 75, 75);
+  --grey: rgb(220, 218, 218);
 }
 
 /* General Styling applicable to multiple pages */
 #application-background {
-  background-image: url("/css/images/grey-background.jpg");
-  background-size: cover;
+  /* background-image: url("/css/images/grey-background.jpg");
+  background-size: cover; */
+  background-color: var(--grey);
 }
 
 .app-name {
@@ -22,108 +27,165 @@
   font-size: 60px;
   font-weight: 700;
   color: var(--slate);
+  font-family: "Merriweather", serif;
 }
 
 .create-button {
   padding: 10px;
-  margin: 2% 2% 2% 80%;
-  background-color: var(--dark1);
+  background-color: var(--light1);
   border-radius: 10%;
   font-weight: 600;
   color: var(--black);
 }
 
 .create-button:hover {
-  background-color: var(--light1);
+  background-color: var(--dark1);
+}
+
+#nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  background-color: var(--dark2);
+  opacity: 0.8;
+  align-items: center;
+}
+
+#welcome-user {
+  display: block;
+  color: var(--light1);
+}
+
+#nav a {
+  float: left;
+  text-align: center;
+  padding: 12px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#nav a:hover {
+  background-color: var(--slate);
 }
 
 /* login page styling */
+#login-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+#left-display {
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  background-color: var(--white);
+  padding: 30px;
+  margin: 4%;
+}
+#right-display {
+  display: flex;
+  flex-direction: column;
+}
+
+#left-display img {
+  max-width: 100%;
+  max-height: 70%;
+  margin: 20% 0;
+}
+
 #login,
 #register {
-  background-color: var(--dark2);
-  margin: 4% 15%;
-  padding: 20px 5px;
+  background-color: var(--white);
+  margin: 4%;
+  padding: 20px 10px;
   opacity: 0.8;
 }
 
 #login .title,
 #register .title {
-  color: var(--white);
+  color: var(--dark2);
   font-weight: 600;
   font-size: 35px;
   text-align: center;
+  margin-bottom: 10%;
 }
 
 #login label,
 #register label {
-  color: var(--bold1);
+  color: var(--light2);
   font-size: 25px;
 }
 
 #login a,
 #register a {
-  color: var(--bold2);
+  color: var(--black);
   font-weight: 600;
 }
 #login a:hover,
 #register a:hover {
-  color: var(--light1);
+  color: var(--dark1);
 }
 
 #login .need-new-render,
 #register .need-new-render {
-  color: var(--bold1);
+  color: var(--light2);
   font-size: 20px;
+  margin-top: 80px;
+  display: inline-block;
+}
+
+#login .create-button,
+#register .create-button {
+  margin: 30px 2% 2% 80%;
 }
 
 /* homepage styling */
 
-.homepage-nav {
+#homepage {
   display: flex;
-  justify-content: space-between;
-  padding: 15px;
-}
-
-#h1-homepage {
-  text-align: center;
-}
-
-.page-title {
-  text-align: center;
-}
-
-.container-homepage {
-  background-color: var(--formbkg);
-  opacity: 0.9;
-  display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
-  margin-left: 100px;
-  margin-right: 100px;
-}
-a .studentIndividual {
-  margin-left: 60px;
 }
 
-div.jumbotron {
-  background-color: var(--formbkg);
-  opacity: 0.95;
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-bottom: 100px;
-}
-.homepage {
-  background-image: url(/images/background-image2.jpeg);
+#daily-fun {
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%;
 }
 
-.card {
-  background-color: var(--formbkg);
-  opacity: 0.95;
+#homepage .title {
+  text-align: center;
+  color: var(--white);
+  font-size: 25px;
+  font-weight: 600;
+}
+
+#homepage .card {
+  background-color: var(--light2);
+  opacity: 0.8;
   border-style: solid 200px;
-  padding: 30px 30px;
+  padding: 10px;
+  margin: 15px;
 }
-.assignments {
-  background: var(--formbkg);
+
+#homepage .assignment-card {
+  position: relative;
+}
+
+#homepage .new-assignment {
+  position: absolute;
+  bottom: 20px;
+  font-size: 12px;
+}
+
+#homepage .table-headers {
+  color: var(--light3);
+}
+
+#homepage .assignment-title {
+  font-size: 15px;
+  font-weight: 500;
 }
 
 /* new-behavior styling */
@@ -152,11 +214,6 @@ div.jumbotron {
 
 /* student page styling */
 
-.title {
-  color: var(--bright);
-  font-size: 25px;
-}
-
 .assignment-main {
   padding: 4px;
   justify-content: center;
@@ -168,9 +225,6 @@ div.jumbotron {
 }
 .due-date {
   margin-left: 60px;
-}
-.assignment-btn {
-  font-size: 12px;
 }
 
 .new-student-card {
@@ -248,35 +302,97 @@ div.jumbotron {
   background-color: aqua;
 }
 
-/* Style the navigation bar */
-#nav {
-  width: 100%;
-  background-color: #555;
-  overflow: auto;
-}
+/* TABLET */
+@media screen and (max-width: 770px) {
+  #login-container {
+    justify-content: center;
+  }
 
-/* Navbar links */
-#nav a {
-  display: flex;
-  align-content: space-between;
-  margin-left: 100px;
-  float: left;
-  text-align: center;
-  padding: 12px;
-  color: var(--button);
-  text-decoration: none;
-  font-size: 17px;
-}
+  .app-name {
+    font-size: 35px;
+  }
 
-/* Navbar links on mouse-over */
-#nav a:hover {
-  background-color: #000;
+  #left-display {
+    flex-wrap: wrap;
+    width: 100%;
+    height: 20%;
+  }
+
+  #login .title,
+  #register .title {
+    font-size: 25px;
+  }
+
+  #login label,
+  #register label {
+    font-size: 20px;
+  }
+
+  #login .create-button,
+  #register .create-button {
+    width: 60px;
+    height: 35px;
+    font-size: 10px;
+  }
+  #login .need-new-render,
+  #register .need-new-render {
+    font-size: 15px;
+  }
 }
 
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
 @media screen and (max-width: 500px) {
-  .navbar a {
-    float: none;
-    display: block;
+  #login-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .app-name {
+    font-size: 35px;
+  }
+
+  #left-display {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  #left-display img {
+    display: none;
+  }
+
+  #login .title,
+  #register .title {
+    font-size: 25px;
+  }
+
+  #login label,
+  #register label {
+    font-size: 20px;
+  }
+
+  #login .create-button,
+  #register .create-button {
+    width: 60px;
+    height: 35px;
+    font-size: 10px;
+  }
+  #login .need-new-render,
+  #register .need-new-render {
+    font-size: 15px;
+  }
+  #nav .fa-child,
+  #nav .fa-envelope {
+    display: none;
+  }
+  #logout {
+    width: 60px;
+    height: 35px;
+    font-size: 10px;
+  }
+  #homepage {
+    flex-wrap: wrap;
+  }
+  #homepage .new-assignment {
+    bottom: 20px;
   }
 }
