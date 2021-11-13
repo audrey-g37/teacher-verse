@@ -167,10 +167,12 @@
   border-style: solid 200px;
   padding: 10px;
   margin: 15px;
+  color:var(--black)
 }
 
 #homepage .assignment-card {
   position: relative;
+  height: 575px;
 }
 
 #homepage .new-assignment {
@@ -180,12 +182,19 @@
 }
 
 #homepage .table-headers {
-  color: var(--light3);
+  font-size:23px;
+  color: var(--light1);
+  margin: 10px 0 105px 0;
 }
 
 #homepage .assignment-title {
   font-size: 15px;
   font-weight: 500;
+}
+#homepage .table-content{
+  color: var(--black);
+  padding:5px;
+  font-size: 17px;
 }
 
 /* new-behavior styling */
@@ -260,9 +269,9 @@
   border-radius: 5px;
 }
 
-.table-headers {
+/* .table-headers {
   font-size: 20px;
-}
+} */
 
 #each-attendance {
   list-style: none;
