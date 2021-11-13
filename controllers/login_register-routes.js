@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { Teacher, Assignment } = require("../models");
 const bcrypt = require("bcrypt");
+const moment = require("moment");
+
 
 router.get("/", async (req, res) => {
   res.redirect("login");
@@ -32,8 +34,9 @@ router.post("/login", async (req, res) => {
 
     req.session.teacherId = idToStore;
     req.session.loggedIn = true;
-
-    console.log(req.session);
+    req.session.date = moment().format("MM-DD-YYYY")
+    req.session.newFun= true;
+    // console.log(req.session);
     res.redirect("/teacher");
   } catch (err) {
     res.render("404");

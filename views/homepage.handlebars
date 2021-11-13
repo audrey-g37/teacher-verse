@@ -2,7 +2,7 @@
   <nav id="nav">
     <div id="welcome-user">
     <h3>Hello, </h3>
-      <h4>{{teacherData.firstName}} {{teacherData.lastName}}</h4>
+      <h4>{{teacherData.first}} {{teacherData.last}}</h4>
     </div>
     <a href="teacher/student" class="fa fa-users">View All Students</a>
     <a href="teacher/attendance/new-attendance" class="fa fa-user">Take
@@ -30,14 +30,14 @@
         <div id="daily-fun">
       <div class="card" style="width: 30rem;">
         <div class="card-body">
-          <h5 class="title">Daily Riddle</h5>
+          <h5 class="title">Random Riddle</h5>
             <p>Riddle: {{randomRiddle.riddle}}</p>
             <p>Answer: {{randomRiddle.answer}}</p>
         </div>
       </div>
       <div class="card" style="width: 30rem;">
         <div class="card-body">
-          <h5 class="title">Daily Quote</h5>
+          <h5 class="title">Random Quote</h5>
             <p>Quote:{{randomQuote.quote}}</p>
             <p>Author: {{randomQuote.author}}</p>
         </div>
@@ -56,12 +56,12 @@
           <tbody>
           {{#each assignmentData as |assignment|}}
             <tr>
-              <td class="assignment-title">
+              <td class="assignment-title table-content">
                 {{assignment.title}}
               </td>
               
-              <td class="assignment-description">{{assignment.description}}</td>
-              <td class="assignment-date">
+              <td class="assignment-description table-content">{{assignment.description}}</td>
+              <td class="assignment-date table-content">
                 {{assignment.dueDate}}
               </td>
                    </tr>
@@ -70,8 +70,8 @@
           {{/each}}
         </table>
           <a href="teacher/assignment/new-assignment" class="new-assignment">
-             <button class="create-button">
-            Create New Assignment</button></a>
+            <button class="create-button">
+            New Assignment</button></a>
       </div>
       </div>
   {{else}}

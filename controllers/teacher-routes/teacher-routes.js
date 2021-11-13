@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Teacher, Assignment, Student } = require("../../models");
 const bcrypt = require("bcrypt");
 const randomFun = require("everyday-fun");
+const moment = require("moment");
 
 // Current location  "http:localhost:3001/teacher"
 
@@ -13,9 +14,10 @@ router.get("/", async (req, res) => {
     );
     let recentAssignments = [];
 
-    if (assignmentData.length >= 5) {
-      for (let i = assignmentData.length - 5; i < assignmentData.length; i++) {
+    if (assignmentData.length >= 8) {
+      for (let i = assignmentData.length - 8; i < assignmentData.length; i++) {
         recentAssignments.push(assignmentData[i]);
+        
       }
     } else {
       recentAssignments = assignmentData;
@@ -24,18 +26,42 @@ router.get("/", async (req, res) => {
     const teacherId = parseInt(req.session.teacherId);
     const dbTeacherData = await Teacher.findByPk(teacherId);
 
+    const todaysDate = moment().format("MM-DD-YYYY");
+
+    console.log(todaysDate)
+
+    // let randomQuote;
+    // let randomRiddle;
+    // let randomFun;
     const randomQuote = randomFun.getRandomQuote();
     const randomRiddle = randomFun.getRandomRiddle();
+    
+    // if(req.session.newFun === true){
+    //   randomQuote = randomFun.getRandomQuote();
+    //   randomRiddle = randomFun.getRandomRiddle();
+    //   req.session.newFun = false;
+    // } 
+    // // else{
+
+    // // }
+    // console.log(randomFun)
+    // console.log(req.session)
+
+    const firstName = dbTeacherData.dataValues.firstName.toUpperCase();
+    const lastName = dbTeacherData.dataValues.lastName.toUpperCase();
+
+    const nameToDisplay = {first: firstName, last: lastName};
+
 
     res.render("homepage", {
       assignmentData: recentAssignments,
-      teacherData: dbTeacherData.dataValues,
+      teacherData: nameToDisplay,
       randomQuote: randomQuote,
       randomRiddle: randomRiddle,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404")
   }
 });
 
