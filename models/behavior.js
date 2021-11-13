@@ -35,11 +35,6 @@ Behavior.init(
       allowNull: true,
     },
 
-    postActionComments: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-
     isGood: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

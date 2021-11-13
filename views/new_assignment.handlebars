@@ -1,8 +1,10 @@
 
 <div>
   {{#if loggedIn}}
-   <a href="/teacher"><button type="button" class="create-button">Back to Teacher Homepage</button></a>
-
+  <nav id="nav">
+    <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
+    <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+  </nav>
     <div class="new-assignment-card">
       <form action="/teacher/assignment/new-assignment" method="POST">
         <ul>

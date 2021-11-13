@@ -7,14 +7,13 @@ const communicationRoutes = require("./communication-routes");
 const guardianRoutes = require("./guardian-routes");
 const teacherRoutes = require("./teacher-routes");
 const studentRoutes = require("./student-routes");
-// const userRoutes = require("./user-routes");
 
 router.use("/assignment", assignmentRoutes);
 router.use("/assignmentFeedback", assignmentFeedbackRoutes);
 router.use("/behavior", behaviorRoutes);
 router.use("/attendance", attendanceRoutes);
 router.use("/communication", communicationRoutes);
-router.use("/guardian", guardianRoutes);
+router.use("/student/guardian", guardianRoutes);
 router.use("/", teacherRoutes);
 router.use("/student", studentRoutes);
 

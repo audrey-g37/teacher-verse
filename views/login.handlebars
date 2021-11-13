@@ -1,34 +1,36 @@
- 
-<section class="body">
- 
- <section id="login">
-        <h1 class="login-title text-center pt-5">Login To Get Started!</h1>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="/login" method="POST">
-                    
-                            <div class="form-group">
-                                <label for="email" class="login-text">Email:</label><br>
-                                <input type="text" name="email" id="email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="login-text">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="create-button" >
-                            </div>
-                            <div class = "login-text">Can't login? Please click below:</div>
-                                 <a href="/register" class="login-link">Register</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<div id="login-container">
+  <div id="left-display">
+  <h1 class="app-name">Teacher Force</h1>
+  <img src="/css/images/kids.jpg" />
+  </div>
+  <section id="login">
+    <div id="right-display">
+    <h2 class="title">Login To Get Started!</h2>
+    <div
+      class="container row justify-content-center align-items-center col-md-6 col-md-12"
+    >
+      <form class="form" action="/login" method="POST">
+        <div class="form-group">
+          <label for="email" class="login-text">Email:</label><br />
+          <input type="text" name="email" id="email" class="form-control" />
         </div>
-    </section>
-</section>
-        {{!-- Need to resize the image, maybe we want this maybe we wont? --}}
-          <!-- <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80" alt="Login_img" class="Login_img"> -->
+        <div class="form-group">
+          <label for="password" class="login-text">Password:</label><br />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+          />
+        </div>
+
+        <button type="submit" class="create-button">Login</button>
+
+        <div class="need-new-render">Can't login? Please register by clicking
+          <a href="/register">here.</a>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+</div>

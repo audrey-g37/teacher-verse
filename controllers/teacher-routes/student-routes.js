@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
     res.render("all_students", { studentData, loggedIn: req.session.loggedIn });
     res.status(200);
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -40,21 +40,7 @@ router.get("/new-student", async (req, res) => {
     );
     res.render("new_student", { teacherData, loggedIn: req.session.loggedIn });
   } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get("/new-guardian", async (req, res) => {
-  try {
-    const dbStudentData = await Student.findAll({
-      attributes: ["id", "firstName", "lastName"],
-    });
-    const studentData = dbStudentData.map((student) =>
-      student.get({ plain: true })
-    );
-    res.render("new_guardian", { studentData, loggedIn: req.session.loggedIn });
-  } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -204,7 +190,7 @@ router.get("/:id", async (req, res) => {
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -218,22 +204,7 @@ router.post("/new-student", async (req, res) => {
 
     res.redirect("/teacher/student");
   } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.post("/new-guardian", async (req, res) => {
-  try {
-    const newGuardian = await Guardian.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      phoneNumber: req.body.phoneNumber,
-      studentId: req.body.studentId,
-    });
-    res.redirect("/teacher");
-  } catch (err) {
-    res.status(400).json(err);
+    res.render("404");
   }
 });
 
@@ -251,7 +222,7 @@ router.put("/:id", async (req, res) => {
       .status(200)
       .json({ message: `Student with id of ${req.params.id} updated` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -269,7 +240,7 @@ router.delete("/:id", async (req, res) => {
       .status(200)
       .json({ message: `Student with id ${req.params.id} deleted` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 

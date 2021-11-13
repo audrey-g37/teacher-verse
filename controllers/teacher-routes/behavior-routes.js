@@ -10,20 +10,25 @@ router.get("/", async (req, res) => {
     });
     res.status(200).json(behaviorData);
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 router.get("/new-behavior", async (req, res) => {
   try {
-    const dbStudentData = await Student.findAll({
-      attributes: ["id", "firstName", "lastName"],
-    });
+    const dbStudentData = await Student.findAll({});
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
-    res.render("new_behavior", { studentData, loggedIn: req.session.loggedIn });
+    if (studentData.length === 0) {
+      res.render("no_students");
+    } else {
+      res.render("new_behavior", {
+        studentData,
+        loggedIn: req.session.loggedIn,
+      });
+    }
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -39,7 +44,7 @@ router.get("/:id", async (req, res) => {
     }
     res.status(200).json(behaviorData);
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -50,7 +55,7 @@ router.post("/new-behavior", async (req, res) => {
     console.log("past the create");
     res.redirect("/teacher/student");
   } catch (err) {
-    res.status(400).json(err);
+    res.render("404");
   }
 });
 
@@ -68,7 +73,7 @@ router.put("/:id", async (req, res) => {
       .status(200)
       .json({ message: `Behavior data with id of ${req.params.id} updated` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -86,7 +91,7 @@ router.delete("/:id", async (req, res) => {
       .status(200)
       .json({ message: `Behavior datawith id ${req.params.id} deleted` });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
