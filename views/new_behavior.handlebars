@@ -11,7 +11,7 @@
     <label for="title">Behavior Title: </label>
       <input type="text" id="title" name="title" />
     <label id="description-tag"for="description">Details: </label>
-      <textarea id="description" name="description" rows="2" cols="100">
+      <textarea id="description" name="description" rows="2" cols="40">
       </textarea>
     </label>
     <label for="immediateActionTaken">Immediate Action I Took: </label>
@@ -29,14 +29,14 @@
         name="isGood"
         value="false"
       />
-    <label for="studentId">Student: </label>
+    <label class="studentId" for="studentId">Student: </label>
       <select id="studentId" name="studentId">
       {{#each studentData as |student|}}
       {{>student_name_list}}
       {{/each}}
       </select>
-      <div class="button">
-        <button type="submit">Save Behavior</button>
+      <div>
+        <button class="student-button" type="submit">Save Behavior</button>
       </div>
   </form>
   </div>

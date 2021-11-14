@@ -3,10 +3,11 @@
     <nav id="nav">
     <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
      <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
-  <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+  <a><button id="logout" class="create-button position-absolute top-0 end-0">Logout</button></a>
+
     </nav>
     <div class="new-student-card">
-      <form action="/teacher/student/new-student" method="POST">
+      <form action="/teacher/student/new-student" method="POST" class="form">
         <ul>
           <div>
             <label for="firstName">First Name: </label>
@@ -20,8 +21,8 @@
             {{/each}}
             </select>
         </ul>
-        <div class="button">
-          <button type="submit">Create Student</button>
+        <div >
+          <button class="student-button" type="submit">Create Student</button>
         </div>
       </form>
     </div>
