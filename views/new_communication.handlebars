@@ -3,9 +3,9 @@
   <nav id="nav">
     <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
     <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
-    <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+    <a><button id="logout" class="create-button position-absolute top-0 end-0">Logout</button></a>
   </nav>
-  <div>
+  <div class="new-communication-card">
     <form action="/teacher/communication/new-communication" method="POST">
       <label for="communicationMethod">Communication Method: </label>
         <select id="communicationMethod" name="communicationMethod">
@@ -49,8 +49,8 @@
         {{>student_name_list}}
         {{/each}}
         </select>
-        <div class="button">
-          <button type="submit" href="/teacher/student" >Save Communication</button>
+        <div>
+          <button  class="student-button"type="submit" href="/teacher/student" >Save Communication</button>
         </div>
       </form>
     </div>

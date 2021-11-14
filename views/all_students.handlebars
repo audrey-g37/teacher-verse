@@ -7,13 +7,13 @@
       <a href="/teacher/communication/new-communication" class="fa fa-envelope">Add Communication Record</a>
       <a href="/teacher/behavior/new-behavior" class="fa fa-child">Add Behavior Record</a>
       <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
-      <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+      <a><button id="logout" class="create-button position-absolute top-0 end-0">Logout</button></a>
 </nav>
 <br>
 <h1 class= "invisible-text">Current Student Roster</h1>
-<section class="container d-flex justify-content-around flex-wrap">
+<section class="student-container d-flex justify-content-around flex-wrap">
     {{#each studentData as |student|}}
-    <div class="card">
+    <div class="student-card">
         {{>student_card}}
     </div>
     {{/each}}

@@ -3,7 +3,7 @@
   <nav id="nav">
   <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
   <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
-  <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+  <a><button id="logout" class="create-button position-absolute top-0 end-0">Logout</button></a>
 </nav>
     <div class="new-guardian-card">
       <form action="/teacher/student/guardian/new-guardian" method="POST">
@@ -19,15 +19,15 @@
             <input type="text" id="phoneNumber" name="phoneNumber"></input>
         </ul>
         <div>
-          <label for="studentId">Student: </label>
+          <label class="studentId" for="studentId">Student: </label>
             <select id="studentId" name="studentId">
               {{#each studentData as |student|}}
               {{>student_name_list}}
               {{/each}}
             </select>
         </div>
-        <div class="button">
-          <button type="submit">Add Guardian</button>
+        <div>
+          <button class="student-button" type="submit">Add Guardian</button>
         </div>
       </form>
     </div>
