@@ -6,6 +6,7 @@ router.get("/new-guardian", async (req, res) => {
   try {
     const dbStudentData = await Student.findAll({
       attributes: ["id", "firstName", "lastName"],
+      where: { teacherId: req.session.teacherId },
     });
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })

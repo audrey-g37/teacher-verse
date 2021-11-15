@@ -34,9 +34,17 @@ Attendance.init(
     },
     studentId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: "Student",
+        key: "id",
+      },
+    },
+    teacherId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Teacher",
         key: "id",
       },
     },

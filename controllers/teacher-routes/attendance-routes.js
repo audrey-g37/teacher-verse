@@ -6,7 +6,9 @@ const moment = require("moment");
 router.get("/", async (req, res) => {
   try {
     const currentDate = moment().format("MM-DD-YYYY");
-    const dbStudentData = await Student.findAll({});
+    const dbStudentData = await Student.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
@@ -96,7 +98,9 @@ router.get("/", async (req, res) => {
 
 router.get("/new-attendance", async (req, res) => {
   try {
-    const dbStudentData = await Student.findAll({});
+    const dbStudentData = await Student.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
@@ -104,7 +108,9 @@ router.get("/new-attendance", async (req, res) => {
       res.render("no_students");
     } else {
       const currentDate = moment().format("MM-DD-YYYY");
-      const dbPriorAttendanceData = await Attendance.findAll({});
+      const dbPriorAttendanceData = await Attendance.findAll({
+        where: { teacherId: req.session.teacherId },
+      });
       const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
         attendance.get({ plain: true })
       );
@@ -122,10 +128,6 @@ router.get("/new-attendance", async (req, res) => {
         if (lastAttendanceEntry.date === currentDate) {
           res.redirect("/teacher/attendance/update-attendance");
         } else {
-          const dbStudentData = await Student.findAll({});
-          const studentData = dbStudentData.map((student) =>
-            student.get({ plain: true })
-          );
           res.render("new_attendance", {
             date: currentDate,
             studentData: studentData,
@@ -142,12 +144,14 @@ router.get("/update-attendance", async (req, res) => {
   try {
     const currentDate = moment().format("MM-DD-YYYY");
     const dbPriorAttendanceData = await Attendance.findAll({
-      where: { date: currentDate },
+      where: { date: currentDate, teacherId: req.session.teacherId },
     });
     const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
       attendance.get({ plain: true })
     );
-    const dbStudentData = await Student.findAll({});
+    const dbStudentData = await Student.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );

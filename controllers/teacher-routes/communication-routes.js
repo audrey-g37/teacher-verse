@@ -16,7 +16,9 @@ router.get("/", async (req, res) => {
 
 router.get("/new-communication", async (req, res) => {
   try {
-    const dbStudentData = await Student.findAll({});
+    const dbStudentData = await Student.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
@@ -48,8 +50,8 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/new-communication", async (req, res) => {
-  console.log(req.body);
   try {
+    console.log(req.body);
     const newCommunication = await Communication.create(req.body);
     res.redirect("/teacher/student");
   } catch (err) {

@@ -167,7 +167,7 @@
   border-style: solid 200px;
   padding: 10px;
   margin: 15px;
-  color:var(--black)
+  color: var(--black);
 }
 
 #homepage .assignment-card {
@@ -182,7 +182,7 @@
 }
 
 #homepage .table-headers {
-  font-size:23px;
+  font-size: 23px;
   color: var(--light1);
   margin: 10px 0 105px 0;
 }
@@ -191,9 +191,9 @@
   font-size: 15px;
   font-weight: 500;
 }
-#homepage .table-content{
+#homepage .table-content {
   color: var(--black);
-  padding:5px;
+  padding: 5px;
   font-size: 17px;
 }
 
@@ -250,10 +250,10 @@
   margin-right: 200px;
   margin-left: 200px;
 }
-.student-card{
+.student-card {
   background-color: var(--light1);
 }
-.student-button{
+.student-button {
   display: flex;
   align-items: center;
   margin-left: 30px;
@@ -271,12 +271,12 @@
   flex-wrap: wrap;
   margin-right: 200px;
   margin-left: 200px;
-  margin-top:70px;
+  margin-top: 70px;
 }
-.studentId{
-  margin-left:30px;
+.studentId {
+  margin-left: 30px;
 }
-.new-communication-card{
+.new-communication-card {
   background-color: var(--light2);
   border-radius: 5px;
   padding: 10px;
@@ -298,7 +298,6 @@
   padding: 10px;
   background-color: var(--light2);
   justify-content: flex-end;
-
 }
 
 #isPresent {
@@ -385,7 +384,7 @@
   #register .need-new-render {
     font-size: 15px;
   }
-  .new-behavior-card .studentId{
+  .new-behavior-card .studentId {
     margin-inline-start: 20%;
   }
 }
@@ -430,15 +429,23 @@
   #register .need-new-render {
     font-size: 15px;
   }
-  #nav .fa-child,
-  #nav .fa-envelope {
-    display: none;
-  }
+
   #logout {
     width: 60px;
     height: 35px;
     font-size: 10px;
   }
+
+  #nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #nav .fa-child,
+  #nav .fa-envelope {
+    display: none;
+  }
+
   #homepage {
     flex-wrap: wrap;
   }
@@ -447,53 +454,25 @@
   }
   /* new student page */
 
-  .new-student-card{
-  display: flex;
-  width: 90%;
-  align-content: flex-start;
-  margin-inline-start: 5%;
-  }
-  
-  #nav{
+  .new-card {
     display: flex;
-    justify-content: space-between;
+    width: 90%;
+    align-content: flex-start;
+    margin-inline-start: 5%;
   }
 
-  .form{
+  .new-card form {
     background-color: var(--dark2);
-    width: 100px;
+    width: 100%;
   }
-  .new-student-card label{
-    width: 100px;
-  }
-  /* new-guardian-card */
-
-  .new-guardian-card{
-  display: flex;
-  width: 90%;
-  align-content: flex-start;
-  margin-inline-start: 5%;
-  }
-  .new-guardian-card label{
+  .new-card label {
     width: 100px;
   }
 
-  .new-communication-card{
-    display: flex;
-  width: 90%;
-  align-content: flex-start;
-  margin-inline-start: 5%;
-  }
-
-  .new-communication-card label{
-    width:100px;
-  }
-
-  #attendance-form{
+  #attendance-form {
     display: none;
   }
-  #daily-fun{
-    width:300px;
+  #daily-fun {
+    width: 300px;
   }
-
 }

@@ -19,12 +19,21 @@ const moment = require("moment");
 router.get("/", async (req, res) => {
   try {
     // const teacherIdToUse = localStorage.getItem("teacherId");
-    const dbStudentData = await Student.findAll();
+    const dbStudentData = await Student.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
-    res.render("all_students", { studentData, loggedIn: req.session.loggedIn });
-    res.status(200);
+
+    if (studentData.length === 0) {
+      res.render("no_students");
+    } else {
+      res.render("all_students", {
+        studentData,
+        loggedIn: req.session.loggedIn,
+      });
+    }
   } catch (err) {
     res.render("404");
   }

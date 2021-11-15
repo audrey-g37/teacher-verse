@@ -15,7 +15,9 @@ router.get("/", async (req, res) => {
 });
 router.get("/new-behavior", async (req, res) => {
   try {
-    const dbStudentData = await Student.findAll({});
+    const dbStudentData = await Student.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
@@ -49,8 +51,8 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/new-behavior", async (req, res) => {
-  console.log(req.body);
   try {
+    console.log(req.body);
     const newBehavior = await Behavior.create(req.body);
     console.log("past the create");
     res.redirect("/teacher/student");

@@ -5,7 +5,9 @@ const { Assignment } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const assignmentData = await Assignment.findAll();
+    const assignmentData = await Assignment.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     res.status(200).json(assignmentData);
   } catch (err) {
     res.render("404");
