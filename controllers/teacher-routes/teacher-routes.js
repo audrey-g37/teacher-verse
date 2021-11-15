@@ -15,6 +15,12 @@ router.get("/", async (req, res) => {
     const assignmentData = dbAssignmentData.map((assignment) =>
       assignment.get({ plain: true })
     );
+    console.log(assignmentData);
+
+    assignmentData.map((assignment) => {
+      assignment.dueDate = moment(assignment.dueDate).format("MM-DD-YY");
+    });
+
     let recentAssignments = [];
 
     if (assignmentData.length >= 8) {
@@ -29,8 +35,6 @@ router.get("/", async (req, res) => {
     const dbTeacherData = await Teacher.findByPk(teacherId);
 
     const todaysDate = moment().format("MM-DD-YYYY");
-
-    console.log(todaysDate);
 
     // let randomQuote;
     // let randomRiddle;
