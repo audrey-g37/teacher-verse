@@ -29,8 +29,15 @@ router.get("/", async (req, res) => {
     if (studentData.length === 0) {
       res.render("no_students");
     } else {
+      const alphaStudentData = studentData.sort(function (a, b) {
+        if (a.lastName < b.lastName) {
+          return -1;
+        } else if (a.lastName > b.lastName) {
+          return 1;
+        } else return 0;
+      });
       res.render("all_students", {
-        studentData,
+        studentData: alphaStudentData,
         loggedIn: req.session.loggedIn,
       });
     }
@@ -183,11 +190,11 @@ router.get("/:id", async (req, res) => {
         .json({ message: `no Student found with id of ${req.params.id}` });
     }
 
-    console.log(studentData);
-    console.log(guardianData);
-    console.log(lastThreeAttendance);
-    console.log(lastTwoCommunication);
-    console.log(lastTwoBehavior);
+    // console.log(studentData);
+    // console.log(guardianData);
+    // console.log(lastThreeAttendance);
+    // console.log(lastTwoCommunication);
+    // console.log(lastTwoBehavior);
 
     res.render("single_student", {
       data1: studentData,
@@ -208,7 +215,7 @@ router.post("/new-student", async (req, res) => {
     const newStudent = await Student.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      teacherId: req.body.teacherId,
+      teacherId: req.session.teacherId,
     });
 
     res.redirect("/teacher/student");

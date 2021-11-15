@@ -16,11 +16,12 @@ router.get("/", async (req, res) => {
     if (studentData.length === 0) {
       res.render("no_students");
     } else {
-      const dbAttendanceData = await Attendance.findAll({});
+      const dbAttendanceData = await Attendance.findAll({
+        where: { teacherId: req.session.teacherId },
+      });
       const attendanceData = dbAttendanceData.map((attendance) =>
         attendance.get({ plain: true })
       );
-
       const howManyRecords = studentData.length * 10;
 
       let pastRecords = [];
@@ -107,6 +108,13 @@ router.get("/new-attendance", async (req, res) => {
     if (studentData.length === 0) {
       res.render("no_students");
     } else {
+      const alphaStudentData = studentData.sort(function (a, b) {
+        if (a.lastName < b.lastName) {
+          return -1;
+        } else if (a.lastName > b.lastName) {
+          return 1;
+        } else return 0;
+      });
       const currentDate = moment().format("MM-DD-YYYY");
       const dbPriorAttendanceData = await Attendance.findAll({
         where: { teacherId: req.session.teacherId },
@@ -117,7 +125,7 @@ router.get("/new-attendance", async (req, res) => {
       if (priorAttendanceData.length === 0) {
         res.render("new_attendance", {
           date: currentDate,
-          studentData: studentData,
+          studentData: alphaStudentData,
           loggedIn: req.session.loggedIn,
         });
       } else {
@@ -130,7 +138,7 @@ router.get("/new-attendance", async (req, res) => {
         } else {
           res.render("new_attendance", {
             date: currentDate,
-            studentData: studentData,
+            studentData: alphaStudentData,
             loggedIn: req.session.loggedIn,
           });
         }
@@ -155,10 +163,17 @@ router.get("/update-attendance", async (req, res) => {
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
+    const alphaStudentData = studentData.sort(function (a, b) {
+      if (a.lastName < b.lastName) {
+        return -1;
+      } else if (a.lastName > b.lastName) {
+        return 1;
+      } else return 0;
+    });
     // console.log(priorAttendanceData);
     res.render("update_attendance", {
       date: currentDate,
-      studentData: studentData,
+      studentData: alphaStudentData,
       attendanceData: priorAttendanceData,
       loggedIn: req.session.loggedIn,
     });
@@ -197,11 +212,9 @@ router.post("/new-attendance", async (req, res) => {
       }
     }
     const newAttendanceData = req.body;
-    // console.log(newAttendanceData);
     dataTypeChange(newAttendanceData.studentId, newAttendanceData.isPresent);
     const attendanceDataToSave = {
       isPresent: presenceArray,
-      // date: todaysDate,
       time: newAttendanceData.time,
       notes: newAttendanceData.notes,
       studentId: studentIdArray,
@@ -215,6 +228,7 @@ router.post("/new-attendance", async (req, res) => {
         time: attendanceDataToSave.time[i],
         notes: attendanceDataToSave.notes[i],
         studentId: attendanceDataToSave.studentId[i],
+        teacherId: req.session.teacherId,
       });
     }
 
@@ -242,7 +256,9 @@ router.put("/update-attendance", async (req, res) => {
     const todaysDate = moment().format("MM-DD-YYYY");
     // console.log(todaysDate);
 
-    const dbPriorAttendanceData = await Attendance.findAll({});
+    const dbPriorAttendanceData = await Attendance.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     const priorAttendanceData = dbPriorAttendanceData.map((attendance) =>
       attendance.get({ plain: true })
     );
