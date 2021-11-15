@@ -4,8 +4,6 @@ const bcrypt = require("bcrypt");
 const randomFun = require("everyday-fun");
 const moment = require("moment");
 
-// Current location  "http:localhost:3001/teacher"
-
 router.get("/", async (req, res) => {
   try {
     if (!req.session.loggedIn) {
@@ -68,6 +66,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Logout
+router.post("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+    res.redirect("/login");
+  }
+});
+
 // router.get('/:id', async (req,res) => {
 // try {
 // const teacherData = await Teacher.findByPk(req.params.id);
@@ -124,17 +134,6 @@ router.get("/", async (req, res) => {
 //     res.status(500).json(err)
 //     }
 // });
-
-// Logout
-router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
 
 // //thunder client
 

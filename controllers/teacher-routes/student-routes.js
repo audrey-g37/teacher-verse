@@ -34,6 +34,10 @@ router.get("/", async (req, res) => {
           return -1;
         } else if (a.lastName > b.lastName) {
           return 1;
+        } else if (a.lastName == b.lastName) {
+          if (a.firstName < b.firstName) {
+            return -1;
+          } else return 1;
         } else return 0;
       });
       res.render("all_students", {
@@ -57,6 +61,20 @@ router.get("/new-student", async (req, res) => {
     res.render("new_student", { teacherData, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.render("404");
+  }
+});
+
+router.post("/new-student", async (req, res) => {
+  try {
+    const newStudent = await Student.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      teacherId: req.session.teacherId,
+    });
+
+    res.redirect("/teacher/student/new-student");
+  } catch (err) {
+    res.render("data_error");
   }
 });
 
@@ -210,55 +228,41 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/new-student", async (req, res) => {
-  try {
-    const newStudent = await Student.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      teacherId: req.session.teacherId,
-    });
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const updatedStudent = await Student.update(req.body, {
+//       where: { id: req.params.id },
+//     });
+//     if (!updatedStudent[0]) {
+//       res
+//         .status(404)
+//         .json({ message: `no Student found with the id of ${req.params.id}` });
+//     }
+//     res
+//       .status(200)
+//       .json({ message: `Student with id of ${req.params.id} updated` });
+//   } catch (err) {
+//     res.render("data_error");
+//   }
+// });
 
-    res.redirect("/teacher/student");
-  } catch (err) {
-    res.render("404");
-  }
-});
-
-router.put("/:id", async (req, res) => {
-  try {
-    const updatedStudent = await Student.update(req.body, {
-      where: { id: req.params.id },
-    });
-    if (!updatedStudent[0]) {
-      res
-        .status(404)
-        .json({ message: `no Student found with the id of ${req.params.id}` });
-    }
-    res
-      .status(200)
-      .json({ message: `Student with id of ${req.params.id} updated` });
-  } catch (err) {
-    res.render("404");
-  }
-});
-
-router.delete("/:id", async (req, res) => {
-  try {
-    const deletedStudent = await Student.destroy({
-      where: { id: req.params.id },
-    });
-    if (!deletedStudent) {
-      res
-        .status(404)
-        .json({ message: `no Student with id ${req.params.id} found` });
-    }
-    res
-      .status(200)
-      .json({ message: `Student with id ${req.params.id} deleted` });
-  } catch (err) {
-    res.render("404");
-  }
-});
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     const deletedStudent = await Student.destroy({
+//       where: { id: req.params.id },
+//     });
+//     if (!deletedStudent) {
+//       res
+//         .status(404)
+//         .json({ message: `no Student with id ${req.params.id} found` });
+//     }
+//     res
+//       .status(200)
+//       .json({ message: `Student with id ${req.params.id} deleted` });
+//   } catch (err) {
+//     res.render("404");
+//   }
+// });
 
 //thunder client
 

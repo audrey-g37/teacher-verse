@@ -9,7 +9,7 @@ const teacherRoutes = require("./teacher-routes");
 const studentRoutes = require("./student-routes");
 
 router.use("/assignment", assignmentRoutes);
-router.use("/assignmentFeedback", assignmentFeedbackRoutes);
+// router.use("/assignment-feedback", assignmentFeedbackRoutes);
 router.use("/behavior", behaviorRoutes);
 router.use("/attendance", attendanceRoutes);
 router.use("/communication", communicationRoutes);

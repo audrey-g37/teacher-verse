@@ -24,18 +24,6 @@ router.get("/new-guardian", async (req, res) => {
   }
 });
 
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const guardianData = await Guardian.findByPk(req.params.id);
-//     if (!guardianData) {
-//       res.status(404).json({ message: `no guardian found with id of ${req.params.id}` });
-//     }
-//     res.status(200).json(guardianData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 router.post("/new-guardian", async (req, res) => {
   try {
     const newGuardian = await Guardian.create({
@@ -47,9 +35,21 @@ router.post("/new-guardian", async (req, res) => {
     });
     res.redirect("/teacher/student");
   } catch (err) {
-    res.render("404");
+    res.render("data_error");
   }
 });
+
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const guardianData = await Guardian.findByPk(req.params.id);
+//     if (!guardianData) {
+//       res.status(404).json({ message: `no guardian found with id of ${req.params.id}` });
+//     }
+//     res.status(200).json(guardianData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // router.put("/:id", async (req, res) => {
 //   try {
