@@ -6,12 +6,12 @@
   <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
   <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
 </nav>
-<div class="new-behavior-card" >
+<div class="new-card" >
   <form action="/teacher/behavior/new-behavior" method="POST">
     <label for="title">Behavior Title: </label>
       <input type="text" id="title" name="title" />
     <label id="description-tag"for="description">Details: </label>
-      <textarea id="description" name="description" rows="2" cols="40">
+      <textarea id="description" name="description">
       </textarea>
     </label>
     <label for="immediateActionTaken">Immediate Action I Took: </label>
@@ -20,11 +20,17 @@
         <option value="Sent to office">Sent to Office</option>
         <option value="Nothing (no need)">Nothing I needed to do immediately</option>
       </select>
-    <label for="isGood">Behavior is Positive</label>
-      <input type="checkbox" id="isGoodTrue" name="isGood" value="true" />
-    <label for="isGood">Behavior is Concerning </label>
+    <label for="isGood">Behavior type:</label>
+    Positive
+      <input 
+      type="radio" 
+      id="isGoodTrue" 
+      name="isGood" 
+      value="true" 
+      />
+    Negative
       <input
-        type="checkbox"
+        type="radio"
         id="isGoodFalse"
         name="isGood"
         value="false"

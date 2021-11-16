@@ -5,7 +5,7 @@
     <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
     <a><button id="logout" class="create-button position-absolute top-0 end-0">Logout</button></a>
   </nav>
-  <div class="new-communication-card">
+  <div class="new-card">
     <form action="/teacher/communication/new-communication" method="POST">
       <label for="communicationMethod">Communication Method: </label>
         <select id="communicationMethod" name="communicationMethod">
@@ -25,20 +25,19 @@
           id="dateOfCommunication"
           name="dateOfCommunication"
         />
-      <label for="followUpNeededTrue">Check here if further follow up is
-        needed:
+      <label for="followUpNeededTrue">Further follow up
+        needed?
       </label>
+        Yes
         <input
-          type="checkbox"
+          type="radio"
           id="followUpNeededTrue"
           name="followUpNeeded"
           value="true"
         />
-      <label for="followUpNeededFalse">Check here if there is no need for
-        future follow up at this time:
-      </label>
+        No
         <input
-          type="checkbox"
+          type="radio"
           id="followUpNeededFalse"
           name="followUpNeeded"
           value="false"

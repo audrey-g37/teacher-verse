@@ -4,20 +4,28 @@ const bcrypt = require("bcrypt");
 const randomFun = require("everyday-fun");
 const moment = require("moment");
 
-// Current location  "http:localhost:3001/teacher"
-
 router.get("/", async (req, res) => {
   try {
-    const dbAssignmentData = await Assignment.findAll({});
+    if (!req.session.loggedIn) {
+      res.redirect("/login");
+    }
+    const dbAssignmentData = await Assignment.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     const assignmentData = dbAssignmentData.map((assignment) =>
       assignment.get({ plain: true })
     );
+    console.log(assignmentData);
+
+    assignmentData.map((assignment) => {
+      assignment.dueDate = moment(assignment.dueDate).format("MM-DD-YY");
+    });
+
     let recentAssignments = [];
 
     if (assignmentData.length >= 8) {
       for (let i = assignmentData.length - 8; i < assignmentData.length; i++) {
         recentAssignments.push(assignmentData[i]);
-        
       }
     } else {
       recentAssignments = assignmentData;
@@ -28,19 +36,17 @@ router.get("/", async (req, res) => {
 
     const todaysDate = moment().format("MM-DD-YYYY");
 
-    console.log(todaysDate)
-
     // let randomQuote;
     // let randomRiddle;
     // let randomFun;
     const randomQuote = randomFun.getRandomQuote();
     const randomRiddle = randomFun.getRandomRiddle();
-    
+
     // if(req.session.newFun === true){
     //   randomQuote = randomFun.getRandomQuote();
     //   randomRiddle = randomFun.getRandomRiddle();
     //   req.session.newFun = false;
-    // } 
+    // }
     // // else{
 
     // // }
@@ -50,8 +56,7 @@ router.get("/", async (req, res) => {
     const firstName = dbTeacherData.dataValues.firstName.toUpperCase();
     const lastName = dbTeacherData.dataValues.lastName.toUpperCase();
 
-    const nameToDisplay = {first: firstName, last: lastName};
-
+    const nameToDisplay = { first: firstName, last: lastName };
 
     res.render("homepage", {
       assignmentData: recentAssignments,
@@ -61,7 +66,19 @@ router.get("/", async (req, res) => {
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
-    res.render("404")
+    res.render("404");
+  }
+});
+
+// Logout
+router.post("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+    res.redirect("/login");
   }
 });
 
@@ -121,17 +138,6 @@ router.get("/", async (req, res) => {
 //     res.status(500).json(err)
 //     }
 // });
-
-// Logout
-router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
 
 // //thunder client
 

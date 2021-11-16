@@ -1,8 +1,6 @@
 const router = require("express").Router();
 const { Assignment, AssignmentFeedback } = require("../../models");
 
-// Current location  "http:localhost:3001/api/assignmentFeedback"
-
 router.get("/", async (req, res) => {
   try {
     const assignmentFeedbackData = await AssignmentFeedback.findAll({
@@ -52,17 +50,13 @@ router.put("/:id", async (req, res) => {
       { where: { id: req.params.id } }
     );
     if (!updatedAssignmentFeedback[0]) {
-      res
-        .status(404)
-        .json({
-          message: `no assignment feedback found with the id of ${req.params.id}`,
-        });
-    }
-    res
-      .status(200)
-      .json({
-        message: `assignment feedback with id of ${req.params.id} updated`,
+      res.status(404).json({
+        message: `no assignment feedback found with the id of ${req.params.id}`,
       });
+    }
+    res.status(200).json({
+      message: `assignment feedback with id of ${req.params.id} updated`,
+    });
   } catch (err) {
     res.render("404");
   }
@@ -74,17 +68,13 @@ router.delete("/:id", async (req, res) => {
       where: { id: req.params.id },
     });
     if (!deletedAssignmentFeedback) {
-      res
-        .status(404)
-        .json({
-          message: `no assignment feedback with id ${req.params.id} found`,
-        });
-    }
-    res
-      .status(200)
-      .json({
-        message: `assignment feedback with id ${req.params.id} deleted`,
+      res.status(404).json({
+        message: `no assignment feedback with id ${req.params.id} found`,
       });
+    }
+    res.status(200).json({
+      message: `assignment feedback with id ${req.params.id} deleted`,
+    });
   } catch (err) {
     res.render("404");
   }

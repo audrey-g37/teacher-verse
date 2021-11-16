@@ -6,20 +6,14 @@
   <a><button id="logout" class="create-button position-absolute top-0 end-0">Logout</button></a>
 
     </nav>
-    <div class="new-student-card">
-      <form action="/teacher/student/new-student" method="POST" class="form">
+    <div class="new-card">
+      <form action="/teacher/student/new-student" method="POST">
         <ul>
           <div>
             <label for="firstName">First Name: </label>
             <input type="text" id="firstName" name="firstName" />
             <label for="lastName">Last Name: </label>
             <input type="text" id="lastName" name="lastName"></input>
-            <label for="teacherId">Teacher: </label>
-            <select id="teacherId" name="teacherId">
-            {{#each teacherData as |teacher|}}
-            {{>teacher_name_list}}
-            {{/each}}
-            </select>
         </ul>
         <div >
           <button class="student-button" type="submit">Create Student</button>

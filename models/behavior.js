@@ -65,8 +65,6 @@ Behavior.init(
         newBehaviorData.description = newBehaviorData.description.trim();
         newBehaviorData.immediateActionTaken =
           newBehaviorData.immediateActionTaken.trim();
-        newBehaviorData.postActionComments =
-          newBehaviorData.postActionComments.trim();
         return newBehaviorData;
       },
       beforeUpdate: async (updatedBehaviorData) => {
@@ -75,8 +73,6 @@ Behavior.init(
           updatedBehaviorData.description.trim();
         newBehaviorData.immediateActionTaken =
           newBehaviorData.immediateActionTaken.trim();
-        newBehaviorData.postActionComments =
-          newBehaviorData.postActionComments.trim();
         return updatedBehaviorData;
       },
     },

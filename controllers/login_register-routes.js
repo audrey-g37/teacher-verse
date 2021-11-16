@@ -3,13 +3,14 @@ const { Teacher, Assignment } = require("../models");
 const bcrypt = require("bcrypt");
 const moment = require("moment");
 
-
 router.get("/", async (req, res) => {
   res.redirect("login");
 });
 
 router.get("/login", async (req, res) => {
-  res.render("login");
+  if (req.session.loggedIn === true) {
+    res.redirect("/teacher");
+  } else res.render("login");
 });
 
 router.post("/login", async (req, res) => {
@@ -19,7 +20,7 @@ router.post("/login", async (req, res) => {
     });
 
     if (!teacherData) {
-      res.render("404");
+      res.render("data_error");
       return;
     }
     const validPassword = await bcrypt.compare(
@@ -27,15 +28,15 @@ router.post("/login", async (req, res) => {
       teacherData.password
     );
     if (!validPassword) {
-      res.status(400).json("Login Failed");
+      res.render("data_error");
       return;
     }
     const idToStore = JSON.stringify(teacherData.dataValues.id);
 
     req.session.teacherId = idToStore;
     req.session.loggedIn = true;
-    req.session.date = moment().format("MM-DD-YYYY")
-    req.session.newFun= true;
+    req.session.date = moment().format("MM-DD-YYYY");
+    req.session.newFun = true;
     // console.log(req.session);
     res.redirect("/teacher");
   } catch (err) {
@@ -47,7 +48,7 @@ router.get("/register", async (req, res) => {
   try {
     res.render("register");
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -61,7 +62,7 @@ router.post("/register", async (req, res) => {
     });
     res.redirect("/login");
   } catch (err) {
-    res.status(400).json(err);
+    res.render("data_error");
   }
 });
 
