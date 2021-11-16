@@ -33,7 +33,7 @@ Communication.init(
     },
     studentId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: "Student",
         key: "id",
@@ -44,11 +44,13 @@ Communication.init(
   {
     hooks: {
       beforeCreate: async (newCommunicationData) => {
-        newCommunicationData.description = newCommunicationData.description.trim();
+        newCommunicationData.description =
+          newCommunicationData.description.trim();
         return newCommunicationData;
       },
       beforeUpdate: async (updatedCommunicationData) => {
-        updatedCommunicationData.description = updatedCommunicationData.description.trim();
+        updatedCommunicationData.description =
+          updatedCommunicationData.description.trim();
         return updatedCommunicationData;
       },
     },
