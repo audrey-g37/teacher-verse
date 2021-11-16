@@ -1,4 +1,4 @@
-# Teacher Force ![License Image](https://img.shields.io/badge/license-MIT-blue)
+# Teacher Verse ![License Image](https://img.shields.io/badge/license-MIT-blue)
 
 ## Description
 
@@ -17,7 +17,7 @@ An app for teachers where they can add students, guardians, assignments, take at
 
 Click the link to sign-up! Once a user is logged in, they can use the nav bar to keep track of all daily tasks.
 
-[Sign Up](https://teacher-force.herokuapp.com/register)
+[Sign Up](https://teacher-verse.herokuapp.com/register)
 
 ## Resources
 

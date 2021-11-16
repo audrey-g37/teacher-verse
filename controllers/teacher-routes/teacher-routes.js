@@ -6,9 +6,6 @@ const moment = require("moment");
 
 router.get("/", async (req, res) => {
   try {
-    if (!req.session.loggedIn) {
-      res.redirect("/login");
-    }
     const dbAssignmentData = await Assignment.findAll({
       where: { teacherId: req.session.teacherId },
     });
