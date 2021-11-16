@@ -18,7 +18,12 @@ const moment = require("moment");
 // Current location  "http:localhost:3001/teacher/student"
 router.get("/", async (req, res) => {
   try {
-    // const teacherIdToUse = localStorage.getItem("teacherId");
+    const teacherId = parseInt(req.session.teacherId);
+    const dbTeacherData = await Teacher.findByPk(teacherId);
+    const firstName = dbTeacherData.dataValues.firstName.toUpperCase();
+    const lastName = dbTeacherData.dataValues.lastName.toUpperCase();
+    const nameToDisplay = { first: firstName, last: lastName };
+
     const dbStudentData = await Student.findAll({
       where: { teacherId: req.session.teacherId },
     });
@@ -41,6 +46,7 @@ router.get("/", async (req, res) => {
         } else return 0;
       });
       res.render("all_students", {
+        teacherData: nameToDisplay,
         studentData: alphaStudentData,
         loggedIn: req.session.loggedIn,
       });
@@ -52,13 +58,7 @@ router.get("/", async (req, res) => {
 
 router.get("/new-student", async (req, res) => {
   try {
-    const dbTeacherData = await Teacher.findAll({
-      attributes: ["id", "firstName", "lastName"],
-    });
-    const teacherData = dbTeacherData.map((teacher) =>
-      teacher.get({ plain: true })
-    );
-    res.render("new_student", { teacherData, loggedIn: req.session.loggedIn });
+    res.render("new_student", { loggedIn: req.session.loggedIn });
   } catch (err) {
     res.render("404");
   }
@@ -83,9 +83,6 @@ router.get("/:id", async (req, res) => {
     let studentData = await Student.findByPk(req.params.id);
     studentData = studentData.get({ plain: true });
 
-    // ---------SECTION TO GET STUDENT DATA FOR SINGLE STUDENT HANLDEBAR------------- //
-
-    // ---------single student GUARDIAN data------------- //
     const dbGuardianData = await Guardian.findAll({
       where: { studentId: req.params.id },
     });
@@ -93,7 +90,6 @@ router.get("/:id", async (req, res) => {
       guardian.get({ plain: true })
     );
 
-    // ---------single student ATTENDANCE data------------- //
     const dbAttendanceData = await Attendance.findAll({
       where: { studentId: req.params.id },
     });
@@ -113,7 +109,6 @@ router.get("/:id", async (req, res) => {
       lastThreeAttendance = attendanceData;
     }
 
-    // ---------single student COMMUNICATIONS data------------- //
     const dbCommunicationData = await Communication.findAll({
       where: { studentId: req.params.id },
     });
@@ -127,11 +122,11 @@ router.get("/:id", async (req, res) => {
 
     console.log(communicationData);
 
-    let lastTwoCommunication = [];
-    if (communicationDataLength >= 2) {
+    let lastThreeCommunication = [];
+    if (communicationDataLength >= 3) {
       let communicationToPush;
       for (
-        let i = communicationDataLength - 2;
+        let i = communicationDataLength - 3;
         i < communicationDataLength;
         i++
       ) {
@@ -148,7 +143,7 @@ router.get("/:id", async (req, res) => {
           createdAt: communicationData[i].createdAt,
           updatedAt: communicationData[i].updatedAt,
         };
-        lastTwoCommunication.push(communicationToPush);
+        lastThreeCommunication.push(communicationToPush);
       }
     } else {
       let communicationToPush;
@@ -166,21 +161,20 @@ router.get("/:id", async (req, res) => {
           createdAt: communicationData[i].createdAt,
           updatedAt: communicationData[i].updatedAt,
         };
-        lastTwoCommunication.push(communicationToPush);
+        lastThreeCommunication.push(communicationToPush);
       }
     }
 
-    // ---------single student ASSIGNMENT FEEDBACK data------------- //
-    let studentAssignmentFeedback = await AssignmentFeedback.findAll();
-    const assignmentFeedbackData = studentAssignmentFeedback.map(
-      (assignmentFeedback) => assignmentFeedback.get({ plain: true })
-    );
-    const studentAssignmentFeedbackAll = assignmentFeedbackData.filter(
-      function (el) {
-        return el.studentId == req.params.id;
-      }
-    );
-    const assignmentFeedbackById = { ...studentAssignmentFeedbackAll };
+    // let studentAssignmentFeedback = await AssignmentFeedback.findAll();
+    // const assignmentFeedbackData = studentAssignmentFeedback.map(
+    //   (assignmentFeedback) => assignmentFeedback.get({ plain: true })
+    // );
+    // const studentAssignmentFeedbackAll = assignmentFeedbackData.filter(
+    //   function (el) {
+    //     return el.studentId == req.params.id;
+    //   }
+    // );
+    // const assignmentFeedbackById = { ...studentAssignmentFeedbackAll };
 
     // ---------single student BEHAVIORS data------------- //
     let dbBehavior = await Behavior.findAll({
@@ -193,13 +187,13 @@ router.get("/:id", async (req, res) => {
       });
     const behaviorDataLength = behaviorData.length;
 
-    let lastTwoBehavior = [];
-    if (behaviorDataLength >= 2) {
-      for (let i = behaviorDataLength - 2; i < behaviorDataLength; i++) {
-        lastTwoBehavior.push(behaviorData[i]);
+    let lastThreeBehavior = [];
+    if (behaviorDataLength >= 3) {
+      for (let i = behaviorDataLength - 3; i < behaviorDataLength; i++) {
+        lastThreeBehavior.push(behaviorData[i]);
       }
     } else {
-      lastTwoBehavior = behaviorData;
+      lastThreeBehavior = behaviorData;
     }
 
     if (!studentData) {
@@ -211,15 +205,15 @@ router.get("/:id", async (req, res) => {
     // console.log(studentData);
     // console.log(guardianData);
     // console.log(lastThreeAttendance);
-    // console.log(lastTwoCommunication);
-    // console.log(lastTwoBehavior);
+    // console.log(lastThreeCommunication);
+    // console.log(lastThreeBehavior);
 
     res.render("single_student", {
       data1: studentData,
       data2: lastThreeAttendance,
-      data3: lastTwoCommunication,
-      data4: assignmentFeedbackById,
-      data5: lastTwoBehavior,
+      data3: lastThreeCommunication,
+      // data4: assignmentFeedbackById,
+      data5: lastThreeBehavior,
       data6: guardianData,
       loggedIn: req.session.loggedIn,
     });

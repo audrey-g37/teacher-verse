@@ -1,25 +1,5 @@
   {{#if loggedIn}}
-  <nav id="nav">
-    <div id="welcome-user">
-    <h3>Hello, </h3>
-      <h4>{{teacherData.first}} {{teacherData.last}}</h4>
-    </div>
-    <a href="teacher/student" class="fa fa-users">View All Students</a>
-    <a href="/teacher/attendance/new-attendance" class="fa fa-user fa-attendance">Take
-      Attendance</a>
-    <a
-      href="/teacher/communication/new-communication"
-      class="fa fa-envelope"
-    >Add Communication Record</a>
-    <a href="/teacher/behavior/new-behavior" class="fa fa-child">Add Behavior
-      Record</a>
-      <a>
-    <button
-      id="logout"
-      class="create-button"
-    >Logout</button>
-    </a>
-  </nav>
+{{>full_nav}}
   <h1 class="app-name">Teacher Force</h1>
       {{! possible future feature search bar }}
       {{! <form class="form-inline" my-2 my-lg-0”>

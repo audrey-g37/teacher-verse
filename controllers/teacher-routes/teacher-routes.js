@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
     const assignmentData = dbAssignmentData.map((assignment) =>
       assignment.get({ plain: true })
     );
-    console.log(assignmentData);
+    // console.log(assignmentData);
 
     assignmentData.map((assignment) => {
       assignment.dueDate = moment(assignment.dueDate).format("MM-DD-YY");

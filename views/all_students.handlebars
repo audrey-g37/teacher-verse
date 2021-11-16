@@ -1,17 +1,7 @@
 
 
 {{#if loggedIn}}
-<nav id="nav">
-      <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
-          <a href="teacher/attendance/new-attendance" class="fa fa-user fa-attendance">Take
-      Attendance</a>
-      <a href="/teacher/student/new-student" class="fa fa-user new-add">Add Student</a>
-      <a href="/teacher/student/guardian/new-guardian" class="fa fa-users new-add">Add Guardian</a>
-      <a href="/teacher/communication/new-communication" class="fa fa-envelope new-record">Add Communication Record</a>
-      <a href="/teacher/behavior/new-behavior" class="fa fa-child new-record">Add Behavior Record</a>
-      <a><button id="logout" class="create-button position-absolute top-0 end-0">Logout</button></a>
-</nav>
-
+{{>full_nav}}
 <h1 class= "invisible-text">Current Student Roster</h1>
 <section class="student-container d-flex justify-content-around flex-wrap">
     {{#each studentData as |student|}}
