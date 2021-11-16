@@ -2,7 +2,7 @@
 
 ## Description
 
-An app for teachers where they can add students, guardians, assignments, take attendance, and keep track of behavior and communication records.
+An app designed for teachers where they can add students, guardians, assignments, take attendance, and keep track of behavior and communication records.
 
 <img src="./public/css/images/teacher-homepage-screenshot.png" alt="a view of the homepage after loggin in." width="400"/>
 
