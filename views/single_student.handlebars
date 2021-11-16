@@ -1,89 +1,6 @@
 <div>
   {{#if loggedIn}}
-    <nav id="nav">
-      <a href="/teacher" class="fa fa-home"> Back to Teacher Homepage</a>
-      <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
-      <a
-        href="/teacher/student/guardian/new-guardian"
-        class="fa fa-users fa-guardian"
-      >Add Guardian</a>
-      <a
-        href="/teacher/communication/new-communication"
-        class="fa fa-envelope"
-      >Add Communication Record</a>
-      <a href="/teacher/behavior/new-behavior" class="fa fa-child">Add Behavior
-        Record</a>
-      <a>
-        <button
-          id="logout"
-          class="create-button position-absolute top-0 end-0"
-        >Logout</button>
-      </a>
-    </nav>
-
-    {{! <nav id="nav-media-query">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a href="/teacher" class="fa fa-home"> Back to Teacher Homepage</a>
-        </li>
-        <li class="nav-item">
-          <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            role="button"
-            aria-expanded="false"
-          >Add...</a>
-          <ul class="dropdown-menu">
-            <li>
-              <a
-                href="/teacher/student/new-student"
-                class="dropdown-item fa fa-users"
-              >Student</a>
-            </li>
-            <li>
-              <a
-                href="/teacher/student/guardian/new-guardian"
-                class="dropdown-item fa fa-users"
-              >Guardian</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            role="button"
-            aria-expanded="false"
-          >Record...</a>
-          <ul class="dropdown-menu">
-            <li>
-              <a
-                href="/teacher/communication/new-communication"
-                class="dropdown-item fa fa-envelope"
-              >Communication</a>
-            </li>
-            <li>
-              <a
-                href="/teacher/behavior/new-behavior"
-                class="dropdown-item fa fa-child"
-              >Behavior</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a>
-            <button
-              id="logout"
-              class="create-button position-absolute top-0 end-0"
-            >Logout</button>
-          </a>
-        </li>
-      </ul>
-    </nav> }}
-
+  {{>back_nav}}
     <div>
       <div class="invisible-text">
         <h1>{{data1.firstName}}</h1>
@@ -103,7 +20,6 @@
     </div>
     <div class="d-flex justify-content-around">
       <div class="card" style="width: 18rem;">
-
         <div class="card-body">
           <h5 class="card-title">Attendance</h5>
         </div>
@@ -148,6 +64,15 @@
           <li class="list-group-item">Follow Up Needed:
             {{data3.1.followUpNeeded}}</li>
         </ul>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Date:
+            {{data3.2.dateOfCommunication}}</li>
+          <li class="list-group-item">Method:
+            {{data3.2.communicationMethod}}</li>
+          <li class="list-group-item">Notes: {{data3.2.description}}</li>
+          <li class="list-group-item">Follow Up Needed:
+            {{data3.2.followUpNeeded}}</li>
+        </ul>
       </div>
       {{!-- 
     <div class="card" style="width: 18rem;">
@@ -171,7 +96,7 @@
           <li class="list-group-item">Teacher Action:
             {{data5.0.immediateActionTaken}}</li>
           <li class="list-group-item">Student Notes:
-            {{data5.0.postActionComments}}</li>
+            {{data5.0.description}}</li>
           <li class="list-group-item">Positive: {{data5.0.isGood}}</li>
         </ul>
         <ul class="list-group list-group-flush">
@@ -179,8 +104,16 @@
           <li class="list-group-item">Teacher Action:
             {{data5.1.immediateActionTaken}}</li>
           <li class="list-group-item">Student Notes:
-            {{data5.1.postActionComments}}</li>
+            {{data5.1.description}}</li>
           <li class="list-group-item">Positive: {{data5.1.isGood}}</li>
+        </ul>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Title: {{data5.2.title}}</li>
+          <li class="list-group-item">Teacher Action:
+            {{data5.2.immediateActionTaken}}</li>
+          <li class="list-group-item">Student Notes:
+            {{data5.2.description}}</li>
+          <li class="list-group-item">Positive: {{data5.2.isGood}}</li>
         </ul>
       </div>
     </div>

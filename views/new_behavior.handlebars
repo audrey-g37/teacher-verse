@@ -1,11 +1,7 @@
 
 <div>
 {{#if loggedIn}}
-<nav id="nav">
-  <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
-  <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
-  <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
-</nav>
+  {{>back_nav}}
 <div class="new-card" >
   <form action="/teacher/behavior/new-behavior" method="POST">
     <label for="title">Behavior Title: </label>

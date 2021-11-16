@@ -1,0 +1,62 @@
+<nav id="nav-media-query">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="/teacher" class="fa fa-home"> Back to Teacher Homepage</a>
+    </li>
+    <li class="nav-item">
+      <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a
+        class="nav-link dropdown-toggle"
+        data-bs-toggle="dropdown"
+        role="button"
+        aria-expanded="false"
+      >Add...</a>
+      <ul class="dropdown-menu">
+        <li>
+          <a
+            href="/teacher/student/new-student"
+            class="dropdown-item fa fa-users"
+          >Student</a>
+        </li>
+        <li>
+          <a
+            href="/teacher/student/guardian/new-guardian"
+            class="dropdown-item fa fa-users"
+          >Guardian</a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item dropdown">
+      <a
+        class="nav-link dropdown-toggle"
+        data-bs-toggle="dropdown"
+        role="button"
+        aria-expanded="false"
+      >Record...</a>
+      <ul class="dropdown-menu">
+        <li>
+          <a
+            href="/teacher/communication/new-communication"
+            class="dropdown-item fa fa-envelope"
+          >Communication</a>
+        </li>
+        <li>
+          <a
+            href="/teacher/behavior/new-behavior"
+            class="dropdown-item fa fa-child"
+          >Behavior</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a>
+        <button
+          id="logout"
+          class="create-button position-absolute top-0 end-0"
+        >Logout</button>
+      </a>
+    </li>
+  </ul>
+</nav>

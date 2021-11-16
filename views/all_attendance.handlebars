@@ -1,9 +1,6 @@
 <div>
 {{#if loggedIn}}
-<nav id="nav">
-    <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
-    <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
-</nav>
+{{>full_nav}}
         <table id="attendance-table">
         <thead>
             <tr>
