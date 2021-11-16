@@ -17,9 +17,17 @@ Teacher.hasMany(Student, {
   onDelete: "SET NULL",
 });
 
+Teacher.hasMany(Attendance, {
+  foreignKey: "teacherId",
+});
+
 Student.hasMany(Attendance, {
   // through: StudentAttendance,
   foreignKey: "studentId",
+});
+
+Attendance.belongsTo(Teacher, {
+  foreignKey: "teacherId",
 });
 
 // Behavior associations

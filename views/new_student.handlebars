@@ -1,8 +1,12 @@
 <div>
   {{#if loggedIn}}
-    <a href="/teacher"><button type="button" class="create-button">Back to Teacher Homepage</button></a>
+    <nav id="nav">
+    <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
+     <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
+  <a><button id="logout" class="create-button position-absolute top-0 end-0">Logout</button></a>
 
-    <div class="new-student-card">
+    </nav>
+    <div class="new-card">
       <form action="/teacher/student/new-student" method="POST">
         <ul>
           <div>
@@ -10,15 +14,9 @@
             <input type="text" id="firstName" name="firstName" />
             <label for="lastName">Last Name: </label>
             <input type="text" id="lastName" name="lastName"></input>
-            <label for="teacherId">Teacher: </label>
-            <select id="teacherId" name="teacherId">
-            {{#each teacherData as |teacher|}}
-            {{>teacher_name_list}}
-            {{/each}}
-            </select>
         </ul>
-        <div class="button">
-          <button type="submit">Create Student</button>
+        <div >
+          <button class="student-button" type="submit">Create Student</button>
         </div>
       </form>
     </div>

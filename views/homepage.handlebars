@@ -1,76 +1,86 @@
-<div class="homepage">
-        <nav id="nav">
-          <a href="teacher/student" class="fa fa-users">View All Students</a>
-          <a href="teacher/attendance/new-attendance" class="fa fa-user">Take Attendance</a>
-          <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
-        </nav>
-
   {{#if loggedIn}}
-      <div class="jumbotron">
-      <div class="container position-relative">
-        <div>
-        <h1 id="h1-homepage"> Welcome to Teacher Force!</h1>
-      </div>
-      </div>
+  <nav id="nav">
+    <div id="welcome-user">
+    <h3>Hello, </h3>
+      <h4>{{teacherData.first}} {{teacherData.last}}</h4>
+    </div>
+    <a href="teacher/student" class="fa fa-users">View All Students</a>
+    <a href="/teacher/attendance/new-attendance" class="fa fa-user fa-attendance">Take
+      Attendance</a>
+    <a
+      href="/teacher/communication/new-communication"
+      class="fa fa-envelope"
+    >Add Communication Record</a>
+    <a href="/teacher/behavior/new-behavior" class="fa fa-child">Add Behavior
+      Record</a>
+      <a>
+    <button
+      id="logout"
+      class="create-button"
+    >Logout</button>
+    </a>
+  </nav>
+  <h1 class="app-name">Teacher Force</h1>
       {{! possible future feature search bar }}
       {{! <form class="form-inline" my-2 my-lg-0”>
         <input class="form-control" mr-sm-2” type="search" placeholder="Search" aria-label="Search" />
         <button class="btn" btn-outline-primary my-2 my-sm-0” type="submit">Search</button>
       </form> }}
-    </div>
-
-
-    <div class="container-homepage">
-      <div class="card" style="width: 30rem;">
+      <div id="homepage">
+        <div id="daily-fun">
+      <div class="card" id="homepage-card"style="width: 30rem;">
         <div class="card-body">
-          <h5 class="title">Recent Assignments</h5>
-          <div class="d-flex justify-content-between">
- 
-          </div>
-        </div>
-        <ul class="assignments ">
-          <div class = "assignment-main d-flex flex-wrap">
-            <h6 class = "assignment-main-text">Title</h6>
-            <h6 class = "assignment-main-text due-date">Due Date</h6>
-            </div>
-          {{#each assignmentData as |assignment|}}
-            <li class="list-group-item d-flex justify-content-between">
-              <div>
-                {{assignment.title}}
-              </div>
-              <div>
-                {{assignment.dueDate}}
-              </div>
-            </li>
-          {{/each}}
-          <a href="teacher/assignment/new-assignment"><button type="button" class="create-button assignment-btn">Create New
-              Assignment</button></a>
-        </ul>
-      </div>
-      <div class="card" style="width: 30rem;">
-        <div class="card-body">
-          <h5 class="assignment-main-text">Daily Riddle</h5>
-          <div>
+          <h5 class="title">Random Riddle</h5>
             <p>Riddle: {{randomRiddle.riddle}}</p>
             <p>Answer: {{randomRiddle.answer}}</p>
-          </div>
         </div>
       </div>
-      <div class="card" style="width: 30rem;">
+      <div class="card" id="homepage-card" style="width: 30rem;">
         <div class="card-body">
-          <h5 class="assignment-main-text">Daily Quote</h5>
-          <div>
+          <h5 class="title">Random Quote</h5>
             <p>Quote:{{randomQuote.quote}}</p>
-
             <p>Author: {{randomQuote.author}}</p>
-          </div>
         </div>
       </div>
-    </div>
-  {{else}}
-    <a href="/login">Click here to login</a>
-  {{/if}}
 </div>
+      <div class="card assignment-card" style="width: 30rem;">
+          <h5 class="title">Recent Assignments</h5>
+        <table >
+          <thead>
+            <tr class="table-headers">
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col">Due Date</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{#each assignmentData as |assignment|}}
+            <tr>
+              <td class="assignment-title table-content">
+                {{assignment.title}}
+              </td>
+              
+              <td class="assignment-description table-content">{{assignment.description}}</td>
+              <td class="assignment-date table-content">
+                {{assignment.dueDate}}
+              </td>
+                   </tr>
+
+            </tbody>
+          {{/each}}
+        </table>
+          <a href="teacher/assignment/new-assignment" class="new-assignment">
+            <button class="create-button">
+            New Assignment</button></a>
+      </div>
+      </div>
+  {{else}}
+  <div id="no-auth">Click
+    <a href="/login" id="no-auth-link"> here</a>
+    to login
+  </div>
+  {{/if}}
+
 <footer>
 
 </footer>

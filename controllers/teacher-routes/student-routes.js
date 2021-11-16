@@ -19,14 +19,34 @@ const moment = require("moment");
 router.get("/", async (req, res) => {
   try {
     // const teacherIdToUse = localStorage.getItem("teacherId");
-    const dbStudentData = await Student.findAll();
+    const dbStudentData = await Student.findAll({
+      where: { teacherId: req.session.teacherId },
+    });
     const studentData = dbStudentData.map((student) =>
       student.get({ plain: true })
     );
-    res.render("all_students", { studentData, loggedIn: req.session.loggedIn });
-    res.status(200);
+
+    if (studentData.length === 0) {
+      res.render("no_students");
+    } else {
+      const alphaStudentData = studentData.sort(function (a, b) {
+        if (a.lastName < b.lastName) {
+          return -1;
+        } else if (a.lastName > b.lastName) {
+          return 1;
+        } else if (a.lastName == b.lastName) {
+          if (a.firstName < b.firstName) {
+            return -1;
+          } else return 1;
+        } else return 0;
+      });
+      res.render("all_students", {
+        studentData: alphaStudentData,
+        loggedIn: req.session.loggedIn,
+      });
+    }
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
@@ -40,21 +60,21 @@ router.get("/new-student", async (req, res) => {
     );
     res.render("new_student", { teacherData, loggedIn: req.session.loggedIn });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
-router.get("/new-guardian", async (req, res) => {
+router.post("/new-student", async (req, res) => {
   try {
-    const dbStudentData = await Student.findAll({
-      attributes: ["id", "firstName", "lastName"],
+    const newStudent = await Student.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      teacherId: req.session.teacherId,
     });
-    const studentData = dbStudentData.map((student) =>
-      student.get({ plain: true })
-    );
-    res.render("new_guardian", { studentData, loggedIn: req.session.loggedIn });
+
+    res.redirect("/teacher/student/new-student");
   } catch (err) {
-    res.status(500).json(err);
+    res.render("data_error");
   }
 });
 
@@ -188,11 +208,11 @@ router.get("/:id", async (req, res) => {
         .json({ message: `no Student found with id of ${req.params.id}` });
     }
 
-    console.log(studentData);
-    console.log(guardianData);
-    console.log(lastThreeAttendance);
-    console.log(lastTwoCommunication);
-    console.log(lastTwoBehavior);
+    // console.log(studentData);
+    // console.log(guardianData);
+    // console.log(lastThreeAttendance);
+    // console.log(lastTwoCommunication);
+    // console.log(lastTwoBehavior);
 
     res.render("single_student", {
       data1: studentData,
@@ -204,74 +224,45 @@ router.get("/:id", async (req, res) => {
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.render("404");
   }
 });
 
-router.post("/new-student", async (req, res) => {
-  try {
-    const newStudent = await Student.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      teacherId: req.body.teacherId,
-    });
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const updatedStudent = await Student.update(req.body, {
+//       where: { id: req.params.id },
+//     });
+//     if (!updatedStudent[0]) {
+//       res
+//         .status(404)
+//         .json({ message: `no Student found with the id of ${req.params.id}` });
+//     }
+//     res
+//       .status(200)
+//       .json({ message: `Student with id of ${req.params.id} updated` });
+//   } catch (err) {
+//     res.render("data_error");
+//   }
+// });
 
-    res.redirect("/teacher/student");
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.post("/new-guardian", async (req, res) => {
-  try {
-    const newGuardian = await Guardian.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      phoneNumber: req.body.phoneNumber,
-      studentId: req.body.studentId,
-    });
-    res.redirect("/teacher");
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.put("/:id", async (req, res) => {
-  try {
-    const updatedStudent = await Student.update(req.body, {
-      where: { id: req.params.id },
-    });
-    if (!updatedStudent[0]) {
-      res
-        .status(404)
-        .json({ message: `no Student found with the id of ${req.params.id}` });
-    }
-    res
-      .status(200)
-      .json({ message: `Student with id of ${req.params.id} updated` });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.delete("/:id", async (req, res) => {
-  try {
-    const deletedStudent = await Student.destroy({
-      where: { id: req.params.id },
-    });
-    if (!deletedStudent) {
-      res
-        .status(404)
-        .json({ message: `no Student with id ${req.params.id} found` });
-    }
-    res
-      .status(200)
-      .json({ message: `Student with id ${req.params.id} deleted` });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     const deletedStudent = await Student.destroy({
+//       where: { id: req.params.id },
+//     });
+//     if (!deletedStudent) {
+//       res
+//         .status(404)
+//         .json({ message: `no Student with id ${req.params.id} found` });
+//     }
+//     res
+//       .status(200)
+//       .json({ message: `Student with id ${req.params.id} deleted` });
+//   } catch (err) {
+//     res.render("404");
+//   }
+// });
 
 //thunder client
 

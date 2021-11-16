@@ -1,8 +1,10 @@
 
 <div>
   {{#if loggedIn}}
-   <a href="/teacher"><button type="button" class="create-button">Back to Teacher Homepage</button></a>
-
+  <nav id="nav">
+    <a href="/teacher" class="fa fa-home">Back to Teacher Homepage</a>
+    <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
+  </nav>
     <div class="new-assignment-card">
       <form action="/teacher/assignment/new-assignment" method="POST">
         <ul>
@@ -12,18 +14,18 @@
             <label for="dueDate">Due Date: </label>
             <input type="date" id="dueDate" name="dueDate"></input>
             <br>
-            <label for="assignedStatusTrue">Check here if already assigned:
+            <label for="assignedStatusTrue">Already assigned:
             </label>
+            Yes
             <input
-              type="checkbox"
+              type="radio"
               id="assignedStatusTrue"
               name="assignedStatus"
               value="true"
             />
-            <label for="assignedStatusFalse">Check here if not yet assigned:
-            </label>
+            No
             <input
-              type="checkbox"
+              type="radio"
               id="assignedStatusFalse"
               name="assignedStatus"
               value="false"
