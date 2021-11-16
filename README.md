@@ -1,24 +1,29 @@
-# Teacher Force
+# Teacher Force ![License Image](https://img.shields.io/badge/license-MIT-blue)
 
-## Link to Application
+## Description
 
-https://teacher-force.herokuapp.com/login
+An app for teachers where they can add students, guardians, assignments, take attendance, and keep track of behavior and communication records.
 
-<img width="1396" alt="Screen Shot 2021-09-12 at 9 28 40 PM" src="https://user-images.githubusercontent.com/87398458/133019712-aecf7414-7e5a-4ff3-b3d1-a8a328e7c353.png">
+<img src="./public/css/images/teacher-homepage-screenshot.png" alt="a view of the homepage after loggin in." width="400"/>
 
-<!-- Inlcudes screenshots of said steps -->
+## Table of Contents
+
+- [Usage](#usage)
+- [Resources](#resources)
+- [Credits](#credits)
+- [Github Profiles of Contributors](#github-profiles)
+
+## Usage
+
+Click the link to sign-up! Once a user is logged in, they can use the nav bar to keep track of all daily tasks.
+
+[Sign Up](https://teacher-force.herokuapp.com/register)
 
 ## Resources
 
-<!-- ----------------------- -->
-
 [WireFrame](https://drive.google.com/file/d/1ATF0TMnzcSoFdFFB3xujzMdjoBeDfwI9/view?usp=sharing)
 
-<!-- List APIs used here for Recipe and Drink -->
-
 ## Credits
-
-<!-- ----------------------- -->
 
 [Unsplash](https://unsplash.com/photos/Hcfwew744z4)
 
@@ -26,21 +31,12 @@ https://teacher-force.herokuapp.com/login
 
 [BootStrap](https://getbootstrap.com/)
 
-## Contributions and Contact Information
+## Github Profiles
 
-<!-- ----------------------- -->
+[Audrey Gillies](https://github.com/audrey-g37)
 
-```
-Audrey Gillies
-audrey.gillies@gmail.com
+[Edgar Calderon](https://github.com/Ecalderon10)
 
-Matt Bush
-matthewbush55@gmail.com
+[Matt Bush](https://github.com/matthewbush55)
 
-Edgar Calderon
-EdgarCalderon_24@hotmail.com
-
-Catherine Cox
-ccox.034@gmail.com
-
-```
+[Catherine Cox](https://github.com/beachbrunet)

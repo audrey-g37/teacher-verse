@@ -33,7 +33,7 @@ Guardian.init(
     email: {
       type: DataTypes.STRING,
       allowNull: true,
-      unique: false,
+      unique: true,
       validate: {
         isEmail: true,
         notEmpty: true,
@@ -50,7 +50,7 @@ Guardian.init(
     },
     studentId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: "Student",
         key: "id",
@@ -61,17 +61,30 @@ Guardian.init(
   {
     hooks: {
       beforeCreate: async (newGuardianData) => {
-        newGuardianData.firstName = await newGuardianData.firstName.trim().toLowerCase();
-        newGuardianData.lastName = await newGuardianData.lastName.trim().toLowerCase();
-        newGuardianData.email = await newGuardianData.email.trim().toLowerCase();
+        newGuardianData.firstName = await newGuardianData.firstName
+          .trim()
+          .toLowerCase();
+        newGuardianData.lastName = await newGuardianData.lastName
+          .trim()
+          .toLowerCase();
+        newGuardianData.email = await newGuardianData.email
+          .trim()
+          .toLowerCase();
         newGuardianData.phoneNumber = await newGuardianData.phoneNumber.trim();
         return newGuardianData;
       },
       beforeUpdate: async (updatedGuardianData) => {
-        updatedGuardianData.firstName = await updatedGuardianData.firstName.trim().toLowerCase();
-        updatedGuardianData.lastName = await updatedGuardianData.lastName.trim().toLowerCase();
-        updatedGuardianData.email = await updatedGuardianData.email.toLowerCase().toLowerCase();
-        updatedGuardianData.phoneNumber = await updatedGuardianData.phoneNumber.trim();
+        updatedGuardianData.firstName = await updatedGuardianData.firstName
+          .trim()
+          .toLowerCase();
+        updatedGuardianData.lastName = await updatedGuardianData.lastName
+          .trim()
+          .toLowerCase();
+        updatedGuardianData.email = await updatedGuardianData.email
+          .toLowerCase()
+          .toLowerCase();
+        updatedGuardianData.phoneNumber =
+          await updatedGuardianData.phoneNumber.trim();
         return updatedGuardianData;
       },
     },

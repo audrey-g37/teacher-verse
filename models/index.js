@@ -7,9 +7,6 @@ const Behavior = require("./behavior");
 const Communication = require("./communication");
 const Guardian = require("./guardian");
 const Student = require("./student");
-const StudentAttendance = require("./studentAttendance");
-const StudentBehavior = require("./studentBehavior");
-const StudentCommunication = require("./studentCommunication");
 
 // Teacher associations
 Teacher.hasMany(Student, {
@@ -79,7 +76,4 @@ module.exports = {
   Communication,
   Guardian,
   Student,
-  StudentAttendance,
-  StudentBehavior,
-  StudentCommunication,
 };

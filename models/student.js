@@ -30,37 +30,33 @@ Student.init(
       },
     },
 
-    // inProgressGrade: {
-    //   type: DataTypes.DECIMAL,
-    //   allowNull: true,
-    // },
-
     teacherId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: "Teacher",
         key: "id",
       },
     },
-    // guardianId: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: "Guardian",
-    //     key: "id",
-    //   },
-    // },
   },
   {
     hooks: {
       beforeCreate: async (newStudentData) => {
-        newStudentData.firstName = await newStudentData.firstName.trim().toLowerCase();
-        newStudentData.lastName = await newStudentData.lastName.trim().toLowerCase();
+        newStudentData.firstName = await newStudentData.firstName
+          .trim()
+          .toLowerCase();
+        newStudentData.lastName = await newStudentData.lastName
+          .trim()
+          .toLowerCase();
         return newStudentData;
       },
       beforeUpdate: async (updatedStudentData) => {
-        updatedStudentData.firstName = await updatedStudentData.firstName.trim().toLowerCase();
-        updatedStudentData.lastName = await updatedStudentData.lastName.trim().toLowerCase();
+        updatedStudentData.firstName = await updatedStudentData.firstName
+          .trim()
+          .toLowerCase();
+        updatedStudentData.lastName = await updatedStudentData.lastName
+          .trim()
+          .toLowerCase();
         return updatedStudentData;
       },
     },

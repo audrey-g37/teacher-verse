@@ -32,7 +32,7 @@ Behavior.init(
 
     immediateActionTaken: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
 
     isGood: {
@@ -50,7 +50,7 @@ Behavior.init(
     },
     studentId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: "Student",
         key: "id",
