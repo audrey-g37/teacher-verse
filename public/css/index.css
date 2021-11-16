@@ -51,6 +51,10 @@
   align-items: center;
 }
 
+/* #nav-media-query {
+  display: none;
+} */
+
 #welcome-user {
   display: block;
   color: var(--light1);
@@ -199,7 +203,7 @@
 
 /* new-behavior styling */
 
-.new-behavior-card {
+.new-card {
   background-color: var(--light2);
   border-radius: 5px;
   padding: 10px;
@@ -214,15 +218,6 @@
 #description-tag {
   margin-left: 40px;
   font: large;
-}
-
-.new-assignment-card {
-  background-color: var(--formbkg);
-  opacity: 0.95;
-  display: flex;
-  align-items: center;
-  margin-right: 200px;
-  margin-left: 200px;
 }
 
 /* student page styling */
@@ -240,16 +235,6 @@
   margin-left: 60px;
 }
 
-.new-student-card {
-  background-color: var(--light2);
-  opacity: 0.9;
-  border-radius: 5px;
-  margin-top: 70px;
-  display: flex;
-  align-content: center;
-  margin-right: 200px;
-  margin-left: 200px;
-}
 .student-card {
   background-color: var(--light1);
 }
@@ -263,30 +248,11 @@
   border-radius: 10%;
   background-color: var(--light1);
 }
-.new-guardian-card {
-  background-color: var(--light2);
-  opacity: 0.9;
-  border-radius: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: 200px;
-  margin-left: 200px;
-  margin-top: 70px;
-}
+
 .studentId {
   margin-left: 30px;
 }
-.new-communication-card {
-  background-color: var(--light2);
-  border-radius: 5px;
-  padding: 10px;
-  opacity: 0.9;
-  margin-top: 70px;
-  display: flex;
-  align-content: center;
-  margin-right: 200px;
-  margin-left: 200px;
-}
+
 .invisible-text {
   text-align: center;
 }
@@ -316,6 +282,7 @@
 
 #attendance-student-name {
   font-size: 18px;
+  color: var(--black);
 }
 
 #attendance-present {
@@ -384,6 +351,11 @@
   #register .need-new-render {
     font-size: 15px;
   }
+
+  /* #nav-media-query {
+    display: unset;
+  }  */
+
   .new-behavior-card .studentId {
     margin-inline-start: 20%;
   }
@@ -436,13 +408,10 @@
     font-size: 10px;
   }
 
-  #nav {
-    display: flex;
-    justify-content: space-between;
-  }
-
   #nav .fa-child,
-  #nav .fa-envelope {
+  .fa-guardian,
+  .fa-envelope,
+  .fa-attendance {
     display: none;
   }
 
@@ -461,7 +430,7 @@
     margin-inline-start: 5%;
   }
 
-  .new-card form {
+  #login .new-card form {
     background-color: var(--dark2);
     width: 100%;
   }
@@ -474,5 +443,8 @@
   }
   #daily-fun {
     width: 300px;
+  }
+  #nav {
+    max-width: 100%;
   }
 }

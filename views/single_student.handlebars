@@ -1,74 +1,155 @@
 <div>
   {{#if loggedIn}}
-  <nav id="nav">
-    <a href="/teacher" class="fa fa-home"> Back to Teacher Homepage</button></a>
-    <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
-    <a href="/teacher/student/guardian/new-guardian" class="fa fa-users">Add Guardian</a>
-    <a href="/teacher/communication/new-communication" class="fa fa-envelope">Add Communication Record</a>
-    <a href="/teacher/behavior/new-behavior" class="fa fa-child">Add Behavior Record</a>
-  <button id="logout" class="create-button position-absolute top-0 end-0">Logout</button>
-  </nav>
-    <div>
+    <nav id="nav">
+      <a href="/teacher" class="fa fa-home"> Back to Teacher Homepage</a>
+      <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
+      <a
+        href="/teacher/student/guardian/new-guardian"
+        class="fa fa-users fa-guardian"
+      >Add Guardian</a>
+      <a
+        href="/teacher/communication/new-communication"
+        class="fa fa-envelope"
+      >Add Communication Record</a>
+      <a href="/teacher/behavior/new-behavior" class="fa fa-child">Add Behavior
+        Record</a>
+      <a>
+        <button
+          id="logout"
+          class="create-button position-absolute top-0 end-0"
+        >Logout</button>
+      </a>
+    </nav>
 
-      <div>
-        <div class="invisible-text">
-          <h1>{{data1.firstName}}</h1> 
-          <h2>{{data1.lastName}}</h2>
-        </div>
-        <ul class="invisible-text list-group list-group-flush">
-          {{#each data6 as |guardian|}}
+    {{! <nav id="nav-media-query">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="/teacher" class="fa fa-home"> Back to Teacher Homepage</a>
+        </li>
+        <li class="nav-item">
+          <a href="/teacher/student" class="fa fa-users">Back to All Students</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            role="button"
+            aria-expanded="false"
+          >Add...</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                href="/teacher/student/new-student"
+                class="dropdown-item fa fa-users"
+              >Student</a>
+            </li>
+            <li>
+              <a
+                href="/teacher/student/guardian/new-guardian"
+                class="dropdown-item fa fa-users"
+              >Guardian</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            role="button"
+            aria-expanded="false"
+          >Record...</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                href="/teacher/communication/new-communication"
+                class="dropdown-item fa fa-envelope"
+              >Communication</a>
+            </li>
+            <li>
+              <a
+                href="/teacher/behavior/new-behavior"
+                class="dropdown-item fa fa-child"
+              >Behavior</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a>
+            <button
+              id="logout"
+              class="create-button position-absolute top-0 end-0"
+            >Logout</button>
+          </a>
+        </li>
+      </ul>
+    </nav> }}
+
+    <div>
+      <div class="invisible-text">
+        <h1>{{data1.firstName}}</h1>
+        <h2>{{data1.lastName}}</h2>
+      </div>
+      <ul class="invisible-text list-group list-group-flush">
+        {{#each data6 as |guardian|}}
           <li>
-          <span class="fw-bold">Guardian's Name: </span>{{guardian.firstName}}
-          {{guardian.lastName}}
-          <span class="fw-bold">Email: </span>{{guardian.email}}
-          <span class="fw-bold">Phone: </span>{{guardian.phoneNumber}}
+            <span class="fw-bold">Guardian's Name:
+            </span>{{guardian.firstName}}
+            {{guardian.lastName}}
+            <span class="fw-bold">Email: </span>{{guardian.email}}
+            <span class="fw-bold">Phone: </span>{{guardian.phoneNumber}}
           </li>
-          {{/each}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="d-flex justify-content-around">
+      <div class="card" style="width: 18rem;">
+
+        <div class="card-body">
+          <h5 class="card-title">Attendance</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Date: {{data2.0.date}}</li>
+          <li class="list-group-item">Present: {{data2.0.isPresent}}</li>
+          <li class="list-group-item">Time: {{data2.0.time}}</li>
+          <li class="list-group-item">Notes: {{data2.0.notes}}</li>
+        </ul>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Date: {{data2.1.date}}</li>
+          <li class="list-group-item">Present: {{data2.1.isPresent}}</li>
+          <li class="list-group-item">Time: {{data2.1.time}}</li>
+          <li class="list-group-item">Notes: {{data2.1.notes}}</li>
+        </ul>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Date: {{data2.2.date}}</li>
+          <li class="list-group-item">Present: {{data2.2.isPresent}}</li>
+          <li class="list-group-item">Time: {{data2.2.time}}</li>
+          <li class="list-group-item">Notes: {{data2.2.notes}}</li>
         </ul>
       </div>
-      <div class="d-flex justify-content-around"> 
-        <div class="card" style="width: 18rem;">
-
-          <div class="card-body">
-            <h5 class="card-title">Attendance</h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Date: {{data2.0.date}}</li>
-            <li class="list-group-item">Present: {{data2.0.isPresent}}</li>
-            <li class="list-group-item">Time: {{data2.0.time}}</li>
-            <li class="list-group-item">Notes: {{data2.0.notes}}</li>
-          </ul>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Date: {{data2.1.date}}</li>
-            <li class="list-group-item">Present: {{data2.1.isPresent}}</li>
-                <li class="list-group-item">Time: {{data2.1.time}}</li>
-            <li class="list-group-item">Notes: {{data2.1.notes}}</li>
-          </ul>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Date: {{data2.2.date}}</li>
-            <li class="list-group-item">Present: {{data2.2.isPresent}}</li>
-                <li class="list-group-item">Time: {{data2.2.time}}</li>
-            <li class="list-group-item">Notes: {{data2.2.notes}}</li>
-          </ul>
-        </div> 
-     <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Communications</h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Date: {{data3.0.dateOfCommunication}}</li>
-            <li class="list-group-item">Method: {{data3.0.communicationMethod}}</li>
-            <li class="list-group-item">Notes: {{data3.0.description}}</li>
-            <li class="list-group-item">Follow Up Needed: {{data3.0.followUpNeeded}}</li>
-          </ul>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Date: {{data3.1.dateOfCommunication}}</li>
-            <li class="list-group-item">Method: {{data3.1.communicationMethod}}</li>
-            <li class="list-group-item">Notes: {{data3.1.description}}</li>
-            <li class="list-group-item">Follow Up Needed: {{data3.1.followUpNeeded}}</li>
-          </ul>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Communications</h5>
         </div>
-              {{!-- 
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Date:
+            {{data3.0.dateOfCommunication}}</li>
+          <li class="list-group-item">Method:
+            {{data3.0.communicationMethod}}</li>
+          <li class="list-group-item">Notes: {{data3.0.description}}</li>
+          <li class="list-group-item">Follow Up Needed:
+            {{data3.0.followUpNeeded}}</li>
+        </ul>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Date:
+            {{data3.1.dateOfCommunication}}</li>
+          <li class="list-group-item">Method:
+            {{data3.1.communicationMethod}}</li>
+          <li class="list-group-item">Notes: {{data3.1.description}}</li>
+          <li class="list-group-item">Follow Up Needed:
+            {{data3.1.followUpNeeded}}</li>
+        </ul>
+      </div>
+      {{!-- 
     <div class="card" style="width: 18rem;">
 
           <div class="card-body">
@@ -81,27 +162,29 @@
               <li class="list-group-item">Notes: {{data4.0.feedback}}</li>
             </ul>
         </div> --}}
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Behaviors</h5>
-          </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Title: {{data5.0.title}}</li>
-              <li class="list-group-item">Teacher Action: {{data5.0.immediateActionTaken}}</li>
-              <li class="list-group-item">Student Notes: {{data5.0.postActionComments}}</li>
-              <li class="list-group-item">Positive: {{data5.0.isGood}}</li>
-            </ul> 
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Title: {{data5.1.title}}</li>
-              <li class="list-group-item">Teacher Action: {{data5.1.immediateActionTaken}}</li>
-              <li class="list-group-item">Student Notes: {{data5.1.postActionComments}}</li>
-              <li class="list-group-item">Positive: {{data5.1.isGood}}</li>
-            </ul> 
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Behaviors</h5>
         </div>
-
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Title: {{data5.0.title}}</li>
+          <li class="list-group-item">Teacher Action:
+            {{data5.0.immediateActionTaken}}</li>
+          <li class="list-group-item">Student Notes:
+            {{data5.0.postActionComments}}</li>
+          <li class="list-group-item">Positive: {{data5.0.isGood}}</li>
+        </ul>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Title: {{data5.1.title}}</li>
+          <li class="list-group-item">Teacher Action:
+            {{data5.1.immediateActionTaken}}</li>
+          <li class="list-group-item">Student Notes:
+            {{data5.1.postActionComments}}</li>
+          <li class="list-group-item">Positive: {{data5.1.isGood}}</li>
+        </ul>
       </div>
-
     </div>
+
   {{else}}
     <a href="/login">Click here to login</a>
   {{/if}}
